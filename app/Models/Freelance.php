@@ -18,20 +18,5 @@ class Freelance extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
-    public function links()
-    {
-        return $this->hasMany(Link::class);
-    }
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-    public function jobs()
-    {
-        return $this->belongsToMany(Job::class);
-    }
-    public function experiences()
-    {
-        return $this->hasMany(Experience::class);
-    }
+   
 }
