@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('profession');
             $table->string('location');
             $table->text('description');
-            $table->integer('salaire');
+            $table->float('salaries');
 
 
             $table->timestamps();

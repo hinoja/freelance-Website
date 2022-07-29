@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -35,12 +36,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    public function userable()
-    {
-        return $this->morphTo();
-    }
-
     /**
      * The attributes that should be cast.
      *
@@ -49,10 +44,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+    public function userable()
+    {
+        return $this->morphTo();
+    }
     public function roles()
     {
-        return $this->hasMany(Role::class);
+        
+        return $this->belongsTo(Role::class);
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\User;
 
 use App\Models\Freelance;
@@ -15,13 +16,8 @@ class testController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-                        {
-                            // $post = Freelance::find(3);
-                            $post = User::find(1);
-
-                            // $image = $post->user;
-                                    // dd($post->users);
-                                    dd($post->userable);
+     {
+                           
     }
 
     /**

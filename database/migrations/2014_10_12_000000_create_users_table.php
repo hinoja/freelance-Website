@@ -19,16 +19,12 @@ return new class extends Migration
             $table->integer('userable_id');
             $table->string('userable_type');
             $table->string('first_name');
-            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar');
-            $table->boolean('is_active');
-            $table->foreignId('role_id')->constrained()->onDelete('cascade');
-
-
-
+            $table->string('avatar')->default('image');
+            $table->boolean('is_active')->default('1');
+            $table->foreignId('role_id')->constrained();
             $table->rememberToken();
             $table->timestamps();
         });
