@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GithubConntroller;
+use App\Http\Controllers\GoogleConntroller;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -40,52 +42,12 @@ Route::post('/signup',[UserController::class,'signup'])->name("signup");
 
 
 //login with github
-Route::get('/auth/redirect/github', function () {
-    return Socialite::driver('github')->redirect();
-
-
-
-})->name('login.github');
-
-Route::get('/auth/callback/github', function () {
-    // $user = Socialite::driver('github')->user();
-    $githubUser = Socialite::driver('github')->user();
-    $user = User::updateOrCreate([
-        'github_id' => $githubUser->id,
-    ], [
-        'name' => $githubUser->name,
-        'email' => $githubUser->email,
-        'github_token' => $githubUser->token,
-        'github_refresh_token' => $githubUser->refreshToken,
-    ]);
-
-    Auth::login($user);
-   dd('tres bon');
-    return redirect('/dashboard');
-    // $user->token
-});
+Route::get('/auth/redirect/github',[GithubConntroller::class,'redirectgit'])->name('login.github');
+Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);
 
 //login with google
-Route::get('/auth/redirect/google', function () {
-    return Socialite::driver('google')->redirect();
-})->name('login.google');
+Route::get('/auth/redirect/google',[GoogleConntroller::class,'redirectgoogle'])->name('login.google');
 
-Route::get('/auth/callback/google', function () {
-    $user = Socialite::driver('google')->user();
-
-    dd($user);
-    // $user->token
-});
-
-// //login with facebook
-// Route::get('/auth/redirect', function () {
-//     return Socialite::driver('facebook')->redirect();
-// })->name("login.facebook");
-
-// Route::get('/auth/callback', function () {
-//     $user = Socialite::driver('facebook')->user();
-
-//     // $user->token
-// });
+Route::get('auth/callback/github',[GoogleConntroller::class,'callbackgoogle']);
 
 
