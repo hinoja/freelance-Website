@@ -46,8 +46,7 @@
 
             <span> <a href="/signup"> I have'nt an account </a></span><br><br>
             <span> <a href="{{ route('login.github') }}"> Sign In with Github </a></span> <br>
-                    {{-- <span> <a href="{{ route('login.facebook') }}"> Sign In with Facebook </a></span> <br> --}}
-                    <span> <a href="{{ route('login.google') }}"> Sign In with Google </a></span>
+             <span> <a href="{{ route('login.google') }}"> Sign In with Google </a></span>
 
 
        </div>

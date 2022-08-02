@@ -40,14 +40,14 @@ Route::post('/signup',[UserController::class,'signup'])->name("signup");
 
 
 //login with github
-Route::get('/auth/redirect', function () {
+Route::get('/auth/redirect/github', function () {
     return Socialite::driver('github')->redirect();
 
 
 
-})->name("login.github");
+})->name('login.github');
 
-Route::get('/auth/callback', function () {
+Route::get('/auth/callback/github', function () {
     // $user = Socialite::driver('github')->user();
     $githubUser = Socialite::driver('github')->user();
     $user = User::updateOrCreate([
