@@ -48,6 +48,6 @@ Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);
 //login with google
 Route::get('/auth/redirect/google',[GoogleConntroller::class,'redirectgoogle'])->name('login.google');
 
-Route::get('auth/callback/github',[GoogleConntroller::class,'callbackgoogle']);
+Route::get('auth/callback/google',[GoogleConntroller::class,'callbackgoogle']);
 
 
