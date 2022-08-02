@@ -12,7 +12,7 @@ class UserController extends Controller
 
         public function connected()
         {
-            return view('index');
+            return view('/connecté');
         }
         public function signup(Request $request)
         {
@@ -34,8 +34,8 @@ class UserController extends Controller
 
 
             $user->save();
-        
-           Auth::login($user, $remember = true);
+
+             Auth::login($user, $remember = true);
                return redirect()->route('dashboard')->with('success',"Your account was been creted successfull");
 
 

@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 <body style="background-color: blue;">
-    <h1 style="color: green"> Hello {{ Auth::user()->first_name }}</h1>
+    <h1 style="color: green"> Hello</h1>
     <h2> You're Connected</h2>
     <h3>Welcome ! </h3>
 
