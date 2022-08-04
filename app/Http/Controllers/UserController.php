@@ -11,34 +11,39 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+        /**
+         * Retourne la vue apres connextion
+         *
+         * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+         *
+         */
         public function connected()
         {
             return view('index');
         }
+
         public function signup(Request $request)
         {
             $request->validate([
                 'name' => ['required'],
                 'email' => ['required', 'email','unique:users,email'],
+
                 'password' => ['required','min:8'],
                 'passwordConfirmed' => ['required'],
                 'Role_id'=> ['required'],
             ]);
-            if (! Hash::check($request->passwordConfirmed, $request->user()->password)) {
-                return back()->withErrors([
-                    'password' => ['The provided password does not match our records.']
-                ]);
+            // 1. Recuperer le role
 
+            // 2. Verifier le role (Customer role_id = 2 par exemple)
+            // 2.1 Si le role === 2
+            // $customer = Customer::create();
+            // 2.2 Lier l'instance creee (Customer/Freelance) a l'utilisateur
+            // $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
 
-            }
+            // Mass assignment
+            // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
+            // Le password sera hashe dans le model a travers le setter setPasswordAttribute
 
-        //    $user = User::create
-        //    ([
-        //            'name',
-        //            'email',
-        //            'password',
-        //            'role_id',
-        //    ]) ;
             $user= new User();
             $user->email=$request->email;
             $user->first_name=$request->name;

@@ -19,10 +19,6 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the 'web' middleware group. Now create something great!
 |
 */
-
-
-
-
     Route::group(['middleware'=>'auth'],function()
     {
         Route::get('/deconnecte',[UserController::class,'logout'])->name('logout');
@@ -34,20 +30,20 @@ use Laravel\Socialite\Facades\Socialite;
         Route::view('/signup','signup');
         Route::post('/loginUser',[UserController::class,'authenticate'])->name('login');
         Route::post('/signup',[UserController::class,'signup'])->name('signup');
-
     });
     //login with github
     // Route::group('/auth/{lien}/github',['redirect'=>'redirect','callback'=>'callback'])
     // {
     // }
-        Route::get('/auth/redirect/github',[GithubConntroller::class,'redirectgit'])->name('login.github');
-        Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);
+// Route::get('/auth/redirect/{driver}', []);
+//login with github
+Route::get('/auth/redirect/github',[GithubConntroller::class,'redirectgit'])->name('login.github');
+Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);
 
+//login with google
+Route::get('/auth/redirect/google',[GoogleConntroller::class,'redirectgoogle'])->name('login.google');
 
+Route::get('auth/callback/google',[GoogleConntroller::class,'callbackgoogle']);
 
-    //login with google
-    Route::get('/auth/redirect/google',[GoogleConntroller::class,'redirectgoogle'])->name('login.google');
-
-    Route::get('auth/callback/google',[GoogleConntroller::class,'callbackgoogle']);
 
 
