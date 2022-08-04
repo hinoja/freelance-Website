@@ -26,6 +26,7 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
+// Route::view('/signup', 'signup', []);
 
 
     Route::group(['middleware'=>'auth'],function()
@@ -37,10 +38,9 @@ Route::get('/signup', function () {
 
 Route::post('login',[UserController::class,'authenticate'])->name("login");
 Route::post('/signup',[UserController::class,'signup'])->name("signup");
+// Middleware 'guest'
 
-
-
-
+// Route::get('/auth/redirect/{driver}', []);
 //login with github
 Route::get('/auth/redirect/github',[GithubConntroller::class,'redirectgit'])->name('login.github');
 Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);

@@ -15,6 +15,7 @@ class GithubConntroller extends Controller
      }
      public function callbackgit() {
         $user = Socialite::driver('github')->user();
+      //   Verifier que l'utilisateur existe
         // $githubUser = Socialite::driver('github')->user();
         // $user = User::updateOrCreate([
         //     'github_id' => $githubUser->id,
