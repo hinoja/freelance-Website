@@ -21,7 +21,7 @@
         @endif
     <div>
 
-         <h5 style="color: purple"> <a href="{{ route('logout') }}">se deconnecter</a> </h5>
+         <h5 style="color: red"> <a href="{{ route('logout') }}">se deconnecter</a> </h5>
     </div>
 
 </body>

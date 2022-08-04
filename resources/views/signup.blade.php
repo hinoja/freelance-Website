@@ -1,4 +1,6 @@
+
 @php
+    use App\Models\Role;
     use Illuminate\Support\Facades\Session;
 @endphp
 <!DOCTYPE html>
@@ -25,6 +27,8 @@
         </style>
     </head>
     <body class="antialiased" style="text-align: center;">
+        <h1 style="font-size:2em "> Sign Up </h1>
+
        <div style="margin-top: 100px;">
                <div>
                     @foreach ($errors->all() as $error )
@@ -37,13 +41,17 @@
 
         <form action="{{ route('signup') }}" method="POST">
                     @csrf
-
-            {{-- <input type="text" class="form-cntrol"> --}}
-            <input type="text" name="name" placeholder="name"> <br><br>
+            <input type="text" name="name" placeholder="name" > <br><br>
             <input type="email" name="email" placeholder="email"> <br><br>
             <input type="password" name="password" placeholder="password"><br><br>
-            <input type="hidden" name="role_id" value="1"><br><br>
-            <input type="submit" value="creer">
+            <input type="password" name="passwordConfirmed" placeholder="Confirmed your password"><br><br>
+             <label for="Role_id">Role</label>
+                   <select name="Role_id" >
+                        @foreach(Role::all() as $val)
+                            <option value="{{ $val->id }}">{{ $val->name }}</option>
+                        @endforeach
+                    </select>  <br><br>
+             <input type="submit" value="creer">
 
         </form>
 

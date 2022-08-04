@@ -34,7 +34,7 @@
         <form action="{{ route('login') }}" method="POST">
                     @csrf
 
-            {{-- <input type="text" class="form-cntrol"> --}}
+          
             <input type="text" name="email" placeholder="email"> <br><br>
             <input type="text" name="password" placeholder="password"><br><br>
             <input type="submit" value="envoyer">
