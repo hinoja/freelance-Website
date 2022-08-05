@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GithubConntroller;
 use App\Http\Controllers\GoogleConntroller;
+use App\Http\Controllers\SocialController;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -31,19 +32,6 @@ use Laravel\Socialite\Facades\Socialite;
         Route::post('/loginUser',[UserController::class,'authenticate'])->name('login');
         Route::post('/signup',[UserController::class,'signup'])->name('signup');
     });
-    //login with github
-    // Route::group('/auth/{lien}/github',['redirect'=>'redirect','callback'=>'callback'])
-    // {
-    // }
-// Route::get('/auth/redirect/{driver}', []);
-//login with github
-Route::get('/auth/redirect/github',[GithubConntroller::class,'redirectgit'])->name('login.github');
-Route::get('/auth/callback/github',[GithubConntroller::class,'callbackgit']);
-
-//login with google
-Route::get('/auth/redirect/google',[GoogleConntroller::class,'redirectgoogle'])->name('login.google');
-
-Route::get('auth/callback/google',[GoogleConntroller::class,'callbackgoogle']);
-
-
-
+    //login with driver
+Route::get('/auth/redirect/{driver}', [SocialController::class,'redirect'])->name('SocialRedirect');
+Route::get('/auth/callback/{driver}', [SocialController::class,'callback'])->name('SocialCallback');

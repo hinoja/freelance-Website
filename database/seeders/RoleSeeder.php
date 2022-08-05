@@ -16,8 +16,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-            $role=['Freelance','Client','Administrateur'];
-                  for($i=0;$i<3;$i++)
+            $role=['Freelance','Customer'];
+                  for($i=0;$i<2;$i++)
                    {
                         DB::table('roles')->insert
                         ([

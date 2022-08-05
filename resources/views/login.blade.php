@@ -24,29 +24,23 @@
     <body class="antialiased" style="text-align: center;">
        <div style="margin-top: 100px;">
                <div>
-                 @error('failed')
-                        {{ $message }}
-                 @enderror
+                @foreach ($errors->all() as $error )
+                    <li> {{ $error }}</li>
+                 @endforeach
                </div>
 
                    <h1 style="font-size:2em "> Login </h1>
 
         <form action="{{ route('login') }}" method="POST">
-                    @csrf
-
-          
+             @csrf
             <input type="text" name="email" placeholder="email"> <br><br>
             <input type="text" name="password" placeholder="password"><br><br>
             <input type="submit" value="envoyer">
-
         </form>
-
-
             <br><br>
-
             <span> <a href="/signup"> I have'nt an account </a></span><br><br>
-            <span> <a href="{{ route('login.github') }}"> Sign In with Github </a></span> <br>
-             <span> <a href="{{ route('login.google') }}"> Sign In with Google </a></span>
+            <span> <a href="{{ route('SocialRedirect','github') }}"> Sign In with Github </a></span> <br>
+             <span> <a href="{{ route('SocialRedirect','google') }}"> Sign In with Google </a></span>
 
 
        </div>
