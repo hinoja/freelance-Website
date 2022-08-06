@@ -29,20 +29,18 @@ class UserController extends Controller
                 'name' => ['required'],
                 'email' => ['required', 'email','unique:users,email'],
                 'password' => ['required','min:8'],
-                'role_id'=> ['required,']
+                'role_id'=> ['required','exists:users']
             ]);
             // 1. Recuperer le role
              if( (int)$request->role_id === 1)//freelance
             {
                 $freelance = Freelance::create();
                 $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                Auth::login($freelance);
             }
              else//Customer
             {
                 $customer = Customer::create();
                 $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                Auth::login($customer);
             }
             // dd('ggh');
             // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
