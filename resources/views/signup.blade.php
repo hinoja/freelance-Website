@@ -41,16 +41,17 @@
 
         <form action="{{ route('signup') }}" method="POST">
                     @csrf
-            <input type="text" name="name" placeholder="name" > <br><br>
-            <input type="email" name="email" placeholder="email"> <br><br>
-            <input type="password" name="password" placeholder="password"><br><br>
-            <label for="Role_id">Role</label>
-                   <select name="Role_id" >
-                        @foreach(Role::all() as $val)
-                            <option value="{{ $val->id }}">{{ $val->name }}</option>
-                        @endforeach
-                    </select>  <br><br>
-             <input type="submit" value="creer">
+                    @method('post')
+            <input type="text" name="name" placeholder="name" value="{{ old('text') }}" > <br><br>
+            <input type="email" name="email" placeholder="email" value="{{ old('email') }}"> <br><br>
+            <input type="password" name="password" placeholder="password" ><br><br>
+            <label for="role_id">Role</label>
+            <select name="role_id" >
+                    @foreach(Role::all() as $val)
+                        <option value="{{ $val->id }}">{{ $val->name }}</option>
+                    @endforeach
+            </select>  <br><br>
+            <input type="submit" value="creer">
 
         </form>
 

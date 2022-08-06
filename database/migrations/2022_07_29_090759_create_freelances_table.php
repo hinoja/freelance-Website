@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('freelances', function (Blueprint $table) {
             $table->id();
-            $table->string('profession');
-            $table->string('location');
-            $table->text('description');
-            $table->float('salaries');
+            $table->string('profession')->nullable();
+            $table->string('location')->nullable();
+            $table->text('description')->nullable();
+            $table->float('salaries')->nullable();
 
 
             $table->timestamps();

@@ -11,12 +11,9 @@ class SocialController extends Controller
     public function redirect($driver)
     {
          return Socialite::driver($driver)->redirect();
-
     }
     public function callback($driver)
-    {
-
-         // $user = Socialite::driver('google')->user();
+    {         // $user = Socialite::driver('google')->user();
           $driverUser = Socialite::driver($driver)->user();
          $user = User::updateOrCreate
          ([
@@ -26,7 +23,6 @@ class SocialController extends Controller
              'driver_token' => $driverUser->token,
              'driver_refresh_token' => $driverUser->refreshToken,
          ]);
-
          dd($user);
          // $user->token
     }

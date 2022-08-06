@@ -29,7 +29,7 @@ use Laravel\Socialite\Facades\Socialite;
     {
         Route::view('/login','login');
         Route::view('/signup','signup');
-        Route::post('/loginUser',[UserController::class,'authenticate'])->name('login');
+        Route::post('/login',[UserController::class,'authenticate'])->name('login');
         Route::post('/signup',[UserController::class,'signup'])->name('signup');
     });
     //login with driver

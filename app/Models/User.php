@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -38,7 +37,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
- 
     /**
      * The attributes that should be cast.
      *
@@ -49,21 +47,16 @@ class User extends Authenticatable
     ];
 
     // Setters
-    public function setPasswordAtribute($value)
+    public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = Hash::make($value);
+           $this->attributes['password'] = Hash::make($value);
     }
-
     public function userable()
     {
         return $this->morphTo();
     }
     public function roles()
     {
-
         return $this->belongsTo(Role::class);
     }
-
-
-
 }
