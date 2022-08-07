@@ -20,7 +20,7 @@ class UserController extends Controller
          */
         public function connected()
         {
-            return view('index');
+            return view('welcome');
         }
 
         public function signup(Request $request)
@@ -69,7 +69,8 @@ class UserController extends Controller
         if (Auth::attempt(['email'=> $request->email, 'password'=>$request->password,]))
             {
                     $request->session()->regenerate();
-                    return redirect()->intended('index');
+                    return redirect()->route('index');
+                    // return redirect()->intended('index');
                 //    return   view('index');
             }
         return back()->withErrors(['failed' => 'Invalid UserName /PassWord.']);
@@ -80,7 +81,7 @@ class UserController extends Controller
             Auth::logout();
             request()->session()->invalidate();
             request()->session()->regenerateToken();
-            return redirect()->route('logout');
+            return redirect()->route('index');
     }
 
 }

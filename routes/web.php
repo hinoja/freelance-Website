@@ -20,17 +20,17 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the 'web' middleware group. Now create something great!
 |
 */
+    Route::view('/','welcome')->name('index');
     Route::group(['middleware'=>'auth'],function()
     {
         Route::get('/deconnecte',[UserController::class,'logout'])->name('logout');
-        Route::get('/connecte',[UserController::class,'connected'])->name('dashboard');
+        // Route::get('/connecte',[UserController::class,'connected'])->name('dashboard');
       Route::view('/fulldisconnect','disconnect')->name('logoutfull');
     });
     Route::group(['middleware'=>'guest'],function()
     {
-        Route::get('/',function(){ echo "BIenvenue";});
         Route::view('/login','login');
-        Route::view('/signup','signup');
+        Route::view('/signup','signUp');
         Route::post('/login',[UserController::class,'authenticate'])->name('login');
         Route::post('/signup',[UserController::class,'signup'])->name('signup');
     });
