@@ -24,9 +24,11 @@ use Laravel\Socialite\Facades\Socialite;
     {
         Route::get('/deconnecte',[UserController::class,'logout'])->name('logout');
         Route::get('/connecte',[UserController::class,'connected'])->name('dashboard');
+      Route::view('/fulldisconnect','disconnect')->name('logoutfull');
     });
     Route::group(['middleware'=>'guest'],function()
     {
+        Route::get('/',function(){ echo "BIenvenue";});
         Route::view('/login','login');
         Route::view('/signup','signup');
         Route::post('/login',[UserController::class,'authenticate'])->name('login');
@@ -35,3 +37,4 @@ use Laravel\Socialite\Facades\Socialite;
     //login with driver
 Route::get('/auth/redirect/{driver}', [SocialController::class,'redirect'])->name('SocialRedirect');
 Route::get('/auth/callback/{driver}', [SocialController::class,'callback'])->name('SocialCallback');
+

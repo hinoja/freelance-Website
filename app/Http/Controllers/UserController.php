@@ -22,6 +22,7 @@ class UserController extends Controller
         {
             return view('index');
         }
+
         public function signup(Request $request)
         {
             $request->validate
@@ -29,18 +30,18 @@ class UserController extends Controller
                 'name' => ['required'],
                 'email' => ['required', 'email','unique:users,email'],
                 'password' => ['required','min:8'],
-                'role_id'=> ['required','exists:users']
+                'role_id'=> ['required']
             ]);
             // 1. Recuperer le role
              if( (int)$request->role_id === 1)//freelance
             {
                 $freelance = Freelance::create();
-                $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                $user= $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
             }
              else//Customer
             {
                 $customer = Customer::create();
-                $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                $user= $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
             }
             // dd('ggh');
             // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
@@ -52,7 +53,7 @@ class UserController extends Controller
             // Mass assignment
             // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
             // Le password sera hashe dans le model a travers le setter setPasswordAttribute
-                // Auth::login($user);
+                Auth::login($user);
             //  return view('index')->with('success',"Your account was been creted successfull");;
                 return redirect()->route('dashboard');
          }
@@ -79,7 +80,7 @@ class UserController extends Controller
             Auth::logout();
             request()->session()->invalidate();
             request()->session()->regenerateToken();
-            return redirect()->view('disconnect');
+            return redirect()->route('logout');
     }
 
 }
