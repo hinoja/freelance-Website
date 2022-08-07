@@ -14,13 +14,15 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" href="{{ asset('Assets/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors">
+<link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors"/>
+
 
 <!-- Font awesome cdn CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('Assets/css/styles.css') }}" />
 
@@ -42,7 +44,7 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a href="#"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
+			<h1><a href="{{ route('index') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
 		</div>
 
 		<!-- Menu -->

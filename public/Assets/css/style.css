@@ -16,7 +16,7 @@
 
 /* ------------------------------------------------------------------- */
 /* Table of Contents
----------------------------------------------------------------------- 
+----------------------------------------------------------------------
 1. Header
 2. Mobile Navigation
 2. Homepage Banner
@@ -62,7 +62,7 @@ header {
 
 
 /* Full-Width Header Styles */
-header.full-width .container, 
+header.full-width .container,
 header.full-width .container .sixteen.columns {
 	width: 100%;
 	padding-left: 20px;
@@ -172,7 +172,7 @@ header.full-width #navigation ul.float-right { right: 35px; }
 	transition: all 0.2s ease-in-out;
 }
 
-ul.float-right li a { 
+ul.float-right li a {
 	background-color: #f0f0f0;
 	color: #333;
  }
@@ -331,13 +331,13 @@ ul li ul a.sf-with-ul:after {
 	}
 
 	#navigation { float: none; }
-	
+
 	#navigation ul.float-right a {
 		color: #333;
 		margin: 20px 25px 20px 0;
 		display: inline-block;
 		font-size: 14px;
-	}	
+	}
 
 	#navigation ul.float-right a:hover {
 		color: #333;
@@ -464,7 +464,7 @@ input.ico-02 { background: #fff url("../images/ico-02.png") no-repeat scroll 96%
 	position: relative;
 }
 
-.search-container button:before { 
+.search-container button:before {
 	content: "";
 	display: inline-block;
 	width: 100%;
@@ -833,7 +833,7 @@ table.manage-table tr td {
 	border-right: none;
 }
 
-table.manage-table tr:hover td { 
+table.manage-table tr:hover td {
 	border: 1px double rgba(80, 80, 80,0.7);
 	border-left: none;
 	border-right: none;
@@ -841,7 +841,7 @@ table.manage-table tr:hover td {
 }
 
 /* Resumes Table Styles */
-table.manage-table.resumes td { padding: 30px 20px; } 
+table.manage-table.resumes td { padding: 30px 20px; }
 
 table td.title a {
 	font-weight: 600;
@@ -1208,8 +1208,8 @@ table.manage-table td.action a:hover { color: #505050; }
 .mfp-s-error .mfp-content {
 	display: none;
 }
-  
-.mfp-s-loading .mfp-arrow { 
+
+.mfp-s-loading .mfp-arrow {
 	display: none;
 }
 
@@ -1363,43 +1363,43 @@ button.mfp-arrow {
 
 .my-mfp-zoom-in .zoom-anim-dialog {
 	opacity: 0;
-	-webkit-transition: all 0.2s ease-in-out; 
-	-moz-transition: all 0.2s ease-in-out; 
-	-o-transition: all 0.2s ease-in-out; 
-	transition: all 0.2s ease-in-out; 
-	-webkit-transform: scale(0.8); 
-	-moz-transform: scale(0.8); 
-	-ms-transform: scale(0.8); 
-	-o-transform: scale(0.8); 
-	transform: scale(0.8); 
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
 }
 
 /* animate in */
 .my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
 	opacity: 1;
-	-webkit-transform: scale(1); 
-	-moz-transform: scale(1); 
-	-ms-transform: scale(1); 
-	-o-transform: scale(1); 
-	transform: scale(1); 
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
 }
 
 /* animate out */
 .my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
-	-webkit-transform: scale(0.8); 
-	-moz-transform: scale(0.8); 
-	-ms-transform: scale(0.8); 
-	-o-transform: scale(0.8); 
-	transform: scale(0.8); 
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
 	opacity: 0;
 }
 
 /* Dark overlay, start state */
 .my-mfp-zoom-in.mfp-bg {
 	opacity: 0.001; /* Chrome opacity transition bug */
-	-webkit-transition: opacity 0.3s ease-out; 
-	-moz-transition: opacity 0.3s ease-out; 
-	-o-transition: opacity 0.3s ease-out; 
+	-webkit-transition: opacity 0.3s ease-out;
+	-moz-transition: opacity 0.3s ease-out;
+	-o-transition: opacity 0.3s ease-out;
 	transition: opacity 0.3s ease-out;
 }
 /* animate in */
@@ -1534,7 +1534,7 @@ img.mfp-img {
 	margin-left: 5px;
    }
 }
-	
+
 @media all and (max-width: 800px) { .mfp-arrow {width: 70px;} }
 
 .mfp-ie7 .mfp-img {
@@ -2073,7 +2073,7 @@ img.mfp-img {
 
  .plan.color-2 .plan-price,
 .plan.color-2 a.button { background-color: #505050; }
- 
+
 .plan-price .value {
 	font-weight: 600;
 	letter-spacing: -1px;
@@ -2261,7 +2261,7 @@ img.mfp-img {
 
 .social-icons li {
 	transform:scale(1.15);
-	-webkit-transform:scale(1.15); 
+	-webkit-transform:scale(1.15);
 	-moz-transform:scale(1.15);
 	-o-transform:scale(1.15);
 	margin-right: 9px;
@@ -2279,7 +2279,7 @@ img.mfp-img {
 .footer-bottom .social-icons li {
 	margin: 0 3px;
 	transform:scale(1);
-	-webkit-transform:scale(1); 
+	-webkit-transform:scale(1);
 	-moz-transform:scale(1);
 	-o-transform:scale(1);
 }
@@ -2385,6 +2385,13 @@ img.mfp-img {
 .facebook:hover:before { top: 30px; opacity: 0; }
 .facebook:hover { background-color: #4a6d9d; }
 .footer-bottom .facebook:hover { background-color: #4a6d9d; border-color: #4a6d9d;}
+
+.google i, .google:before { margin: 13px 0 0 16px; }
+.google:before { content: "\66"; top: 0; opacity:1; }
+.google:hover:before { top: 30px; opacity: 0; }
+.google:hover { background-color: #4a6d9d; }
+.footer-bottom .google:hover { background-color: #4a6d9d; border-color: #4a6d9d;}
+
 
 .linkedin i, .linkedin:before { margin: 13px 0 0 13px; }
 .linkedin:before { content: "\4c"; top: 0; opacity:1; }
@@ -2652,7 +2659,7 @@ img.mfp-img {
 .resumes-list li:last-child,
 .job-list li:last-child {
     border-bottom: 1px solid #e0e0e0;
-} 
+}
 
 .resumes-list li:nth-child(2n),
 .job-list li:nth-child(2n) {
@@ -2768,7 +2775,7 @@ img.mfp-img {
 .resumes-list img {
 	border-radius: 50%;
 	width: 90px;
-	height: 90px;  
+	height: 90px;
 	float: left;
 	display: inline-block;
 	margin: 35px 0 35px 35px;
@@ -2818,7 +2825,7 @@ img.mfp-img {
 /* Resumes List */
 .resumes-list-content h4 {
 	font-size: 18px;
-	color: #505050; 
+	color: #505050;
 }
 
 .resume-titlebar .resumes-list-content h4 { font-size: 22px; }
@@ -5694,13 +5701,13 @@ label.upload-btn input[type="file"] { display: none; }
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	.alternative #navigation ul,
 	.alternative .menu ul li { margin: 0}
 	.alternative #navigation ul.float-right { top: 0 }
 
 	ul.float-right li a:hover,
-	ul.float-right li a { 
+	ul.float-right li a {
 		background-color: #fff;
 		color: #333;
 	 }
@@ -5814,7 +5821,7 @@ label.upload-btn input[type="file"] { display: none; }
 	#titlebar .two-buttons {
 		margin-top: 20px;
 	}
-		
+
 	.pagination { text-align: left; }
 	.pagination-next-prev ul li a.prev { display: none; }
 	.pagination ul li a, .pagination-next-prev ul li a { text-align: center; }
@@ -5868,7 +5875,7 @@ label.upload-btn input[type="file"] { display: none; }
 	.alternative #navigation ul.float-right { top: 0 }
 
 	ul.float-right li a:hover,
-	ul.float-right li a { 
+	ul.float-right li a {
 		background-color: #fff;
 		color: #333;
 	}
