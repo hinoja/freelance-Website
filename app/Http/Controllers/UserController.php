@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Freelance;
 use Illuminate\Http\Request;
+use App\Mail\TestMarhdownMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -53,7 +56,19 @@ class UserController extends Controller
             // Mass assignment
             // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
             // Le password sera hashe dans le model a travers le setter setPasswordAttribute
-                Auth::login($user);
+             // send mail
+             Auth::login($user);
+             try{
+                    Mail::to($request->email)->send(new TestMarhdownMail());
+                    // return view('emails.TestSendEmail');
+               }
+                catch(Exception $e)
+                {
+                    // dd("l'adresse mail est incorrecte");
+                    return redirect('/login');
+                }
+              //fin mail
+
             //  return view('index')->with('success',"Your account was been creted successfull");;
                 return redirect()->route('dashboard');
          }
@@ -69,6 +84,7 @@ class UserController extends Controller
         if (Auth::attempt(['email'=> $request->email, 'password'=>$request->password,]))
             {
                     $request->session()->regenerate();
+
                     return redirect()->route('index');
                     // return redirect()->intended('index');
                 //    return   view('index');

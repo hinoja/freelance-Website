@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GithubConntroller;
 use App\Http\Controllers\GoogleConntroller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\SocialController;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -20,6 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the 'web' middleware group. Now create something great!
 |
 */
+    Route::get('/sendemail',[MailController::class,'send'])->name('sendMail');
     Route::view('/','welcome')->name('index');
     Route::group(['middleware'=>'auth'],function()
     {
@@ -33,6 +35,7 @@ use Laravel\Socialite\Facades\Socialite;
         Route::view('/signup','signUp');
         Route::post('/login',[UserController::class,'authenticate'])->name('login');
         Route::post('/signup',[UserController::class,'signup'])->name('signup');
+
     });
     //login with driver
 Route::get('/auth/redirect/{driver}', [SocialController::class,'redirect'])->name('SocialRedirect');
