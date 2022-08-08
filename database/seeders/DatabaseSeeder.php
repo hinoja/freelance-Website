@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,12 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $this->call([
             RoleSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
- 
+
         // Role::factory()
         // ->count(3)
         // ->hasPosts(1)

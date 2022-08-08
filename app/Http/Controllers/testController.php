@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use App\Models\User;
-
-use App\Models\Freelance;
 use Illuminate\Http\Request;
 
 class testController extends Controller
@@ -16,8 +12,7 @@ class testController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-     {
-                           
+    {
     }
 
     /**

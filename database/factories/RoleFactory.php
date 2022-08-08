@@ -18,7 +18,7 @@ class RoleFactory extends Factory
     {
         return [
 
-            'name' => 'Adminnistrateur'
+            'name' => 'Adminnistrateur',
         ];
     }
 }

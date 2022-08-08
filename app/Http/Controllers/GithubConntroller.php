@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GithubConntroller extends Controller
 {
-     public function redirectgit()
-     {
+    public function redirectgit()
+    {
         return Socialite::driver('github')->redirect();
-     }
-     public function callbackgit() {
+    }
+
+    public function callbackgit()
+    {
         $user = Socialite::driver('github')->user();
-      //   Verifier que l'utilisateur existe
+        //   Verifier que l'utilisateur existe
         // $githubUser = Socialite::driver('github')->user();
         // $user = User::updateOrCreate([
         //     'github_id' => $githubUser->id,
@@ -27,9 +28,9 @@ class GithubConntroller extends Controller
         // ]);
 
         // Auth::login($user);
-       dd('tres bon');
+        dd('tres bon');
+
         return redirect('/dashboard');
         // $user->token
     }
-
 }
