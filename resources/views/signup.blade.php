@@ -21,13 +21,7 @@
   <div class="row">
     <div class="col-lg-3 col-md-3"></div>
     <div class="container" class="txt-center col-lg-6 col-md-3">
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error )
-                   <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
-                @endforeach
-            </ul>
-        </div>
+       
             @if (Session::has('success'))
                    <div class="alert alert-sucess">  {{ Session::get('success') }} </div>
             @endif

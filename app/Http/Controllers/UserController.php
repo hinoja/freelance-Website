@@ -37,8 +37,6 @@ class UserController extends Controller
                 'role_id'=> ['required']
             ]);
                 try{
-                    Mail::to($request->email)->send(new TestMarhdownMail());
-                    // return view('emails.TestSendEmail');
                      // 1. Recuperer le role
                         if( (int)$request->role_id === 1)//freelance
                         {
@@ -55,11 +53,8 @@ class UserController extends Controller
                    }
                 catch(Exception $e)
                 {
-                    dd("l'adresse mail est incorrecte ou pas envoyé");
-                    return redirect('/');
+                    return redirect('/')->with('danger', 'Your Email is incorrect');
                 }
-
-            // dd('ggh');
             // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
             // 2. Verifier le role (Customer role_id = 2 par exemple)
             // 2.1 Si le role === 2
@@ -69,13 +64,8 @@ class UserController extends Controller
             // Mass assignment
             // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
             // Le password sera hashe dans le model a travers le setter setPasswordAttribute
-             // send mail
-
-
-              //fin mail
-
-            //  return view('index')->with('success',"Your account was been creted successfull");;
-                return redirect()->route('index');
+                  //  return view('index')-;
+                return redirect()->route('index')->with('success',"Your account was been created successfully");
          }
 
 
@@ -90,9 +80,7 @@ class UserController extends Controller
             {
                     $request->session()->regenerate();
 
-                    return redirect()->route('index');
-                    // return redirect()->intended('index');
-                //    return   view('index');
+                    return redirect()->route('index')->with('success', 'Your are connect with successfull!');
             }
         return back()->withErrors(['failed' => 'Invalid UserName /PassWord.']);
     }
@@ -102,7 +90,7 @@ class UserController extends Controller
             Auth::logout();
             request()->session()->invalidate();
             request()->session()->regenerateToken();
-            return redirect()->route('index');
+            return redirect()->route('index')->with('primary', 'Your are disconnect!!');
     }
 
 }

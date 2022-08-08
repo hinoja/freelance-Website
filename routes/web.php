@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\GithubConntroller;
-use App\Http\Controllers\GoogleConntroller;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\SocialController;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\GithubConntroller;
+use App\Http\Controllers\GoogleConntroller;
+use App\Http\Controllers\VerifyEmailController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,15 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the 'web' middleware group. Now create something great!
 |
 */
-    Route::get('/sendemail',[MailController::class,'send'])->name('sendMail');
+
+    Route::post('/email/verification-notification',[VerifyEmailController::class,'resendEmail'])
+                    ->middleware(['auth', 'throttle:6,1'])
+                    ->name('verification.send');//Resending The Verification Email
+    Route::get('/email/verify', [VerifyEmailController::class,'verify'])
+                    ->middleware('auth')->name('verification.notice');//The Email Verification Notice send
+    Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class,'fullfill'])
+                    ->middleware(['auth', 'signed'])
+                    ->name('verification.verify');//The Email Verification link
     Route::view('/','welcome')->name('index');
     Route::group(['middleware'=>'auth'],function()
     {

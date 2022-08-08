@@ -118,6 +118,25 @@
 	</div>
 </div>
 </header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+            <div class="col-md-6">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <ul>
+                    @foreach ($errors->all() as $error )
+                    <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
+                    @endforeach
+                </ul>
+            </div>
+        <div class="col-md-3"></div>
+
+    </div>
+</div>
 
 
 
