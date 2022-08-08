@@ -11,12 +11,13 @@ class VerifyEmailController extends Controller
    public function  resendEmail(Request $request)
    {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');
+        return back()->with('success', 'Verification link sent!');
     }
     //    The Email Verification Notice
    public function verify()
     {
-        return view('auth.verify-email');
+        // return view('auth.verify-email');
+        return redirect('/')->with('primary'," Please,check your mailbox !! ");
     }
     // The Email Verification Handler
        public function fullfill(EmailVerificationRequest $request)

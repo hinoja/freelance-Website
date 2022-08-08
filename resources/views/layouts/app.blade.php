@@ -122,9 +122,17 @@
     <div class="row">
         <div class="col-md-3"></div>
             <div class="col-md-6">
-                @if (session('status'))
+                @if (session('success'))
                     <div class="alert alert-success">
-                        {{ session('status') }}
+                        {{ session('success') }}
+                    </div>
+                    @elseif (session('danger'))
+                     <div class="alert alert-danger">
+                        {{ session('danger') }}
+                    </div>
+                    @elseif (session('primary'))
+                     <div class="alert alert-primary">
+                        {{ session('primary') }}
                     </div>
                 @endif
                 <ul>
