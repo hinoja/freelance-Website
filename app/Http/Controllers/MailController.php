@@ -15,5 +15,6 @@ class MailController extends Controller
               $user=['email'=>'njimijanohi@gmail.com','name'=>'Monsieur Test'];
               Mail::to('hinoja2@gmail.com')->send(new TestMarhdownMail());
               return view('emails.TestSendEmail');
+            // echo "testng";
         }
 }

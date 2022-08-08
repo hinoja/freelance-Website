@@ -12,6 +12,7 @@ use App\Mail\TestMarhdownMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -35,17 +36,29 @@ class UserController extends Controller
                 'password' => ['required','min:8'],
                 'role_id'=> ['required']
             ]);
-            // 1. Recuperer le role
-             if( (int)$request->role_id === 1)//freelance
-            {
-                $freelance = Freelance::create();
-                $user= $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
-            }
-             else//Customer
-            {
-                $customer = Customer::create();
-                $user= $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
-            }
+                try{
+                    Mail::to($request->email)->send(new TestMarhdownMail());
+                    // return view('emails.TestSendEmail');
+                     // 1. Recuperer le role
+                        if( (int)$request->role_id === 1)//freelance
+                        {
+                            $freelance = Freelance::create();
+                            $user= $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                        }
+                        else//Customer
+                        {
+                            $customer = Customer::create();
+                            $user= $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                        }
+                        event(new Registered($user));
+                        Auth::login($user);
+                   }
+                catch(Exception $e)
+                {
+                    dd("l'adresse mail est incorrecte ou pas envoyé");
+                    return redirect('/');
+                }
+
             // dd('ggh');
             // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
             // 2. Verifier le role (Customer role_id = 2 par exemple)
@@ -57,20 +70,12 @@ class UserController extends Controller
             // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
             // Le password sera hashe dans le model a travers le setter setPasswordAttribute
              // send mail
-             Auth::login($user);
-             try{
-                    Mail::to($request->email)->send(new TestMarhdownMail());
-                    // return view('emails.TestSendEmail');
-               }
-                catch(Exception $e)
-                {
-                    // dd("l'adresse mail est incorrecte");
-                    return redirect('/login');
-                }
+
+
               //fin mail
 
             //  return view('index')->with('success',"Your account was been creted successfull");;
-                return redirect()->route('dashboard');
+                return redirect()->route('index');
          }
 
 
