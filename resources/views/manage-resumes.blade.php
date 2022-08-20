@@ -1,12 +1,8 @@
-{{-- <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif] --}}
-
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    {{-- fontaweasone --}}
-<script src="https://kit.fontawesome.com/3ebee777dc.js" crossorigin="anonymous"></script>
+
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
@@ -18,18 +14,12 @@
 
 <!-- CSS
 ================================================== -->
-<link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors"/>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/colors/green.css') }}" id="colors">
 
-
-<!-- Font awesome cdn CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('Assets/css/styles.css') }}" />
-
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
 </head>
 
@@ -37,24 +27,24 @@
 <div id="wrapper">
 
 
-  {{-- Header --}}
-{{-- ================================================== --> --}}
+<!-- Header
+================================================== -->
 <header>
 <div class="container">
 	<div class="sixteen columns">
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a href="{{ route('index') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
+			<h1><a href="index.html"><img src="images/logo.png" alt="Work Scout" /></a></h1>
 		</div>
 
 		<!-- Menu -->
-		<nav id="navigation" class="menu ">
+		<nav id="navigation" class="menu">
 			<ul id="responsive">
 
-				<li><a href="#" id="current">Home</a>
-					  <ul>
-						<li><a href="#">Home #1</a></li> -->
+				<li><a href="index.html">Home</a>
+					<ul>
+						<li><a href="index.html">Home #1</a></li>
 						<li><a href="index-2.html">Home #2</a></li>
 						<li><a href="index-3.html">Home #3</a></li>
 						<li><a href="index-4.html">Home #4</a></li>
@@ -72,11 +62,11 @@
 					</ul>
 				</li>
 
-				<li><a href="#">For Candidates</a>
+				<li><a href="#" id="current">For Candidates</a>
 					<ul>
 						<li><a href="browse-jobs.html">Browse Jobs</a></li>
 						<li><a href="browse-categories.html">Browse Categories</a></li>
-						<li><a href="{{ route('resume.index') }}">Add Resume</a></li>
+						<li><a href="add-resume.html">Add Resume</a></li>
 						<li><a href="manage-resumes.html">Manage Resumes</a></li>
 						<li><a href="job-alerts.html">Job Alerts</a></li>
 					</ul>
@@ -94,20 +84,11 @@
 				<li><a href="blog.html">Blog</a></li>
 			</ul>
 
-                @auth
-                    <ul class="float-right">
-                        <li><a href= "{{ route('logout') }}"><i class="fa fa-lock"></i> LogOut</a></li>
-                    </ul>
-                @else
-                    <ul class="float-right">
-                        <li><a href= "{{ route('signup') }}"><i class="fa fa-user"></i> Sign Up</a></li>
-                        <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Log In</a></li>
-                    </ul>
-                    {{-- @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif --}}
-                @endauth
 
+			<ul class="responsive float-right">
+				<li><a href="my-account.html#tab2"><i class="fa fa-user"></i> Sign Up</a></li>
+				<li><a href="my-account.html"><i class="fa fa-lock"></i> Log In</a></li>
+			</ul>
 
 		</nav>
 
@@ -119,42 +100,88 @@
 	</div>
 </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-            <div class="col-md-6">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                    @elseif (session('danger'))
-                     <div class="alert alert-danger">
-                        {{ session('danger') }}
-                    </div>
-                    @elseif (session('primary'))
-                     <div class="alert alert-primary">
-                        {{ session('primary') }}
-                    </div>
-                @endif
-                <ul>
-                    @foreach ($errors->all() as $error )
-                    <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
-                    @endforeach
-                </ul>
-            </div>
-        <div class="col-md-3"></div>
+<div class="clearfix"></div>
 
-    </div>
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>Manage Resumes</h2>
+			<nav id="breadcrumbs">
+				<ul>
+					<li>You are here:</li>
+					<li><a href="#">Home</a></li>
+					<li>Candidate Dashboard</li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
 </div>
 
 
+<!-- Content
+================================================== -->
+<div class="container">
 
-           @yield('content')
+	<!-- Table -->
+	<div class="sixteen columns">
+
+		<p class="margin-bottom-25">Your resume can be viewed, edited or removed below.</p>
+
+		<table class="manage-table resumes responsive-table">
+
+			<tr>
+				<th><i class="fa fa-user"></i> Name</th>
+				<th><i class="fa fa-file-text"></i> Title</th>
+				<th><i class="fa fa-map-marker"></i> Location</th>
+				<th><i class="fa fa-calendar"></i> Date Posted</th>
+				<th></th>
+			</tr>
+
+			<!-- Item #1 -->
+			<tr>
+				<td class="title"><a href="#">John Doe</a></td>
+				<td>Front End Web Developer</td>
+				<td>New York</td>
+				<td>September 30, 2015</td>
+				<td class="action">
+					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
+					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
+					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+				</td>
+			</tr>
+
+			<!-- Item #1 -->
+			<tr>
+				<td class="title"><a href="#">John Doe</a></td>
+				<td>Logo Designer</td>
+				<td>New York</td>
+				<td>August 12, 2015</td>
+				<td class="action">
+					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
+					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
+					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+				</td>
+			</tr>
+
+		</table>
+
+		<br>
+
+		<a href="#" class="button">Add Resume</a>
+
+	</div>
+
+</div>
 
 
 <!-- Footer
 ================================================== -->
-<div class="margin-top-15"></div>
+<div class="margin-top-60"></div>
 
 <div id="footer">
 	<!-- Main -->
@@ -231,20 +258,19 @@
 
 <!-- Scripts
 ================================================== -->
-<script src="{{ asset('Assets/jquery-2.1.3.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/custom.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.revolution.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.flexslider-min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
-<script src="{{ asset('Assets//jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
-<script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
-<script src="{{ asset('Assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('scripts/custom.js') }}"></script>
+<script src="{{ asset('scripts/jquery.superfish.js') }}"></script>
+<script src="{{ asset('scripts/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.flexslider-min.js') }}"></script>
+<script src="{{ asset('scripts/chosen.jquery.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('scripts/waypoints.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery.jpanelmenu.js') }}"></script>
+<script src="{{ asset('scripts/stacktable.js') }}"></script>
 
 
 
