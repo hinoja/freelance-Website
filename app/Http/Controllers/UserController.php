@@ -26,20 +26,20 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         $request->validate([
-                'name' => ['required'],
-                'email' => ['required', 'email', 'unique:users,email'],
-                'password' => ['required', 'min:8'],
-                'role_id' => ['required'],
-            ]);
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:8'],
+            'role_id' => ['required'],
+        ]);
         try {
             // 1. Recuperer le role
-                        if ((int) $request->role_id === 1) {//freelance
-                            $freelance = Freelance::create();
-                            $user = $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                        } else {//Customer
-                            $customer = Customer::create();
-                            $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                        }
+            if ((int) $request->role_id === 1) {//freelance
+                $freelance = Freelance::create();
+                $user = $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
+            } else {//Customer
+                $customer = Customer::create();
+                $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
+            }
             event(new Registered($user));
             Auth::login($user);
         } catch (Exception $e) {
@@ -55,6 +55,7 @@ class UserController extends Controller
         // $user = User::create($request->only('name', 'email', 'password', 'role_id'));
         // Le password sera hashe dans le model a travers le setter setPasswordAttribute
         //  return view('index')-;
+        // Toastr::success('compte cree avec succes','success');
         return redirect()->route('index')->with('success', 'Your account was been created successfully');
     }
 

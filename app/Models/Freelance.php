@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Tag;
-use App\Models\Links;
-use App\Models\Experience;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Freelance extends Model
 {
@@ -16,17 +13,19 @@ class Freelance extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
+
     public function experiences()
     {
         return $this->hasMany(Experience::class);
     }
+
     public function links()
     {
         return $this->hasMany(Links::class);
     }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
-
 }

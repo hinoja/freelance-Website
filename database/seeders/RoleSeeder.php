@@ -17,8 +17,8 @@ class RoleSeeder extends Seeder
         $role = ['Freelance', 'Customer'];
         for ($i = 0; $i < 2; $i++) {
             DB::table('roles')->insert([
-                            'name' => $role[$i],
-                        ]);
+                'name' => $role[$i],
+            ]);
         }
     }
 }

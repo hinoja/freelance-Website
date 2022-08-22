@@ -1,16 +1,16 @@
-{{-- <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif] --}}
-
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    {{-- fontaweasone --}}
-<script src="https://kit.fontawesome.com/3ebee777dc.js" crossorigin="anonymous"></script>
+
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
 <title>Work Scout</title>
+
+<!-- Font awesome cdn CSS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 
 <!-- Mobile Specific Metas
 ================================================== -->
@@ -18,18 +18,19 @@
 
 <!-- CSS
 ================================================== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+
+<!-- CSS
+================================================== -->
 <link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors"/>
 
-
-<!-- Font awesome cdn CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('Assets/css/styles.css') }}" />
-
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
 </head>
 
@@ -231,7 +232,7 @@
 
 <!-- Scripts
 ================================================== -->
-<script src="{{ asset('Assets/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/custom.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
@@ -241,12 +242,13 @@
 <script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
-<script src="{{ asset('Assets//jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
 <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
-<script src="{{ asset('Assets/js/bootstrap.bundle.min.js') }}"></script>
-
-
+<script src="{{ asset('Assets/scripts/js/bootstrap.bundle.min.js') }}"></script>
+{{-- <!-- WYSIWYG Editor -->
+<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script> --}}
 
 </body>
 </html>

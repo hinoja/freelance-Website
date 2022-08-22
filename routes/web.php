@@ -1,11 +1,11 @@
 <?php
 
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyEmailController;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,26 +27,21 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill
                 ->middleware(['auth', 'signed'])
                 ->name('verification.verify'); //The Email Verification link
 
-Route::group(['middleware' => 'auth'], function ()
-{
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
     Route::view('/fulldisconnect', 'disconnect')->name('logoutfull');
-    Route::view('/job','welcome')->name('job');
+    Route::view('/job', 'welcome')->name('job');
     //resume
     Route::view('/addResume', 'add-resume')->name('resume.index');
-    Route::post('/addresume',[ResumeController::class,'store'])->name('resume.add');
-
+    Route::post('/addresume', [ResumeController::class, 'store'])->name('resume.add');
 });
-Route::group(['middleware' => 'guest'], function ()
-{
+Route::group(['middleware' => 'guest'], function () {
     //login with driver
     Route::get('/auth/redirect/{driver}', [SocialController::class, 'redirect'])->name('SocialRedirect');
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])->name('SocialCallback');
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
 });
-Route::get('/',[ResumeController::class,'index'])->name('index');
+Route::get('/', [ResumeController::class, 'index'])->name('index');
 Route::view('/login', 'login')->name('login.view');
 Route::view('/signup', 'signUp')->name('signup.view');
-
-
