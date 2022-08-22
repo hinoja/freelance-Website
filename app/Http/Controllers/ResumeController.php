@@ -6,6 +6,7 @@ use App\Models\Experience;
 use App\Models\Links;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ResumeController extends Controller
 {
@@ -52,19 +53,46 @@ class ResumeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // $data=[];
-        // $data = htmlspecialchars($data[]);
-        // $request->validate([
-        //     // experience
-        //     'start_date[]' => ['date', 'required'],
-        //     'end_date[]' => ['date', 'required', 'after_or_equal:start_date'],
-        //     'company[]' => ['required', 'min:2', 'string'],
-        //     'job_title[]' => ['required', 'min:2', 'string'],
-        //     //  url
-        //     'url[]' => ['url', 'required'],
-        //     'name_url[]' => ['string', 'required'],
-        // ]);
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $company = $request->company;
+        $job_title = $request->job_title;
+        $url = $request->url;
+        $name_url = $request->name_url;
+        // dd($name_url);
+        for ($i = 0; $i < count($start_date) - 1; $i++) {
+            //  $request->validate
+            //  ([
+            //     // experience
+            //     `start_date[$i]` => ['date', 'required'],
+            //     `end_date[$i]` => ['date', 'required', 'after_or_equal:start_date'],
+            //     `company[$i]` => ['required', 'min:2', 'string'],
+            //     `job_title[$i]` => ['required', 'min:2', 'string'],
+            //     //  url
+            //       `url[$i]` => ['url', 'required'],
+            //     `name_url[$i]` => ['string', 'required'],
+            //  ]);
+
+            $dataexp = [
+                'start_at' => $start_date[$i],
+                'end_at' => $end_date[$i],
+                'company' => $company[$i],
+                'job_title' => $job_title[$i],
+                'freelance_id' => Auth::user()->userable->id,
+            ];
+            $dataurl = [
+                'name' => $name_url[$i],
+                'url' => $url[$i],
+                'freelance_id' => Auth::user()->userable->id,
+            ];
+            // DB::table('experiences')->insert($dataexp);
+            // DB::table('links')->insert($dataurl);
+            Links::updateOrCreate($dataurl);
+            Experience::updateOrCreate($dataexp);
+        }
+        // Experience->create[$dataexp];
+
+        dd('passe');
 
         $experience = Experience::updateOrCreate(
             ['start_at' => $request->start_date,
