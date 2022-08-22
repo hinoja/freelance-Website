@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Experience;
+
 use App\Models\Links;
+use App\Models\Experience;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
@@ -21,7 +22,8 @@ class ResumeController extends Controller
         $link = Links::all();
         if (Auth::user() && Auth::user()->userable_type = 'App\Models\Freelance') {
             $auth = Auth::user()->userable_id;
-            foreach ($experience as $exp) {
+            foreach ($experience as $exp)
+             {
                 // $exp->freelance_id
                 // dd($experience->freelance_id);
                 if ($exp->freelance_id === $auth) {
@@ -64,13 +66,13 @@ class ResumeController extends Controller
             //  $request->validate
             //  ([
             //     // experience
-            //     `start_date[$i]` => ['date', 'required'],
-            //     `end_date[$i]` => ['date', 'required', 'after_or_equal:start_date'],
-            //     `company[$i]` => ['required', 'min:2', 'string'],
-            //     `job_title[$i]` => ['required', 'min:2', 'string'],
+            //     "start_date[$i]" => ['date', 'required'],
+            //     "end_date[$i]" => ['date', 'required', 'after_or_equal:start_date'],
+            //     "company[$i]" => ['required', 'min:2', 'string'],
+            //     "job_title[$i]" => ['required', 'min:2', 'string'],
             //     //  url
-            //       `url[$i]` => ['url', 'required'],
-            //     `name_url[$i]` => ['string', 'required'],
+            //       "url[$i]" => ['url', 'required'],
+            //     "name_url[$i]" => ['string', 'required'],
             //  ]);
 
             $dataexp = [
@@ -85,45 +87,28 @@ class ResumeController extends Controller
                 'url' => $url[$i],
                 'freelance_id' => Auth::user()->userable->id,
             ];
-            // DB::table('experiences')->insert($dataexp);
-            // DB::table('links')->insert($dataurl);
             Links::updateOrCreate($dataurl);
             Experience::updateOrCreate($dataexp);
         }
-        // Experience->create[$dataexp];
 
-        dd('passe');
+        // $experience = Experience::updateOrCreate(
+        //     ['start_at' => $request->start_date,
+        //         'end_at' => $request->end_date,
+        //         'company' => $request->company,
+        //         'job_title' => $request->job_title,
+        //         'freelance_id' => Auth::user()->userable->id,
+        //     ]
+        // );
+        // $link = Links::updateOrCreate(
 
-        $experience = Experience::updateOrCreate(
-            ['start_at' => $request->start_date,
-                'end_at' => $request->end_date,
-                'company' => $request->company,
-                'job_title' => $request->job_title,
-                'freelance_id' => Auth::user()->userable->id,
-            ]
-        );
-        $link = Links::updateOrCreate(
+        //     ['name' => $request->name_url,
+        //         'url' => $request->url,
+        //         'freelance_id' => Auth::user()->userable->id,
+        //     ]
+        // );
+        toastr()->success('Profil is create with successful');
 
-            ['name' => $request->name_url,
-                'url' => $request->url,
-                'freelance_id' => Auth::user()->userable->id,
-            ]
-        );
-
-        dd($request);
-        // $experience=new Experience();
-        // $experience->start_at=$request->start_date;
-        // $experience->end_at=$request->end_date;
-        // $experience->company=$request->company;
-        // $experience->job_title=$request->job_title;
-        // $experience->freelance_id=Auth::user()->userable->id;
-        // $experience->save();
-        // $link=new Links();
-        // $link->name=$request->name_url;
-        // $link->url=$request->url;
-        // $link->freelance_id=Auth::user()->userable->id;
-        // $link->save();
-        return redirect()->route('job.view');
+        return redirect()->route('job');
     }
 
     /**

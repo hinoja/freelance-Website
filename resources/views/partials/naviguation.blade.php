@@ -12,7 +12,7 @@
 
 				<li><a href="#" id="current">Home</a>
 					  <ul>
-						<li><a href="#">Home #1</a></li> -->
+						<li><a href="#">Home #1</a></li>
 						<li><a href="index-2.html">Home #2</a></li>
 						<li><a href="index-3.html">Home #3</a></li>
 						<li><a href="index-4.html">Home #4</a></li>
@@ -58,8 +58,8 @@
                     </ul>
                 @else
                     <ul class="float-right">
-                        <li><a href= "{{ route('signup') }}"><i class="fa fa-user"></i> Sign Up</a></li>
-                        <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Log In</a></li>
+                        <li><a href= "{{ route('signup.view') }}"><i class="fa fa-user"></i> Sign Up</a></li>
+                        <li><a href="{{ route('login.view') }}"><i class="fa fa-lock"></i> Log In</a></li>
                     </ul>
                     {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}">Register</a>

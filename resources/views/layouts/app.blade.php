@@ -19,7 +19,7 @@
 <!-- CSS
 ================================================== -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
 
 
@@ -31,7 +31,6 @@
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-
 </head>
 
 <body>
@@ -101,8 +100,8 @@
                     </ul>
                 @else
                     <ul class="float-right">
-                        <li><a href= "{{ route('signup') }}"><i class="fa fa-user"></i> Sign Up</a></li>
-                        <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Log In</a></li>
+                        <li><a href= "{{ route('signup.view') }}"><i class="fa fa-user"></i> Sign Up</a></li>
+                        <li><a href="{{ route('login.view') }}"><i class="fa fa-lock"></i> Log In</a></li>
                     </ul>
                     {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}">Register</a>

@@ -43,7 +43,8 @@ class UserController extends Controller
             event(new Registered($user));
             Auth::login($user);
         } catch (Exception $e) {
-            return back()->with('danger', 'Your Email is incorrect');
+           toastr()->warning('Your Email is incorrect');
+            return back();
         }
         // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
         // 2. Verifier le role (Customer role_id = 2 par exemple)
@@ -56,7 +57,8 @@ class UserController extends Controller
         // Le password sera hashe dans le model a travers le setter setPasswordAttribute
         //  return view('index')-;
         // Toastr::success('compte cree avec succes','success');
-        return redirect()->route('index')->with('success', 'Your account was been created successfully');
+        toastr()->success('Your account was been created successfully');
+        return redirect()->route('index');
     }
 
     public function authenticate(Request $request)
@@ -67,11 +69,11 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-
-            return redirect()->route('index')->with('success', 'Your are connect with successfull!');
+            toastr()->success('Your account was been created successfully');
+            return redirect()->route('index');
         }
-
-        return back()->withErrors(['failed' => 'Invalid UserName /PassWord.']);
+        toastr()->warning('Invalid UserName /PassWord.');
+        return back();
     }
 
     public function logout()
@@ -79,7 +81,7 @@ class UserController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-
-        return redirect()->route('index')->with('primary', 'Your are disconnect!!');
+        toastr()->info('Your are disconnect!!');
+        return redirect()->route('index') ;
     }
 }

@@ -21,18 +21,21 @@
             @csrf
             @method('post')
             <div class="row">
-                <div class="col-md-6 col-sm ">
+                <div class="col-md-12 col-sm ">
                     <div class="input-group mb-3">
 						<span class="input-group-text"><i class="fas fa-at"></i></span>
-                        <input type="email" class="form-control" name="email" placeholder="Votre adresse email" />
+                        <input type="email" class="form-control text-center" name="email" placeholder="Votre adresse email" />
                     </div>
                     <div class="input-group mb-3">
-						<span class="input-group-text"><i class="fas fa-key"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Mot de passe" />
+						<span class="input-group-text "><i class="fas fa-key"></i></span>
+                        <input type="password" class="form-control text-center" name="password" placeholder="Mot de passe" />
                     </div>
-                    <div class="input-group button mb-3">
-						<button class="btn btn-success" type="submit" class="">Connexion</button>
-                    </div>
+
+                        <div class="input-group mb-3 row offset-lg-6">
+                            <button class="btn btn-success " type="submit" class="">Connexion</button>
+                        </div>
+
+
                 </div>
             </div>
         </form>
