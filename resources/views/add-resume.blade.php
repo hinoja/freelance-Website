@@ -78,10 +78,10 @@
                                 <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
                                 <input class="search-field form-control" name="company[]" type="text" placeholder="Company" value="{{ old('company') }}"/>
                                 <input class="search-field form-control" type="text" name="job_title[]" placeholder="Job Title" value="{{ old('company') }}"/>
-                                <label for="start_date">Start Date</label>
+                                <label for="start_date[]">Start Date</label>
                                 <input class="search-field form-control " name="start_date[]" type="date" placeholder="Start  date"  /> <br>
                                 <label for="end_date"> End Date</label>
-                                <input class="search-field form-control " name="end_date[]" type="date" placeholder="End date"  /> <br>
+                                <input class="search-field form-control " name="end_date[]" type="date" placeholder="Start  date"  /> <br>
                             </div>
 
                             <a href="#" class="button gray add-experience add-box"><i class="fa fa-plus-circle"></i> Add Experience</a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Yoeunes\Toastr\Facades\Toastr;
 use App\Models\Customer;
 use App\Models\Freelance;
 use App\Models\Role;
@@ -81,7 +82,7 @@ class UserController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        toastr()->info('Your are disconnect!!');
+        // toastr()->info('Your are disconnect!!');
         return redirect()->route('index') ;
     }
 }

@@ -29,10 +29,11 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
-    Route::view('/fulldisconnect', 'disconnect')->name('logoutfull');
+    // Route::view('/fulldisconnect', 'disconnect')->name('logoutfull');
     Route::view('/job', 'welcome')->name('job');
     //resume
     Route::view('/addResume', 'add-resume')->name('resume.index');
+    Route::get('/manageResume', [ResumeController::class,'resume'])->name('resume.manage');
     Route::post('/addresume', [ResumeController::class, 'store'])->name('resume.add');
 });
 Route::group(['middleware' => 'guest'], function () {
