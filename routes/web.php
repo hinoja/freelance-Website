@@ -33,8 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/job', 'welcome')->name('job');
     //resume
     Route::view('/addResume', 'add-resume')->name('resume.index');
-    Route::get('/manageResume', [ResumeController::class,'resume'])->name('resume.manage');
-    Route::post('/addresume', [ResumeController::class, 'store'])->name('resume.add');
+    Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
+    Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
 });
 Route::group(['middleware' => 'guest'], function () {
     //login with driver

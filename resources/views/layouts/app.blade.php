@@ -58,6 +58,7 @@
                     </div>
                     @elseif (session('danger'))
                      <div class="alert alert-danger">
+                        toastr('s')
                         {{ session('danger') }}
                     </div>
                     @elseif (session('primary'))
@@ -67,8 +68,9 @@
                 @endif
                 <ul>
                     @foreach ($errors->all() as $error )
-                    <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
+                        <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
                     @endforeach
+
                 </ul>
             </div>
         <div class="col-md-3"></div>
