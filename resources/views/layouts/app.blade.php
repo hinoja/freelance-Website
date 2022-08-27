@@ -66,12 +66,12 @@
                         {{ session('primary') }}
                     </div>
                 @endif
-                <ul>
+                {{-- <ul>
                     @foreach ($errors->all() as $error )
                         <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
                     @endforeach
 
-                </ul>
+                </ul> --}}
             </div>
         <div class="col-md-3"></div>
 
@@ -106,9 +106,9 @@
 <script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
 <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 <script src="{{ asset('Assets/scripts/js/bootstrap.bundle.min.js') }}"></script>
-{{-- <!-- WYSIWYG Editor -->
+<!-- WYSIWYG Editor -->
 <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script> --}}
+<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script>
 
 </body>
 </html>

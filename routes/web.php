@@ -29,20 +29,24 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
-    // Route::view('/fulldisconnect', 'disconnect')->name('logoutfull');
-    Route::view('/job', 'welcome')->name('job');
-    //resume
-    Route::view('/addResume', 'add-resume')->name('resume.index');
-    Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
-    Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
 });
+
 Route::group(['middleware' => 'guest'], function () {
     //login with driver
     Route::get('/auth/redirect/{driver}', [SocialController::class, 'redirect'])->name('SocialRedirect');
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])->name('SocialCallback');
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
+    Route::get('/', [ResumeController::class, 'index'])->name('index');
 });
-Route::get('/', [ResumeController::class, 'index'])->name('index');
+
 Route::view('/login', 'login')->name('login.view');
 Route::view('/signup', 'signUp')->name('signup.view');
+Route::view('/job', 'welcome')->name('job');
+Route::group(['middleware' => 'customer'], function () {
+});
+
+//resume
+Route::view('/addResume', 'add-resume')->middleware('freelance')->name('resume.index');
+Route::get('/manageResume', [ResumeController::class, 'resume'])->middleware('freelance')->name('resume.manage');
+Route::post('/addresumepost', [ResumeController::class, 'store'])->middleware('freelance')->name('resume.add');
