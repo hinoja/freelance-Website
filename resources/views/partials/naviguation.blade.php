@@ -1,3 +1,7 @@
+
+@php
+   use Illuminate\Support\Facades\Auth;
+@endphp
 <div class="container">
 	<div class="sixteen columns">
 
@@ -23,7 +27,7 @@
 
                     <li><a href="#">Pages</a>
                         <ul>
-                            <li><a href="job-page.html">Job Page</a></li>
+                            <li><a href="{{ route('job') }}">Job Page</a></li>
                             <li><a href="job-page-alt.html">Job Page Alternative</a></li>
                             <li><a href="resume-page.html">Resume Page</a></li>
                             <li><a href="shortcodes.html">Shortcodes</a></li>
@@ -32,38 +36,44 @@
                         </ul>
                     </li>
 
-                    <li><a href="#">For Candidates</a>
+                    @if(Auth::user()->role_id != 2)
+                        <li><a href="#">For Candidates</a>
+                            <ul>
+                                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                                <li><a href="browse-categories.html">Browse Categories</a></li>
+                                <li><a href="{{ route('resume.index') }}">Add Resume</a></li>
+                                <li><a href="{{ route('resume.manage') }}">Manage Resumes</a></li>
+                                <li><a href="job-alerts.html">Job Alerts</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                   @if(Auth::user()->role_id != 1)
+
+                        <li><a href="#">For Employers</a>
+                            <ul>
+                                <li><a href="add-job.html">Add Job</a></li>
+                                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                                <li><a href="manage-applications.html">Manage Applications</a></li>
+                                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    <li style="margin-right: 15px;"><a href="blog.html">Blog</a></li>
+                    <li class="float-right"><a href="#" style="color: blue">{{ Auth::user()->name }}</a>
                         <ul>
-                            <li><a href="browse-jobs.html">Browse Jobs</a></li>
-                            <li><a href="browse-categories.html">Browse Categories</a></li>
-                            <li><a href="{{ route('resume.index') }}">Add Resume</a></li>
-                            <li><a href="{{ route('resume.manage') }}">Manage Resumes</a></li>
-                            <li><a href="job-alerts.html">Job Alerts</a></li>
+                            <li><a href= "{{ route('logout') }}"><i class="fa fa-lock"></i> LogOut</a></li>
+
                         </ul>
                     </li>
 
-                    <li><a href="#">For Employers</a>
-                        <ul>
-                            <li><a href="add-job.html">Add Job</a></li>
-                            <li><a href="manage-jobs.html">Manage Jobs</a></li>
-                            <li><a href="manage-applications.html">Manage Applications</a></li>
-                            <li><a href="browse-resumes.html">Browse Resumes</a></li>
-                        </ul>
-                    </li>
+                </ul>
 
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-                <ul class="float-right">
-                    <li><a href= "{{ route('logout') }}"><i class="fa fa-lock"></i> LogOut</a></li>
-                </ul>
             @else
                 <ul class="float-right">
                     <li><a href= "{{ route('signup.view') }}"><i class="fa fa-user"></i> Sign Up</a></li>
-                    <li><a href="{{ route('login.view') }}"><i class="fa fa-lock"></i> Log In</a></li>
+                    <li><a href="{{ route('login.view') }}"><i class="fa fa-user"></i> Log In</a></li>
                 </ul>
-                {{-- @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif --}}
+
             @endauth
 
 

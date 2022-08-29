@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use App\Models\Freelance;
 use App\Models\Links;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class ResumeController extends Controller
 {
@@ -19,27 +19,17 @@ class ResumeController extends Controller
     public function index()
     {
         $experience = Experience::all();
-        $link = Links::all();
-        if (Auth::user() && Auth::user()->userable_type === 'App\Models\Freelance')
-        {
-            $auth = Auth::user()->userable_id;
+        // dd(Auth::user());
+        if (Auth::check()) {
             $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
-            foreach ($experience as $exp)
-             {
-                // $exp->freelance_id
-                // dd($exp->freelance_id);
 
-                if ($exp->freelance_id === $auth)
-                {
-                    return redirect()->route('job');
-                } else
-                {
-                    return redirect()->route('resume.index');
-                }
+            if (count($experience) === 0) {
+                return redirect()->route('resume.index');
+            } else {
+                return redirect()->route('resume.manage');
             }
         } else {
-            // return redirect()->route('job');
-            dd("vous n'etes pas un freelance, vous serez redirigé vers votre page");
+            return redirect()->route('job');
         }
     }
 
@@ -50,25 +40,27 @@ class ResumeController extends Controller
      */
     public function resume()
     {
-
-        if (Auth::user() && Auth::user()->userable_type === 'App\Models\Freelance')
+        // $freelance = ;
+        if( Auth::check())
         {
-
-            $freelance = Freelance::where('id', Auth::user()->userable_id)->first();
-            $name = Auth::user()->name;
-            $experi = Experience::where('freelance_id', $freelance->id)->get();
-            if ($freelance && count($experi)>0)
+                if(Freelance::where('id', Auth::user()->userable_id)->first()  && Auth::user()->role_id === 1 )
             {
-                return view('manage-resumes', ['experiences' => $experi, 'freelance' => $freelance, 'name' => $name]);
-            } else
-            {
-                return redirect()->route('resume.index');
+                $freelance=Freelance::where('id', Auth::user()->userable_id )->first();
+                $experi = Experience::where('freelance_id', $freelance->id)->get();
+                if (count($experi) > 0)
+                {
+                    return view('manage-resumes', ['experiences' => $experi, 'freelance' => $freelance]);
+                } else
+                {
+                    return redirect()->route('resume.index');
+                }
             }
         }
-        else {
-            // return redirect()->route('resume.index');
-            dd("vous n'etes pas un freelance,vous serez redirigé vers la page des jobs");
+        else
+        {
+            return redirect()->route('logout');
         }
+
     }
 
     /**
@@ -85,31 +77,35 @@ class ResumeController extends Controller
         $job_title = $request->job_title;
         $url = $request->url;
         $name_url = $request->name_url;
-          $request->validate([
-            'date'=> ['after_or_equal:date']
-          ]);
-            $request->validate
-        ([
+        $request->validate([
+            'date' => ['after_or_equal:date'],
+        ]);
+        $request->validate([
+            'location' => ['required','string'],
+            'title' => ['required','string'],
+            'description' => ['required','string'],
+            'start_date' => ['nullable', 'array'],
+            'start_date.*' => ['nullable', 'date', 'nullable'],
+            'end_date' => ['nullable', 'array'],
+            'end_date.*' => ['date', 'nullable', 'nullable', 'after_or_equal:start_date.*'],
+            'company' => ['nullable', 'array'],
+            'company.count.*' => ['nullable', 'string', 'nullable'],
+            'job_title' => ['nullable',  'array'],
+            'job_title.count.*' => ['nullable',  'string', 'nullable'],
+            'url' => ['nullable',  'array'],
+            'url.*' => ['url', 'nullable'],
+            'name_url' => ['nullable',  'array'],
+            'name_url.*' => ['nullable', 'string'],
+        ]);
 
-                    "start_date" => ['required','array'],
-                    "start_date.*" => ['nullable','date','nullable'],
-                    "end_date" => ['nullable','array'],
-                    "end_date.*" => ['date','nullable','nullable','after_or_equal:start_date.*'],
-                    "company" => ['required', 'array'],
-                    "company.count.*" => ['nullable', 'string','nullable'],
-                    "job_title" => ['required',  'array'],
-                    "job_title.count.*" => ['nullable',  'string','nullable'],
-                    "url" => ['required',  'array'],
-                    "url.*" => [ 'url','nullable'],
-                    "name_url" => ['required',  'array'],
-                    "name_url.*" => [ 'nullable','string'],
+        $freelance= Freelance::where('id', Auth::user()->userable_id)->first();
+        $freelance->description=$request->description;
+        $freelance->location=$request->location;
+        $freelance->profession=$request->title;
+        $freelance->save();
 
-
-            ]);
-
-                for ($i = 0; $i < count($start_date) - 1; $i++)
-                 {
-                    $dataexp =
+        for ($i = 0; $i < count($start_date) - 1; $i++) {
+            $dataexp =
                     [
                         'start_at' => $start_date[$i],
                         'end_at' => $end_date[$i],
@@ -117,24 +113,20 @@ class ResumeController extends Controller
                         'job_title' => $job_title[$i],
                         'freelance_id' => Auth::user()->userable->id,
                     ];
-                    $dataurl = [
-                        'name' => $name_url[$i],
-                        'url' => $url[$i],
-                        'freelance_id' => Auth::user()->userable->id,
-                    ];
-                    Links::updateOrCreate($dataurl);
-                    Experience::updateOrCreate($dataexp);
+            Experience::updateOrCreate($dataexp);
+        }
+        for ($i = 0; $i < count($url) - 1; $i++) {
+            $dataurl = [
+                'name' => $name_url[$i],
+                'url' => $url[$i],
+                'freelance_id' => Auth::user()->userable->id,
+            ];
+            Links::updateOrCreate($dataurl);
+        }
+        toastr()->success('Thanks,Your Profil ('.count($url).'Link(s) And '.count($start_date).'Experience(s) ) have created  with successful');
 
-                }
-
-
-                toastr()->success('Profil is create with successful');
-
-
-                    return back();
-
-
-       }
+        return redirect()->route('resume.manage');
+    }
 
     /**
      * Display the specified resource.
