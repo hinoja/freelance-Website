@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Database\Seeders\StatusSeeder;
+use Database\Seeders\categorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
+        ]);
+
+        $this->call([
+            StatusSeeder::class,
+        ]);
+        $this->call([
+            categorySeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

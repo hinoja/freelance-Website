@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UserController;
@@ -46,7 +47,11 @@ Route::view('/job', 'welcome')->name('job');
 Route::group(['middleware' => 'customer'], function () {
 });
 
-//resume
+
 Route::view('/addResume', 'add-resume')->middleware('freelance')->name('resume.index');
 Route::get('/manageResume', [ResumeController::class, 'resume'])->middleware('freelance')->name('resume.manage');
 Route::post('/addresumepost', [ResumeController::class, 'store'])->middleware('freelance')->name('resume.add');
+
+//job
+Route::view('/addJob', 'jobs.add-job')->name('job.index');
+Route::post('/addJobpost', [JobController::class, 'store'])->middleware('auth')->name('job.add');

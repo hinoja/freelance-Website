@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
+     protected $guarded=[];
     use HasFactory;
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
