@@ -36,7 +36,8 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate
+        ([
             'title'=>['required','string',],
             'location'=>['required','string'],
             'category'=>['required'],
@@ -70,7 +71,9 @@ class JobController extends Controller
 
         ]);
         Job::create($array);
-        dd('passe');
+        toastr()->success('Thanks,You have added The Job ('.$request->title.')   with successful');
+
+        return redirect()->route('job.manage');
 
     }
 
