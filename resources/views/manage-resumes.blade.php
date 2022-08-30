@@ -55,7 +55,7 @@
                                 @forelse ($experiences as $experience )
                                     <tr>
                                         <td class="title"><a href="#">{{$experience->job_title  }}</a></td>
-                                        <td> {{ $freelance->profession }}</td>
+                                        <td> {{ $freelance->nn }}</td>
                                         <td>{{ $freelance->location }} </td>
                                         <td>  {{ $experience->start_at}} To  {{ $experience->end_at }}</td>
                                         <td class="action">

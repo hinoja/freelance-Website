@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Freelance extends Model
 {
@@ -27,5 +28,9 @@ class Freelance extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class);
     }
 }
