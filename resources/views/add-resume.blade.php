@@ -33,19 +33,19 @@
                     <!-- Title -->
 			<div class="form">
 				<h5>Professional Title</h5>
-				<input class="search-field" name=title type="text" placeholder="e.g. Web Developer" value=""/>
+				<input class="search-field" name="title" type="text" placeholder="e.g. Web Developer" value="{{ old('title') }}"/>
 			</div>
 
 			<!-- Location -->
 			<div class="form">
 				<h5>Location</h5>
-				<input class="search-field" name="location" type="text" placeholder="e.g. London, UK" value=""/>
+				<input class="search-field" name="location" type="text" placeholder="e.g. London, UK" value="{{ old('location') }}"/>
 			</div>
 			<!-- Description -->
 
                 <div class="form">
                     <h5>Resume Content</h5>
-                    <textarea class="WYSIWYG" name="description" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
+                    <textarea class="WYSIWYG" name="description" cols="40" rows="3" id="summary" spellcheck="true" value="{{ old('description') }}"> {{ old('description') }}  </textarea>
                 </div>
 
 
@@ -57,14 +57,19 @@
                             <!-- Adding URL(s) -->
                             <div class="form boxed box-to-clone url-box">
                                 <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                              {{-- @if (old())
-                                @foreach (old() as $old )
-                                   <input class="search-field" type="text"  placeholder="Name" value="{{ $old->name_url['1']}} "/>
-                                @endforeach
-                              @else--}}
-                                   <input class="search-field" type="text" name="name_url[]" placeholder="Name" value=" "/>
-                              {{-- @endif  --}}
-                                <input class="search-field" type="text" name="url[]" placeholder="http://" value=" "/>
+                                @if (  old('url'))
+                                    {{-- @foreach (old('name_url') as $oldname )
+                                       <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$loop->index]}}" value="{{ old('name_url')[$loop->index]}}"/>
+                                    @endforeach --}}
+                                    @for ($i=0;$i<count(old('name_url'))-1;$i++)
+                                      <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$i]}}" value="{{ old('name_url')[$i]}}"/>
+                                      <input class="search-field" name="url[]" type="text"  placeholder="{{ old('url')[$i]}}" value="{{ old('url')[$i]}}"/>
+                                    @endfor
+                                @else
+                                    <input class="search-field" type="text" name="name_url[]" placeholder="Name" value=" "/>
+                                    <input class="search-field" type="text" name="url[]" placeholder="http://" value=" "/>
+                                @endif
+
                             </div>
 
                             <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
@@ -78,13 +83,29 @@
 
                             <!-- Add Experience -->
                             <div class="form boxed box-to-clone experience-box">
-                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                <input class="search-field form-control" name="company[]" type="text" placeholder="Company" value=" "/>
-                                <input class="search-field form-control" type="text" name="job_title[]" placeholder="Job Title" value=" "/>
-                                <label for="start_date">Start Date</label>
-                                <input class="search-field form-control " name="start_date[]" type="date" placeholder="Start  date"  /> <br>
-                                <label for="end_date"> End Date</label>
-                                <input class="search-field form-control " name="end_date[]" type="date" placeholder="Start  date"  /> <br>
+                                @if (  old('url'))
+                                    @for ($i=0;$i<count(old('name_url'))-1;$i++)
+                                    {{-- <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$i]}}" value="{{ old('name_url')[$i]}}"/>
+                                    <input class="search-field" name="url[]" type="text"  placeholder="{{ old('url')[$i]}}" value="{{ old('url')[$i]}}"/> --}}
+
+                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                        <input class="search-field form-control" name="company[]" type="text" placeholder="{{ old('company')[$i]}}" value="{{ old('company')[$i]}}"/>
+                                        <input class="search-field form-control" type="text" name="job_title[]" placeholder="{{ old('job_title')[$i]}}" value="{{ old('job_title')[$i]}}"/>
+                                        <label for="start_date">Start Date</label>
+                                        <input class="search-field form-control " name="start_date[]" type="date" placeholder="{{ old('start_date')[$i]}}"  /> <br>
+                                        <label for="end_date"> End Date</label>
+                                        <input class="search-field form-control " name="end_date[]" type="date" placeholder="{{ old('end_date')[$i]}}"  /> <br>
+                                    @endfor
+                               @else
+                                    <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                    <input class="search-field form-control" name="company[]" type="text" placeholder="Company" value=" "/>
+                                    <input class="search-field form-control" type="text" name="job_title[]" placeholder="Job Title" value=" "/>
+                                    <label for="start_date">Start Date</label>
+                                    <input class="search-field form-control " name="start_date[]" type="date" placeholder="Start  date"  /> <br>
+                                    <label for="end_date"> End Date</label>
+                                    <input class="search-field form-control " name="end_date[]" type="date" placeholder="End  date"  /> <br>
+                               @endif
+
                             </div>
 
                             <a href="#" class="button gray add-experience add-box"><i class="fa fa-plus-circle"></i> Add Experience</a>
