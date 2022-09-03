@@ -32,7 +32,7 @@ class UserController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8'],
-            'role_id' => ['required'],
+            'role_id' => ['required','exists:roles,id'],
         ]);
         try {
             // 1. Recuperer le role

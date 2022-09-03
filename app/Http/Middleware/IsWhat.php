@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsFrelance
+class IsWhat
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,16 @@ class IsFrelance
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,$role)
     {
-        if (Auth::user()->role_id === 1) {
+        if(Auth::user()->role_id !== 2)//freelance
+        {
             return $next($request);
-        } else {
-            abort(403);
         }
+        elseif(Auth::user()->role_id !== 1)//customer
+        {
+
+        }
+
     }
 }
