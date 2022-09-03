@@ -71,16 +71,7 @@ class ResumeController extends Controller
      */
     public function store(Request $request)
     {
-        $start_date = $request->start_date;
-        $end_date = $request->end_date;
-        $company = $request->company;
-        $job_title = $request->job_title;
-        $url = $request->url;
-        $name_url = $request->name_url;
-        $request->validate([
-            'date' => ['after_or_equal:date'],
-        ]);
-        $request->validate([
+             $request->validate([
             'location' => ['required','string'],
             'title' => ['required','string'],
             'description' => ['required','string'],
@@ -93,10 +84,16 @@ class ResumeController extends Controller
             'job_title' => ['nullable',  'array'],
             'job_title.count.*' => ['nullable',  'string', 'nullable'],
             'url' => ['nullable',  'array'],
-            'url.*' => ['url', 'nullable'],
+            'url.*' => ['nullable' ],
             'name_url' => ['nullable',  'array'],
             'name_url.*' => ['nullable', 'string'],
         ]);
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $company = $request->company;
+        $job_title = $request->job_title;
+        $url = $request->url;
+        $name_url = $request->name_url;
 
         $freelance= Freelance::where('id', Auth::user()->userable_id)->first();
         $freelance->description=$request->description;
@@ -104,8 +101,8 @@ class ResumeController extends Controller
         $freelance->profession=$request->title;
         $freelance->save();
 
-        for ($i = 0; $i < count($start_date) - 1; $i++) {
-            $dataexp =
+        for ($i = 1; $i< count($start_date); $i++) {
+              $dataexp =
                     [
                         'start_at' => $start_date[$i],
                         'end_at' => $end_date[$i],
@@ -113,9 +110,9 @@ class ResumeController extends Controller
                         'job_title' => $job_title[$i],
                         'freelance_id' => Auth::user()->userable->id,
                     ];
-            Experience::updateOrCreate($dataexp);
+            Experience::Create($dataexp);
         }
-        for ($i = 0; $i < count($url) - 1; $i++) {
+        for ($i = 1; $i < count($url) ; $i++) {
             $dataurl = [
                 'name' => $name_url[$i],
                 'url' => $url[$i],
