@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Job;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePostRequestJob;
 
 class JobController extends Controller
 {
@@ -35,23 +36,10 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequestJob $request)
     {
-        $request->validate([
-            'title' => ['required', 'string'],
-            'location' => ['required', 'string'],
-            'category' => ['required'],
-            'type' => ['required'],
-            'salary' => ['required'],
-            'tag' => ['required', 'string'],
-            'startDate' => ['required', 'date'],
-            'endDate' => ['required', 'date', 'after:startDate'],
-            'summary' => ['required', 'string'],
-            'companyName' => ['nullable'],
-            'companyDescription' => ['nullable'],
-            'company_name' => ['required', 'string'],
-
-        ]);
+    //    $validated= $request->validate();
+    //     $validated = $request->safe();
         //  dd( Auth::user());
         $array =
         ([

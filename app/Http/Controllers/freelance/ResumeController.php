@@ -18,19 +18,7 @@ class ResumeController extends Controller
      */
     public function index()
     {
-        $experience = Experience::all();
-        // dd(Auth::user());
-        if (Auth::check()) {
-            $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
 
-            if (count($experience) === 0) {
-                return redirect()->route('resume.index');
-            } else {
-                return redirect()->route('resume.manage');
-            }
-        } else {
-            return redirect()->route('welcome');
-        }
     }
 
     /**
@@ -61,8 +49,7 @@ class ResumeController extends Controller
      */
     public function store(StoreResumeRequest $request)
     {
-        $validated = $request->validate();
-        $validated = $request->safe();
+        
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $company = $request->company;
