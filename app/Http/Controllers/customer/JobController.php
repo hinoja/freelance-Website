@@ -93,7 +93,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function resume($id)
+    public function resume()
     {
             if (Auth::check()) {
             if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
