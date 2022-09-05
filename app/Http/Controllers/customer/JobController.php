@@ -36,37 +36,36 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate
-        ([
-            'title'=>['required','string',],
-            'location'=>['required','string'],
-            'category'=>['required'],
-            'type'=>['required'],
-            'salary'=>['required'],
-            'tag'=>['required','string'],
-            'startDate'=>['required','date'],
-            'endDate'=>['required','date','after:startDate'],
-            'summary'=>['required','string'],
-            'companyName'=>['nullable'],
-            'companyDescription'=>['nullable'],
-            'company_name'=>['required','string'],
+        $request->validate([
+            'title' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'category' => ['required'],
+            'type' => ['required'],
+            'salary' => ['required'],
+            'tag' => ['required', 'string'],
+            'startDate' => ['required', 'date'],
+            'endDate' => ['required', 'date', 'after:startDate'],
+            'summary' => ['required', 'string'],
+            'companyName' => ['nullable'],
+            'companyDescription' => ['nullable'],
+            'company_name' => ['required', 'string'],
 
         ]);
         //  dd( Auth::user());
-        $array=
+        $array =
         ([
-            'title'=>$request->title,
-            'email'=>$request->email,
-            'location'=>$request->location,
-            'category_id'=>$request->category,
-            'type'=>$request->type,
+            'title' => $request->title,
+            'email' => $request->email,
+            'location' => $request->location,
+            'category_id' => $request->category,
+            'type' => $request->type,
             // 'tag'=>$request->tag,
-            'salary'=>$request->salary,
-            'start_at'=>$request->startDate,
-            'deadline'=>$request->endDate,
-            'description'=>$request->summary,
-            'companyName'=>$request->company_name,
-            'companyDescription'=>$request->company_description,
+            'salary' => $request->salary,
+            'start_at' => $request->startDate,
+            'deadline' => $request->endDate,
+            'description' => $request->summary,
+            'companyName' => $request->company_name,
+            'companyDescription' => $request->company_description,
             'customer_id' => Auth::user()->userable->id,
 
         ]);
@@ -74,7 +73,6 @@ class JobController extends Controller
         toastr()->success('Thanks,You have added The Job ('.$request->title.')   with successful');
 
         return redirect()->route('job.manage');
-
     }
 
     /**

@@ -38,28 +38,22 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])->name('SocialCallback');
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
-    Route::get('/', [ResumeController::class, 'index'])->name('index');
 });
 
-Route::view('/login', 'login')->name('login.view');
-Route::view('/signup', 'signUp')->name('signup.view');
-Route::view('/job', 'welcome')->name('job');
+Route::view('/login', 'authentification.login')->name('login.view');
+Route::view('/signup', 'authentification.signUp')->name('signup.view');
+Route::view('/', 'welcome')->name('job');
 Route::group(['middleware' => 'customer'], function () {
 });
 
-Route::group(['middleware'=>'freelance'],function()
-{
-    Route::view('/addResume', 'add-resume')->name('resume.index');
+Route::group(['middleware' => 'freelance'], function () {
+    Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
     Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
     Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
-
 });
-Route::group(['middleware'=>'customer'],function()
-{
-        //job
-        Route::view('/addJob', 'jobs.add-job')->name('job.index');
-        Route::view('/managejob','jobs.manage-jobs')->name('job.manage');
-        Route::post('/addJobpost', [JobController::class, 'store'])->middleware('auth')->name('job.add');
-
+Route::group(['middleware' => 'customer'], function () {
+    //job
+    Route::view('/addJob', 'customer.add-job')->name('job.index');
+    Route::view('/managejob', 'customer.manage-jobs')->name('job.manage');
+    Route::post('/addJobpost', [JobController::class, 'store'])->middleware('auth')->name('job.add');
 });
-

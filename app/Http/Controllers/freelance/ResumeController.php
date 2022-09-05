@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreResumeRequest;
 use App\Models\Experience;
-use App\Models\Freelance;
 use App\Models\Links;
-use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPUnit\Framework\isEmpty;
 
 class ResumeController extends Controller
 {
@@ -43,13 +39,16 @@ class ResumeController extends Controller
      */
     public function resume()
     {
-        if ( empty(Experience::where('freelance_id',Auth::user()->userable->id)->get()) )
-        {
-            return redirect()->route('resume.index');
-        } else
-        {
-            $experi=Experience::where('freelance_id',Auth::user()->userable->id)->get();
-            return view('manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
+        if (Auth::check()) {
+            if (empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())) {
+                return redirect()->route('resume.index');
+            } else {
+                $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
+
+                return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
+            }
+        } else {
+            return redirect()->route('job');
         }
     }
 
@@ -61,8 +60,8 @@ class ResumeController extends Controller
      */
     public function store(StoreResumeRequest $request)
     {
-        $validated= $request->validate();
-        $validated= $request->safe();
+        $validated = $request->validate();
+        $validated = $request->safe();
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $company = $request->company;
@@ -70,15 +69,14 @@ class ResumeController extends Controller
         $url = $request->url;
         $name_url = $request->name_url;
 
-        $freelance=Auth::user()->userable;
-        $freelance->description=$request->description;
-        $freelance->location=$request->location;
-        $freelance->profession=$request->title;
+        $freelance = Auth::user()->userable;
+        $freelance->description = $request->description;
+        $freelance->location = $request->location;
+        $freelance->profession = $request->title;
         $freelance->save();
 
-       for ($i = 0; $i< count($start_date)-1; $i++)
-        {
-               $dataexp =
+        for ($i = 0; $i < count($start_date) - 1; $i++) {
+            $dataexp =
                         [
                             'start_at' => $start_date[$i],
                             'end_at' => $end_date[$i],
@@ -86,11 +84,10 @@ class ResumeController extends Controller
                             'job_title' => $job_title[$i],
                             'freelance_id' => Auth::user()->userable->id,
                         ];
-               Experience::updateOrCreate($dataexp);
+            Experience::updateOrCreate($dataexp);
         }
 
-        for ($i = 0; $i < count($url)-1 ; $i++)
-         {
+        for ($i = 0; $i < count($url) - 1; $i++) {
             $dataurl = [
                 'name' => $name_url[$i],
                 'url' => $url[$i],

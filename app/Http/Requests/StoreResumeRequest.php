@@ -24,9 +24,9 @@ class StoreResumeRequest extends FormRequest
     public function rules()
     {
         return [
-            'location' => ['required','string'],
-            'title' => ['required','string'],
-            'description' => ['required','string'],
+            'location' => ['required', 'string'],
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
             'start_date' => ['nullable', 'array'],
             'start_date.*' => ['nullable', 'date', 'nullable'],
             'end_date' => ['nullable', 'array'],
@@ -36,7 +36,7 @@ class StoreResumeRequest extends FormRequest
             'job_title' => ['nullable',  'array'],
             'job_title.count.*' => ['nullable',  'string', 'nullable'],
             'url' => ['nullable',  'array'],
-            'url.*' => ['nullable' ],
+            'url.*' => ['nullable'],
             'name_url' => ['nullable',  'array'],
             'name_url.*' => ['nullable', 'string'],
         ];

@@ -84,7 +84,7 @@
                             <!-- Add Experience -->
                             <div class="form boxed box-to-clone experience-box">
                                 @if (  old('company'))
-                                    @for ($i=0;$i<count(old('name_url'))-1;$i++)
+                                    @for ($i=0;$i<count(old('company'))-1;$i++)
                                     {{-- <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$i]}}" value="{{ old('name_url')[$i]}}"/>
                                     <input class="search-field" name="url[]" type="text"  placeholder="{{ old('url')[$i]}}" value="{{ old('url')[$i]}}"/> --}}
 

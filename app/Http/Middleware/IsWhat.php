@@ -15,16 +15,12 @@ class IsWhat
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,$role)
+    public function handle(Request $request, Closure $next, $role)
     {
-        if(Auth::user()->role_id !== 2)//freelance
-        {
+        if (Auth::user()->role_id !== 2) {//freelance
             return $next($request);
+        } elseif (Auth::user()->role_id !== 1) {//customer
+            
         }
-        elseif(Auth::user()->role_id !== 1)//customer
-        {
-
-        }
-
     }
 }
