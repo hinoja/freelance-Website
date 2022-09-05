@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\customer;
 
 use App\Models\Job;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,9 +93,19 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function resume($id)
     {
-        //
+            if (Auth::check()) {
+            if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
+                return redirect()->route('job.index');
+            } else {
+                $job = Job::where('customer_id', Auth::user()->userable->id)->get();
+
+                return view('customer.manage-jobs', ['job' => $job, 'customer' => Auth::user()->userable]);
+            }
+        } else {
+            return redirect()->route('welcome');
+        }
     }
 
     /**

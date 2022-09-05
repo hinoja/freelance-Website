@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\SocialController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\customer\JobController;
+use App\Http\Controllers\freelance\ResumeController;
+use App\Http\Controllers\authentification\SocialController;
+use App\Http\Controllers\authentification\UserController;
+use App\Http\Controllers\authentification\VerifyEmailController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -38,15 +38,13 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])->name('SocialCallback');
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
+    // Route::view('/', 'welcome')->name('job');
+
 });
+Route::view('/', 'welcome')->name('welcome');
 
 Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
-Route::view('/', 'welcome')->name('job');
-Route::group(['middleware' => 'customer'], function () {
-
-});
-
 Route::group(['middleware' => 'freelance'], function () {
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
     Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
@@ -55,6 +53,6 @@ Route::group(['middleware' => 'freelance'], function () {
 Route::group(['middleware' => 'customer'], function () {
     //job
     Route::view('/addJob', 'customer.add-job')->name('job.index');
-    Route::view('/managejob', 'customer.manage-jobs')->name('job.manage');
+    Route::get('/managejob', [JobController::class,'resume'])->name('job.manage');
     Route::post('/addJobpost', [JobController::class, 'store'])->middleware('auth')->name('job.add');
 });

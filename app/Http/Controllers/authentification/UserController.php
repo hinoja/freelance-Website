@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\authentification;
 
-use App\Models\Customer;
-use App\Models\Experience;
-use App\Models\Freelance;
+
+use Exception;
 use App\Models\Job;
 use App\Models\Role;
 use App\Models\User;
-use Exception;
-use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Freelance;
+use App\Models\Experience;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Yoeunes\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -43,7 +45,7 @@ class UserController extends Controller
                 Auth::login($user);
                 toastr()->success('Your account was been created successfully, Welcome'.$request->name);
 
-                return redirect()->route('resume.index');
+                return redirect()->route('resume.manage');
             } else {//Customer
                 $customer = Customer::create();
                 $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
@@ -83,12 +85,7 @@ class UserController extends Controller
             if (Auth::user()->role_id === 1) {
                 //
                 $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
-
-                if (count($experience) === 0) {
-                    return redirect()->route('resume.index');
-                } else {
-                    return redirect()->route('resume.manage');
-                }
+                return redirect()->route('resume.manage');
             } elseif (Auth::user()->role_id === 2) {
                 $job = Job::where('customer_id', Auth::user()->userable_id)->get();
 
@@ -98,7 +95,7 @@ class UserController extends Controller
                     return redirect()->route('job.manage');
                 }
             } else {
-                return redirect()->route('job');
+                return redirect()->route('welcome');
             }
         } else {
             toastr()->warning('Invalid UserName /PassWord.');

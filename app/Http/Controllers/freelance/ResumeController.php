@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\freelance;
 
 use App\Http\Requests\StoreResumeRequest;
 use App\Models\Experience;
 use App\Models\Links;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
@@ -28,7 +29,7 @@ class ResumeController extends Controller
                 return redirect()->route('resume.manage');
             }
         } else {
-            return redirect()->route('job');
+            return redirect()->route('welcome');
         }
     }
 
@@ -48,7 +49,7 @@ class ResumeController extends Controller
                 return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
             }
         } else {
-            return redirect()->route('job');
+            return redirect()->route('welcome');
         }
     }
 

@@ -7,7 +7,7 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a href="{{ route('index') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
+			<h1><a href="{{ route('welcome') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
 		</div>
 
 		<!-- Menu -->
@@ -27,7 +27,7 @@
 
                     <li><a href="#">Pages</a>
                         <ul>
-                            <li><a href="{{ route('job') }}">Job Page</a></li>
+                            <li><a href="{{ route('welcome') }}">Job Page</a></li>
                             <li><a href="job-page-alt.html">Job Page Alternative</a></li>
                             <li><a href="resume-page.html">Resume Page</a></li>
                             <li><a href="shortcodes.html">Shortcodes</a></li>
