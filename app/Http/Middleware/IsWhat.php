@@ -17,10 +17,20 @@ class IsWhat
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::user()->role_id !== 2) {//freelance
-            return $next($request);
-        } elseif (Auth::user()->role_id !== 1) {//customer
-            
+        if (Auth::user()->role_id !== $role) {//freelance
+            return redirect()->route('resume.manage');
+        } elseif (Auth::user()->role_id !== $role) {//customer
+            return redirect()->route('resume.manage');
+        }else{
+            abort(403);
         }
+
+        // if ( $role !== 2) {//freelance
+        //     return redirect()->route('resume.manage');
+        // } elseif ($role !== 1) {//customer
+        //     return redirect()->route('resume.manage');
+        // }else{
+        //     abort(403);
+        // }
     }
 }

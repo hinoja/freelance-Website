@@ -44,6 +44,7 @@ Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
 Route::view('/', 'welcome')->name('job');
 Route::group(['middleware' => 'customer'], function () {
+
 });
 
 Route::group(['middleware' => 'freelance'], function () {
