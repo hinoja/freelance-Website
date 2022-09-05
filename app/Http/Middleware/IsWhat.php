@@ -18,13 +18,11 @@ class IsWhat
     public function handle(Request $request, Closure $next, $role)
     {
 
-        if($request->user()->role_id === $role)
+        if(! $request->user()->role_id === $role)
         {
-            return $next($request);
+            return redirect('/');
        }
-       else
-       {
-        return redirect('/');
-       }
+
+        return $next($request);
     }
 }
