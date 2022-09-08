@@ -59,14 +59,21 @@
                         </li>
                     @endif
                     <li style="margin-right: 15px;"><a href="blog.html">Blog</a></li>
+
+
+                </ul>
+                <ul class="float-right">
                     <li class="float-right"><a href="#" style="color: blue">{{ Auth::user()->name }}</a>
                         <ul>
                             <li><a href= "{{ route('logout') }}"><i class="fa fa-lock"></i> LogOut</a></li>
 
                         </ul>
                     </li>
-
                 </ul>
+
+
+
+
 
             @else
                 <ul class="float-right">
