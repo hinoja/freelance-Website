@@ -1,3 +1,7 @@
+
+@php
+    use Brian2694\Toastr\Facades\Toastr;
+@endphp
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
@@ -8,6 +12,7 @@
 <meta charset="utf-8">
 <title>Work Scout</title>
 
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <!-- Font awesome cdn CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
@@ -33,7 +38,7 @@
 <![endif]-->
 </head>
 
-<body>
+<body class="antialiased">
 <div id="wrapper">
 
 
@@ -53,7 +58,7 @@
         <div class="col-md-3"></div>
             <div class="col-md-6">
                 @if (session('success'))
-                    <div class="alert alert-success">
+                    {{-- <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                     @elseif (session('danger'))
@@ -64,7 +69,7 @@
                     @elseif (session('primary'))
                      <div class="alert alert-primary">
                         {{ session('primary') }}
-                    </div>
+                    </div> --}}
                 @endif
                 {{-- <ul>
                     @foreach ($errors->all() as $error )
@@ -90,6 +95,9 @@
    @include('partials.footer')
 
 
+   <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+       
 <!-- Scripts
 ================================================== -->
   @yield('script')

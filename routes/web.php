@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\customer\JobController;
-use App\Http\Controllers\freelance\ResumeController;
 use App\Http\Controllers\authentification\SocialController;
 use App\Http\Controllers\authentification\UserController;
 use App\Http\Controllers\authentification\VerifyEmailController;
+use App\Http\Controllers\customer\JobController;
+use App\Http\Controllers\freelance\ResumeController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -38,21 +38,21 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])->name('SocialCallback');
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
-
 });
 Route::view('/', 'welcome')->name('welcome');
 
 Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
-Route::group(['middleware' => 'auth','what:1'], function () {//freelance
+
+Route::group(['middleware' => ['auth', 'what:1']], function () {//freelance
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
     Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
     Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
 });
-Route::group(['middleware' => 'auth','what:2'], function () {
+Route::group(['middleware' => ['auth', 'what:2']], function () {
     //customer
     Route::view('/addJob', 'customer.add-job')->name('job.index');
-    Route::get('/managejob', [JobController::class,'resume'])->name('job.manage');
-    Route::get('/browsemanagejob', [JobController::class,'browsejob'])->name('job.browse');
+    Route::get('/managejob', [JobController::class, 'resume'])->name('job.manage');
+    Route::get('/browsemanagejob', [JobController::class, 'browsejob'])->name('job.browse');
     Route::post('/addJobpost', [JobController::class, 'store'])->name('job.add');
 });

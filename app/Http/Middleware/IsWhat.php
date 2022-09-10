@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class IsWhat
 {
@@ -17,11 +16,9 @@ class IsWhat
      */
     public function handle(Request $request, Closure $next, $role)
     {
-
-        if(! $request->user()->role_id === $role)
-        {
+        if (! $request->user()->role_id === $role) {
             return redirect('/');
-       }
+        }
 
         return $next($request);
     }

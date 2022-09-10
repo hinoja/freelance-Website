@@ -1,6 +1,6 @@
 
-
 @php
+  use App\Models\Requirement;
   use App\Models\Status;
   use App\Models\Category;
 @endphp
@@ -42,7 +42,6 @@
                           </div>
                         <form action="{{ route('job.add') }}" method="post">
                             @csrf
-                            
 
                                 <!-- Title -->
                                 <div class="form">
@@ -60,9 +59,19 @@
                                 <!-- Job Type -->
                                 <div class="form">
                                     <h5>Job Type</h5>
-                                    <select data-placeholder="Full-Time" name="type" class="chosen-select-no-single">
+                                    <select data-placeholder="Full-Time" name="type"  class="chosen-select-no-single">
                                         @foreach (Status::all() as $status )
                                             <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                 <!-- Requirements -->
+                                 <div class="form">
+                                    <h5>Requirements</h5>
+                                    <select data-placeholder="Full-Time" name="type" multiple class="chosen-select-no-single">
+                                        @foreach (Requirement::all() as $Requirement )
+                                            <option value="{{ $Requirement->id }}">{{ $Requirement->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

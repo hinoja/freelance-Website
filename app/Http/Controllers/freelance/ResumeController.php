@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\freelance;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreResumeRequest;
 use App\Models\Experience;
 use App\Models\Links;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPUnit\Framework\isEmpty;
 
 class ResumeController extends Controller
 {
@@ -20,7 +19,6 @@ class ResumeController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -32,11 +30,8 @@ class ResumeController extends Controller
     {
         if (Auth::check()) {
             if (count(Experience::where('freelance_id', Auth::user()->userable->id)->get()) === 0) {
-                // dd(Experience::where('freelance_id', Auth::user()->userable->id)->get(),Auth::user()->userable);
                 return redirect()->route('resume.index');
             } else {
-                // dd(Experience::where('freelance_id', Auth::user()->userable->id)->get());
-
                 $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
 
                 return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
@@ -54,14 +49,12 @@ class ResumeController extends Controller
      */
     public function store(StoreResumeRequest $request)
     {
-
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $company = $request->company;
         $job_title = $request->job_title;
         $url = $request->url;
         $name_url = $request->name_url;
-
         $freelance = Auth::user()->userable;
         $freelance->description = $request->description;
         $freelance->location = $request->location;
@@ -88,8 +81,8 @@ class ResumeController extends Controller
             ];
             Links::updateOrCreate($dataurl);
         }
-        toastr()->success('Thanks,Your Profil ('.count($url).'Link(s) And '.count($start_date).'Experience(s) ) have created  with successful');
-        // dd('test');
+        Toastr::success('Your are adding  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) ) :)', 'Success!!');
+
         return redirect()->route('resume.manage');
     }
 

@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('requirements', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            // $table->foreignId('job_id')->constrained();
-            $table->timestamps();
+        Schema::table('requirements', function (Blueprint $table) {
+            $table->SoftDeletes();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requirements');
+        Schema::table('requirements', function (Blueprint $table) {
+            //
+        });
     }
 };

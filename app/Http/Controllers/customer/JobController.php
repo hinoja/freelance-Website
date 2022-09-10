@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Models\Job;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequestJob;
+use App\Models\Job;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -38,8 +38,8 @@ class JobController extends Controller
      */
     public function store(StorePostRequestJob $request)
     {
-    //    $validated= $request->validate();
-    //     $validated = $request->safe();
+        //    $validated= $request->validate();
+        //     $validated = $request->safe();
         //  dd( Auth::user());
         $array =
         ([
@@ -59,7 +59,7 @@ class JobController extends Controller
 
         ]);
         Job::create($array);
-        toastr()->success('Thanks,You have added The Job ('.$request->title.')   with successful');
+        Toastr::success('Thanks,You have added The Job ('.$request->title.')   with successful :)', 'Success!!');
 
         return redirect()->route('job.manage');
     }
@@ -83,11 +83,12 @@ class JobController extends Controller
      */
     public function resume()
     {
-            if (Auth::check()) {
+        if (Auth::check()) {
             if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
                 return redirect()->route('job.index');
             } else {
                 $job = Job::where('customer_id', Auth::user()->userable->id)->get();
+
                 return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
             }
         } else {
@@ -104,8 +105,9 @@ class JobController extends Controller
      */
     public function browsejob()
     {
-       $job=Job::orderBy('created_at','DESC');
-       return view('customer.browse-jobs',['jobs'=>$job->paginate(2)]);
+        $job = Job::orderBy('created_at', 'DESC');
+
+        return view('customer.browse-jobs', ['jobs' => $job->paginate(2)]);
     }
 
     /**
