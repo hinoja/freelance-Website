@@ -39,22 +39,27 @@ class UserController extends Controller
         try {
             // 1. Recuperer le role
             if ((int) $request->role_id === 1) {//freelance
-                $freelance = Freelance::create();
-                $user = $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                event(new Registered($user));
-                Auth::login($user);
-                toastr()->success('Your account was been created successfully, Welcome'.$request->name);
-
-                return redirect()->route('resume.manage');
+                $account = Freelance::create();
+                $route="resume.manage";
             } else {//Customer
-                $customer = Customer::create();
-                $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                $account = Customer::create();
+                $route="job.index";
+                // $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
+                // event(new Registered($user));
+                // Auth::login($user);
+                // toastr()->success('Your account was been created successfully, Welcome'.$request->name);
+
+                // return redirect()->route('job.index');
+            }
+                $user = $account->user()->create($request->only('name', 'email', 'password', 'role_id'));
                 event(new Registered($user));
                 Auth::login($user);
                 toastr()->success('Your account was been created successfully, Welcome'.$request->name);
+                return redirect()->route($route);
 
-                return redirect()->route('job.index');
-            }
+
+
+
         } catch (Exception $e) {
             toastr()->warning('Your Email is incorrect');
 
