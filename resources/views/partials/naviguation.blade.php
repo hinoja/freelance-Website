@@ -51,8 +51,8 @@
 
                         <li><a href="#">For Employers</a>
                             <ul>
-                                <li><a href="add-job.html">Add Job</a></li>
-                                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                                <li><a href="{{ route('job.index') }}">Add Job</a></li>
+                                <li><a href="{{ route('job.manage') }}">Manage Jobs</a></li>
                                 <li><a href="manage-applications.html">Manage Applications</a></li>
                                 <li><a href="browse-resumes.html">Browse Resumes</a></li>
                             </ul>

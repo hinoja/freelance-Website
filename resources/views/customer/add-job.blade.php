@@ -42,11 +42,7 @@
                           </div>
                         <form action="{{ route('job.add') }}" method="post">
                             @csrf
-                                 <!-- Email -->
-                                <div class="form">
-                                    <h5>Your Email</h5>
-                                    <input class="search-field" name="email" type="text" placeholder="mail@example.com" value=""/>
-                                </div>
+                            
 
                                 <!-- Title -->
                                 <div class="form">
@@ -95,7 +91,7 @@
                                 <!-- Description -->
                                 <div class="form">
                                     <h5>Description</h5>
-                                    <textarea class="WYSIWYG" name="summary" value={{old('summary')}} cols="40" rows="3" id="summary" spellcheck="true"></textarea>
+                                    <textarea class="WYSIWYG" name="summary" value={{old('summary')}} cols="40" rows="3" id="summary" spellcheck="true"> {{old('summary')}} </textarea>
                                 </div>
 
                                 <!-- Application email/url -->

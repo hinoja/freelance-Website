@@ -1,3 +1,8 @@
+
+@php
+    use App\Models\Category;
+@endphp
+
 @extends('layouts.app')
 @section('content')
 
@@ -42,31 +47,36 @@
                 </tr>
 
                 <!-- Item #1 -->
-                <tr>
-                    <td class="title"><a href="#">Marketing Coordinator - SEO / SEM Experience <span class="pending">(Pending Approval)</span></a></td>
-                    <td class="centered">-</td>
-                    <td>September 30, 2015</td>
-                    <td>October 10, 2015</td>
-                    <td class="centered">-</td>
-                    <td class="action">
-                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                    </td>
-                </tr>
 
-                <!-- Item #2 -->
-                <tr>
-                    <td class="title"><a href="#">Web Developer - Front End Web Development, Relational Databases</a></td>
-                    <td class="centered">-</td>
-                    <td>September 30, 2015</td>
-                    <td>October 10, 2015</td>
-                    <td class="centered"><a href="manage-applications.html" class="button">Show (4)</a></td>
-                    <td class="action">
-                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
-                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                    </td>
-                </tr>
+                {{-- @foreach ( as )
+                    <tr>
+                        <td class="title"><a href="#">Marketing Coordinator - SEO / SEM Experience <span class="pending">(Pending Approval)</span></a></td>
+                        <td class="centered">-</td>
+                        <td>September 30, 2015</td>
+                        <td>October 10, 2015</td>
+                        <td class="centered">-</td>
+                        <td class="action">
+                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                        </td>
+                    </tr>
+                {{-- @endforeach --}}
 
+                  <!-- Item #2 -->
+                    @foreach ($jobs as $job )
+                        <tr>
+                            <td class="title"><a href="#"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
+                            <td class="centered">-</td>
+                            <td> {{ $job->created_at->format(' Y m d') }}</td>
+                            <td>{{ $job->deadline}}</td>
+                            <td class="centered"><a href="manage-applications.html" class="button">Show (4)</a></td>
+                            <td class="action">
+                                <a href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
+                                <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+{{--
                 <!-- Item #2 -->
                 <tr>
                     <td class="title"><a href="#">Power Systems User Experience Designer</a></td>
@@ -77,7 +87,7 @@
                     <td class="action">
                         <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
                     </td>
-                </tr>
+                </tr> --}}
 
             </table>
 

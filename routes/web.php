@@ -53,5 +53,6 @@ Route::group(['middleware' => 'auth','what:2'], function () {
     //customer
     Route::view('/addJob', 'customer.add-job')->name('job.index');
     Route::get('/managejob', [JobController::class,'resume'])->name('job.manage');
+    Route::get('/browsemanagejob', [JobController::class,'browsejob'])->name('job.browse');
     Route::post('/addJobpost', [JobController::class, 'store'])->name('job.add');
 });

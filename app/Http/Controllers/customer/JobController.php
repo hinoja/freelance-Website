@@ -88,8 +88,7 @@ class JobController extends Controller
                 return redirect()->route('job.index');
             } else {
                 $job = Job::where('customer_id', Auth::user()->userable->id)->get();
-
-                return view('customer.manage-jobs', ['job' => $job, 'customer' => Auth::user()->userable]);
+                return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
             }
         } else {
             return redirect()->route('welcome');
@@ -103,9 +102,10 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function browsejob()
     {
-        //
+       $job=Job::orderBy('created_at','DESC');
+       return view('customer.browse-jobs',['jobs'=>$job->paginate(2)]);
     }
 
     /**

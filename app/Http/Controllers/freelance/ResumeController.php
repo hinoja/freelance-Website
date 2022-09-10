@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ResumeController extends Controller
 {
     /**
@@ -29,9 +31,12 @@ class ResumeController extends Controller
     public function resume()
     {
         if (Auth::check()) {
-            if (empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())) {
+            if (count(Experience::where('freelance_id', Auth::user()->userable->id)->get()) === 0) {
+                // dd(Experience::where('freelance_id', Auth::user()->userable->id)->get(),Auth::user()->userable);
                 return redirect()->route('resume.index');
             } else {
+                // dd(Experience::where('freelance_id', Auth::user()->userable->id)->get());
+
                 $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
 
                 return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
@@ -49,7 +54,7 @@ class ResumeController extends Controller
      */
     public function store(StoreResumeRequest $request)
     {
-        
+
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $company = $request->company;
