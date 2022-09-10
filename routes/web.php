@@ -44,12 +44,12 @@ Route::view('/', 'welcome')->name('welcome');
 Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
 
-Route::group(['middleware' => ['auth', 'what:1']], function () {//freelance
+Route::group(['middleware' => 'auth','what:1'], function () {//freelance
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
     Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
     Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
 });
-Route::group(['middleware' => ['auth', 'what:2']], function () {
+Route::group(['middleware' =>'auth','what:2'], function () {
     //customer
     Route::view('/addJob', 'customer.add-job')->name('job.index');
     Route::get('/managejob', [JobController::class, 'resume'])->name('job.manage');

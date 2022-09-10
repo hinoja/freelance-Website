@@ -69,7 +69,7 @@
                                  <!-- Requirements -->
                                  <div class="form">
                                     <h5>Requirements</h5>
-                                    <select data-placeholder="Full-Time" name="type" multiple class="chosen-select-no-single">
+                                    <select data-placeholder="Full-Time" name="requirement" multiple class="chosen-select-no-single">
                                         @foreach (Requirement::all() as $Requirement )
                                             <option value="{{ $Requirement->id }}">{{ $Requirement->name }}</option>
                                         @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequestJob;
 use App\Models\Job;
 use Brian2694\Toastr\Facades\Toastr;
+use Flasher\Laravel\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
@@ -36,8 +37,9 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequestJob $request)
+    public function store(Request $request)
     {
+        dd($request);
         //    $validated= $request->validate();
         //     $validated = $request->safe();
         //  dd( Auth::user());
@@ -48,7 +50,7 @@ class JobController extends Controller
             'location' => $request->location,
             'category_id' => $request->category,
             'type' => $request->type,
-            // 'tag'=>$request->tag,
+
             'salary' => $request->salary,
             'start_at' => $request->startDate,
             'deadline' => $request->endDate,
