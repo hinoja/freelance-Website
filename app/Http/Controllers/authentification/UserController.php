@@ -37,24 +37,23 @@ class UserController extends Controller
             'role_id' => ['required', 'exists:roles,id'],
         ]);
         try {
+            $data = $request->only('name', 'email', 'password', 'role_id');
             // 1. Recuperer le role
             if ((int) $request->role_id === 1) {//freelance
                 $freelance = Freelance::create();
-                $user = $freelance->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                event(new Registered($user));
-                Auth::login($user);
-                toastr()->success('Your account was been created successfully, Welcome'.$request->name);
-
-                return redirect()->route('resume.manage');
+                $user = $freelance->user()->create($data);
+                $redirect = 'resume.manage';
             } else {//Customer
                 $customer = Customer::create();
-                $user = $customer->user()->create($request->only('name', 'email', 'password', 'role_id'));
-                event(new Registered($user));
-                Auth::login($user);
-                toastr()->success('Your account was been created successfully, Welcome'.$request->name);
-
-                return redirect()->route('job.index');
+                $user = $customer->user()->create($data);
+                $redirect = 'job.index';
             }
+            
+            event(new Registered($user));
+            Auth::login($user);
+            toastr()->success('Your account was been created successfully, Welcome' . $request->name);
+
+            return redirect()->route($redirect);
         } catch (Exception $e) {
             toastr()->warning('Your Email is incorrect');
 
@@ -82,14 +81,24 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
             toastr()->success('Hello Dear '.Auth::user()->name);
+
+            // On utilise la relation userable pour recuperer le type d'utilisateur connecte (freelance/customer)
+            $userable = auth()->user()->userable;
+            
             if (Auth::user()->role_id === 1) {
-                //
-                $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
+                // On peut a ce niveau juste verifier si la profession du freelance est vide ou une autre colonne de la table freelance
+                if ($userable->profession) {
+                    // Rediriger vers le dashboard freelance
+                } else {
+                    // Rediriger vers le formulaire ...
+                }
                 return redirect()->route('resume.manage');
             } elseif (Auth::user()->role_id === 2) {
-                $job = Job::where('customer_id', Auth::user()->userable_id)->get();
+                // $job = Job::where('customer_id', Auth::user()->userable_id)->get();
 
-                if (count($job) === 0) {
+                // Utilisation de la relation jobs sur le customer
+
+                if ($userable->jobs->isEmpty()) {
                     return redirect()->route('job.index');
                 } else {
                     return redirect()->route('job.manage');

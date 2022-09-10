@@ -44,14 +44,19 @@ Route::view('/', 'welcome')->name('welcome');
 
 Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
-Route::group(['middleware' => 'auth','what:1'], function () {//freelance
+
+//freelance
+Route::group(['middleware' => ['auth', 'what:1']], function () {
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
     Route::get('/manageResume', [ResumeController::class, 'resume'])->name('resume.manage');
     Route::post('/addresumepost', [ResumeController::class, 'store'])->name('resume.add');
 });
-Route::group(['middleware' => 'auth','what:2'], function () {
-    //customer
-    Route::view('/addJob', 'customer.add-job')->name('job.index');
-    Route::get('/managejob', [JobController::class,'resume'])->name('job.manage');
-    Route::post('/addJobpost', [JobController::class, 'store'])->name('job.add');
+
+//customer
+Route::middleware(['auth', 'what:2'])->name('job.')->group(function () {
+        Route::view('/addJob', 'customer.add-job')->name('index');
+        Route::controller(JobController::class)->group(function(){
+            Route::get('/managejob', 'resume')->name('manage');
+            Route::post('/addJobpost', 'store')->name('add');
+        });
 });

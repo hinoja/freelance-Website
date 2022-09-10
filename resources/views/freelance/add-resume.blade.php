@@ -53,23 +53,23 @@
                     <div class="form with-line">
                         <h5>URL(s)  <span style="color: red">(*)</span></h5>
                         <div class="form-inside">
+                            @if (old('url'))
+                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
+                                    <div class="form boxed url-box">
+                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                      <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
+                                      <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
+                                    </div>
+                                @endfor
+                            @endif
+
+                            {{-- Il faut conserver cette div --}}
 
                             <!-- Adding URL(s) -->
                             <div class="form boxed box-to-clone url-box">
                                 <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                @if (  old('url'))
-                                    {{-- @foreach (old('name_url') as $oldname )
-                                       <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$loop->index]}}" value="{{ old('name_url')[$loop->index]}}"/>
-                                    @endforeach --}}
-                                    @for ($i=0;$i<count(old('name_url'))-1;$i++)
-                                      <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$i]}}" value="{{ old('name_url')[$i]}}"/>
-                                      <input class="search-field" name="url[]" type="text"  placeholder="{{ old('url')[$i]}}" value="{{ old('url')[$i]}}"/>
-                                    @endfor
-                                @else
-                                    <input class="search-field" type="text" name="name_url[]" placeholder="Name" value=" "/>
-                                    <input class="search-field" type="text" name="url[]" placeholder="http://" value=" "/>
-                                @endif
-
+                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
+                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
                             </div>
 
                             <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>

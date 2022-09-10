@@ -28,16 +28,20 @@ class ResumeController extends Controller
      */
     public function resume()
     {
-        if (Auth::check()) {
-            if (empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())) {
-                return redirect()->route('resume.index');
-            } else {
-                $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
-
-                return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
-            }
+        // On recupere les expériences à partir des relations : userable pour récupérer l'instance de Customer connecté et experiences pour ...
+        $freelance = auth()->user()->userable;
+        $experiences = $freelance->experiences;
+        if ($experiences->isEmpty() // 
+            // empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())
+            ) {
+            return redirect()->route('resume.index');
         } else {
-            return redirect()->route('welcome');
+            // $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
+
+            return view('freelance.manage-resumes', [
+                'experiences' => $experiences,
+                'freelance' => $freelance
+            ]);
         }
     }
 
