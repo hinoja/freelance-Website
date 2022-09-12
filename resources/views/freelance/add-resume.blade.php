@@ -53,36 +53,29 @@
                     <div class="form with-line">
                         <h5>URL(s)  <span style="color: red">(*)</span></h5>
                         <div class="form-inside">
+                            @if (old('url'))
+                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
+                                    <div class="form boxed url-box">
+                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                      <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
+                                      <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
+                                    </div>
+                                @endfor
+                            @endif
 
-                                    <!-- Adding URL(s) -->
-                                    <div class="form boxed box-to-clone url-box">
-                                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                                {{-- <div class="form-inside"> --}}
-                                            @if (old('url'))
-                                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
-                                                    <div class="form boxed url-box">
-                                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                                    <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
-                                                    <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
-                                                    </div>
-                                                @endfor
-                                            @endif
+                            {{-- Il faut conserver cette div --}}
 
-                                            {{-- Il faut conserver cette div --}}
+                            <!-- Adding URL(s) -->
+                            <div class="form boxed box-to-clone url-box">
+                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
+                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
+                            </div>
 
-                                            <!-- Adding URL(s) -->
-                                            <div class="form boxed box-to-clone url-box">
-                                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
-                                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
-                                            </div>
-                                     </div>
-
-
-                                <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
-                                <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
-                            {{-- </div> --}}
+                            <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
+                            <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
                         </div>
+                    </div>
                     <!-- Experience  -->
                     <div class="form with-line">
                         <h5>Experience <span style="color: red">(*)</span></h5>
@@ -99,9 +92,9 @@
                                         <input class="search-field form-control" name="company[]" type="text" placeholder="{{ old('company')[$i]}}" value="{{ old('company')[$i]}}"/>
                                         <input class="search-field form-control" type="text" name="job_title[]" placeholder="{{ old('job_title')[$i]}}" value="{{ old('job_title')[$i]}}"/>
                                         <label for="start_date">Start Date</label>
-                                        <input class="search-field form-control " name="start_date[]" type="date" placeholder="{{ old('start_date')[$i]}}" value="{{ old('start_date')[$i]}}"  /> <br>
+                                        <input class="search-field form-control " name="start_date[]" type="date" placeholder="{{ old('start_date')[$i]}}"  /> <br>
                                         <label for="end_date"> End Date</label>
-                                        <input class="search-field form-control " name="end_date[]" type="date" placeholder="{{ old('end_date')[$i]}}"  value="{{ old('end_date')[$i]}}" /> <br>
+                                        <input class="search-field form-control " name="end_date[]" type="date" placeholder="{{ old('end_date')[$i]}}"  /> <br>
                                     @endfor
                                @else
                                     <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
@@ -130,24 +123,5 @@
 
     </div>
 
-
-@endsection
-
-@section('script')
-<script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/custom.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.revolution.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.flexslider-min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
-<script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
-<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script> --}}
 
 @endsection
