@@ -54,37 +54,35 @@
                         <h5>URL(s)  <span style="color: red">(*)</span></h5>
                         <div class="form-inside">
 
-                            <!-- Adding URL(s) -->
-                            <div class="form boxed box-to-clone url-box">
-                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                {{-- <div class="form-inside"> --}}
-                                    @if (old('url'))
-                                        @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
-                                            <div class="form boxed url-box">
+                                    <!-- Adding URL(s) -->
+                                    <div class="form boxed box-to-clone url-box">
                                                 <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                              <input class="search-field" name="name_url[]" placeholder="{{ old('name_url')[$i]}}" type="url" value="{{ old('name_url')[$i]}}"/>
-                                              <input class="search-field" name="url[]" placeholder="{{ old('url')[$i]}}" type="url" value="{{ old('url')[$i]}}"/>
+                                                {{-- <div class="form-inside"> --}}
+                                            @if (old('url'))
+                                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
+                                                    <div class="form boxed url-box">
+                                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                                    <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
+                                                    <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
+                                                    </div>
+                                                @endfor
+                                            @endif
+
+                                            {{-- Il faut conserver cette div --}}
+
+                                            <!-- Adding URL(s) -->
+                                            <div class="form boxed box-to-clone url-box">
+                                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
+                                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
                                             </div>
-                                        @endfor
-                                    @else
+                                     </div>
 
-                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                        <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
-                                        <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
-                                    @endif
 
-                            </div>
-                             {{-- <!-- Adding URL(s) -->
-                             <div class="form boxed box-to-clone url-box">
-                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
-                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
-                            </div> --}}
-
-                            <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
-                            <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
+                                <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
+                                <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
+                            {{-- </div> --}}
                         </div>
-                    </div>
                     <!-- Experience  -->
                     <div class="form with-line">
                         <h5>Experience <span style="color: red">(*)</span></h5>
