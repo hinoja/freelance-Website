@@ -50,7 +50,7 @@ class UserController extends Controller
 
             return redirect()->route($route);
         } catch (Exception $e) {
-            Toastr::danger('Your Email is incorrect :)', 'Error!!');
+            Toastr::Warning('Your Email is incorrect :)', 'Error!!');
 
             return back();
         }
@@ -76,11 +76,9 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
             Toastr::success('Hello Dear '.Auth::user()->name.' :)', 'Success!!');
-            // toastr()->success('Hello Dear '.Auth::user()->name);
             if (Auth::user()->role_id === 1) {
                 //
                 $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
-
                 return redirect()->route('resume.manage');
             } elseif (Auth::user()->role_id === 2) {
                 $job = Job::where('customer_id', Auth::user()->userable_id)->get();
@@ -94,10 +92,7 @@ class UserController extends Controller
                 return redirect()->route('welcome');
             }
         } else {
-            Toastr::Danger('Invalid UserName /PassWord. :)', 'Error!!');
-
-            // toastr()->warning('Invalid UserName /PassWord.');
-
+            Toastr::Warning('Invalid UserName /PassWord. :)','Error!!');
             return back();
         }
     }
@@ -108,7 +103,6 @@ class UserController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         Toastr::Warning('Your are disconnect :)', 'Error!!');
-
         return redirect()->route('login.view');
     }
 }

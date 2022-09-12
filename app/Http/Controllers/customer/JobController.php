@@ -5,6 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequestJob;
 use App\Models\Job;
+use App\Models\Requirement;
 use Brian2694\Toastr\Facades\Toastr;
 use Flasher\Laravel\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,13 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequestJob $request)
     {
-        dd($request);
-        //    $validated= $request->validate();
-        //     $validated = $request->safe();
-        //  dd( Auth::user());
+        // $test=request();
+
+        // $test2=explode(',',$test->requirements);
+        // dd($test2);
+        // //  dd( Auth::user());
         $array =
         ([
             'title' => $request->title,
@@ -50,7 +52,6 @@ class JobController extends Controller
             'location' => $request->location,
             'category_id' => $request->category,
             'type' => $request->type,
-
             'salary' => $request->salary,
             'start_at' => $request->startDate,
             'deadline' => $request->endDate,
@@ -58,11 +59,17 @@ class JobController extends Controller
             'companyName' => $request->company_name,
             'companyDescription' => $request->company_description,
             'customer_id' => Auth::user()->userable->id,
-
         ]);
-        Job::create($array);
+        $job=Job::create($array);
+        $tableau=explode(',',$request->requirements);
+        foreach($tableau as $items)
+        {
+            Requirement::create([
+                'name' => $items,
+                'job_id' =>$job->id,
+            ]);
+        }
         Toastr::success('Thanks,You have added The Job ('.$request->title.')   with successful :)', 'Success!!');
-
         return redirect()->route('job.manage');
     }
 
@@ -90,7 +97,6 @@ class JobController extends Controller
                 return redirect()->route('job.index');
             } else {
                 $job = Job::where('customer_id', Auth::user()->userable->id)->get();
-
                 return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
             }
         } else {
@@ -107,8 +113,7 @@ class JobController extends Controller
      */
     public function browsejob()
     {
-        $job = Job::orderBy('created_at', 'DESC');
-
+        $job = Job::orderBy('created_at','DESC');
         return view('customer.browse-jobs', ['jobs' => $job->paginate(2)]);
     }
 

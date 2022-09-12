@@ -69,11 +69,13 @@
                                  <!-- Requirements -->
                                  <div class="form">
                                     <h5>Requirements</h5>
-                                    <select data-placeholder="Full-Time" name="requirement" multiple class="chosen-select-no-single">
+                                    <input class="search-field" name="requirements" value="{{ old('requirements') }}" type="text" placeholder="e.g. PHP, Social Media, Management"/>
+
+                                    {{-- <select data-placeholder="Full-Time" name="requirement" multiple class="chosen-select-no-single">
                                         @foreach (Requirement::all() as $Requirement )
                                             <option value="{{ $Requirement->id }}">{{ $Requirement->name }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
 
 
@@ -89,11 +91,11 @@
                                     </div>
                                 </div>
 
-                                <!-- Tags -->
+                                {{-- <!-- Tags -->
                                 <div class="form">
                                     <h5>Job Tags <span>(optional)</span></h5>
                                     <input class="search-field" name="tag" value="{{ old('tag') }}" class="chosen-select" multiple type="text" placeholder="e.g. PHP, Social Media, Management" value=""/>
-                                    <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
+                                    <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p> --}}
                                 </div>
 
 

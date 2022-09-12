@@ -29,14 +29,15 @@ class StorePostRequestJob extends FormRequest
             'location' => ['required', 'string'],
             'category' => ['required'],
             'type' => ['required'],
-            'salary' => ['required'],
-            'tag' => ['required', 'string'],
+            'salary' => ['required','numeric'],
+            // 'tag' => ['required', 'string'],
             'startDate' => ['required', 'date'],
             'endDate' => ['required', 'date', 'after:startDate'],
             'summary' => ['required', 'string'],
             'companyName' => ['nullable'],
             'companyDescription' => ['nullable'],
             'company_name' => ['required', 'string'],
+            'requirements'=> ['nullable', 'string'],
 
         ];
     }

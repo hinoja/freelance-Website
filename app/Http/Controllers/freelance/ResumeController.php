@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\freelance;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreResumeRequest;
-use App\Models\Experience;
+
 use App\Models\Links;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Experience;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreResumeRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ResumeController extends Controller
 {
@@ -19,6 +20,7 @@ class ResumeController extends Controller
      */
     public function index()
     {
+
     }
 
     /**
@@ -28,16 +30,19 @@ class ResumeController extends Controller
      */
     public function resume()
     {
-        if (Auth::check()) {
-            if (count(Experience::where('freelance_id', Auth::user()->userable->id)->get()) === 0) {
-                return redirect()->route('resume.index');
-            } else {
-                $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
-
-                return view('freelance.manage-resumes', ['experiences' => $experi, 'freelance' => Auth::user()->userable]);
-            }
+        // On recupere les expériences à partir des relations : userable pour récupérer l'instance de Customer connecté et experiences pour ...
+        $freelance = auth()->user()->userable;
+        $experiences = $freelance->experiences;
+        if ($experiences->isEmpty() //
+            // empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())
+            ) {
+            return redirect()->route('resume.index');
         } else {
-            return redirect()->route('welcome');
+            // $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
+            return view('freelance.manage-resumes', [
+                'experiences' => $experiences,
+                'freelance' => $freelance
+            ]);
         }
     }
 
@@ -81,20 +86,8 @@ class ResumeController extends Controller
             ];
             Links::updateOrCreate($dataurl);
         }
-        Toastr::success('Your are adding  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) ) :)', 'Success!!');
+         Toastr::success('You Have Successfully created  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) )  :)', 'Success!!');
 
-        return redirect()->route('resume.manage');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
