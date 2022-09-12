@@ -58,18 +58,15 @@
                                     <div class="form boxed url-box">
                                         <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
                                       <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
-                                      <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
+                                      <input class="search-field" name="url[]" type="url" value="{{ old('url')[$i]}}"/>
                                     </div>
                                 @endfor
                             @endif
-
-                            {{-- Il faut conserver cette div --}}
-
                             <!-- Adding URL(s) -->
                             <div class="form boxed box-to-clone url-box">
                                 <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
                                 <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
-                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
+                                <input class="search-field" type="url" placeholder="http://" name="url[]" value=""/>
                             </div>
 
                             <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
@@ -82,21 +79,22 @@
                         <div class="form-inside">
 
                             <!-- Add Experience -->
-                            <div class="form boxed box-to-clone experience-box">
-                                @if (  old('company'))
-                                    @for ($i=0;$i<count(old('company'))-1;$i++)
-                                    {{-- <input class="search-field" name="name_url[]" type="text"  placeholder="{{ old('name_url')[$i]}}" value="{{ old('name_url')[$i]}}"/>
-                                    <input class="search-field" name="url[]" type="text"  placeholder="{{ old('url')[$i]}}" value="{{ old('url')[$i]}}"/> --}}
 
+                                @if (  old('end_date'))
+                                    @for ($i=0; $i < count(array_filter(old('company'))); $i++)
+                                     <div class="form boxed experience-box">
                                         <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                        <input class="search-field form-control" name="company[]" type="text" placeholder="{{ old('company')[$i]}}" value="{{ old('company')[$i]}}"/>
-                                        <input class="search-field form-control" type="text" name="job_title[]" placeholder="{{ old('job_title')[$i]}}" value="{{ old('job_title')[$i]}}"/>
+                                        <input class="search-field form-control" name="company[]" type="text"  value="{{ old('company')[$i]}}"/>
+                                        <input class="search-field form-control" type="text" name="job_title[]"  value="{{ old('job_title')[$i]}}"/>
                                         <label for="start_date">Start Date</label>
-                                        <input class="search-field form-control " name="start_date[]" type="date" placeholder="{{ old('start_date')[$i]}}"  /> <br>
+                                        <input class="search-field form-control " name="start_date[]" type="date"  value="{{ old('start_date')[$i]}}" /> <br>
                                         <label for="end_date"> End Date</label>
-                                        <input class="search-field form-control " name="end_date[]" type="date" placeholder="{{ old('end_date')[$i]}}"  /> <br>
+                                        <input class="search-field form-control " name="end_date[]" type="date" value="{{ old('end_date')[$i]}}" /> <br>
+                                     </div>
                                     @endfor
-                               @else
+                                 @endif
+                                 <div class="form boxed box-to-clone experience-box">
+
                                     <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
                                     <input class="search-field form-control" name="company[]" type="text" placeholder="Company" value=" "/>
                                     <input class="search-field form-control" type="text" name="job_title[]" placeholder="Job Title" value=" "/>
@@ -104,15 +102,13 @@
                                     <input class="search-field form-control " name="start_date[]" type="date" placeholder="Start  date"  /> <br>
                                     <label for="end_date"> End Date</label>
                                     <input class="search-field form-control " name="end_date[]" type="date" placeholder="End  date"  /> <br>
-                               @endif
+                                </div>
 
-                            </div>
 
                             <a href="#" class="button gray add-experience add-box"><i class="fa fa-plus-circle"></i> Add Experience</a>
+
                         </div>
                     </div>
-
-
                     <div class="divider margin-top-0 padding-reset"></div>
 
                     <button type="submit" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></button>
@@ -125,3 +121,22 @@
 
 
 @endsection
+
+
+@section('script')
+<script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/custom.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.flexslider-min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
+<script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script>
+

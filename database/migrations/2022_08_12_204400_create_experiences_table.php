@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('end_at')->nullable();
             $table->foreignId('freelance_id')->constrained();
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

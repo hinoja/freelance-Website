@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\freelance;
 
-
-use App\Models\Links;
-use App\Models\Experience;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreResumeRequest;
+use App\Models\Experience;
+use App\Models\Links;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
@@ -20,7 +19,6 @@ class ResumeController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -35,13 +33,13 @@ class ResumeController extends Controller
         $experiences = $freelance->experiences;
         if ($experiences->isEmpty() //
             // empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())
-            ) {
+        ) {
             return redirect()->route('resume.index');
         } else {
             // $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
             return view('freelance.manage-resumes', [
                 'experiences' => $experiences,
-                'freelance' => $freelance
+                'freelance' => $freelance,
             ]);
         }
     }
@@ -86,8 +84,9 @@ class ResumeController extends Controller
             ];
             Links::updateOrCreate($dataurl);
         }
-         Toastr::success('You Have Successfully created  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) )  :)', 'Success!!');
+        Toastr::success('You Have Successfully created  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) )  :)', 'Success!!');
 
+        return redirect()->route('resume.manage');
     }
 
     /**

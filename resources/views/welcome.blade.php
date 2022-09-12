@@ -1,3 +1,9 @@
+
+
+@php
+    use App\Models\Status;
+    use App\Models\Job;
+@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -68,7 +74,7 @@
 		<h3 class="margin-bottom-25">Recent Jobs</h3>
 		<ul class="job-list">
 
-			<li class="highlighted"><a href="job-page.html">
+			{{-- <li class="highlighted"><a href="job-page.html">
 				<img src="{{ asset('Assets/images/job-list-logo-01.png') }}" alt="">
 				<div class="job-list-content">
 					<h4>Marketing Coordinator - SEO / SEM Experience <span class="full-time">Full-Time</span></h4>
@@ -122,9 +128,24 @@
 				</div>
 				</a>
 				<div class="clearfix"></div>
-			</li>
+			</li> --}}
+            @foreach (Job::all() as $job)
+                <li><a href="job-page.html">
+                    <img src="{{ asset('Assets/images/job-list-logo-04.png') }}" alt="">
+                    <div class="job-list-content">
+                        <h4> {{ $job->title }} <span class="internship">{{(Status::find($job->type))->name  }}</span></h4>
+                        <div class="job-icons">
+                            <span><i class="fa fa-briefcase"></i> Hexagon</span>
+                            <span><i class="fa fa-map-marker"></i> {{ $job->location }}</span>
+                            <span><i class="fa fa-money"></i> ${{ $job->salary }} / hour</span>
+                        </div>
+                    </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </li>
+            @endforeach
 
-			<li><a href="job-page.html">
+			{{-- <li><a href="job-page.html">
 				<img src="{{ asset('Assets/images/job-list-logo-05.png') }}" alt="">
 				<div class="job-list-content">
 					<h4>iPhone / Android Music App Development <span class="temporary">Temporary</span></h4>
@@ -136,7 +157,7 @@
 				</div>
 				</a>
 				<div class="clearfix"></div>
-			</li>
+			</li> --}}
 		</ul>
 
 		<a href="browse-jobs.html" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('tag_id')->constrained();
             $table->foreignId('job_id')->constrained();
             $table->timestamps();
+         
         });
     }
 

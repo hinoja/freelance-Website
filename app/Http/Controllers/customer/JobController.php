@@ -48,7 +48,7 @@ class JobController extends Controller
         $array =
         ([
             'title' => $request->title,
-            'email' => $request->email,
+            // 'email' => $request->email,
             'location' => $request->location,
             'category_id' => $request->category,
             'type' => $request->type,
@@ -60,16 +60,16 @@ class JobController extends Controller
             'companyDescription' => $request->company_description,
             'customer_id' => Auth::user()->userable->id,
         ]);
-        $job=Job::create($array);
-        $tableau=explode(',',$request->requirements);
-        foreach($tableau as $items)
-        {
+        $job = Job::create($array);
+        $tableau = explode(',', $request->requirements);
+        foreach ($tableau as $items) {
             Requirement::create([
                 'name' => $items,
-                'job_id' =>$job->id,
+                'job_id' => $job->id,
             ]);
         }
         Toastr::success('Thanks,You have added The Job ('.$request->title.')   with successful :)', 'Success!!');
+
         return redirect()->route('job.manage');
     }
 
@@ -97,6 +97,7 @@ class JobController extends Controller
                 return redirect()->route('job.index');
             } else {
                 $job = Job::where('customer_id', Auth::user()->userable->id)->get();
+
                 return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
             }
         } else {
@@ -113,7 +114,8 @@ class JobController extends Controller
      */
     public function browsejob()
     {
-        $job = Job::orderBy('created_at','DESC');
+        $job = Job::orderBy('created_at', 'DESC');
+
         return view('customer.browse-jobs', ['jobs' => $job->paginate(2)]);
     }
 
