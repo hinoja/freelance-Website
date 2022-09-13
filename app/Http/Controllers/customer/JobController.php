@@ -63,6 +63,7 @@ class JobController extends Controller
         $job = Job::create($array);
         $tableau = explode(',', $request->requirements);
         foreach ($tableau as $items) {
+            // $job->requirements()->create(['name' => $items]);
             Requirement::create([
                 'name' => $items,
                 'job_id' => $job->id,
