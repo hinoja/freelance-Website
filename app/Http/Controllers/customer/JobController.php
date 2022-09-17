@@ -60,7 +60,20 @@ class JobController extends Controller
             'companyDescription' => $request->company_description,
             'customer_id' => Auth::user()->userable->id,
         ]);
+
         $tag_id = $request->tag;
+
+        $job = Job::create($jobarray);
+        $tableau = explode(',', $request->requirements);
+        foreach ($tableau as $items) {
+            // $job->requirements()->create(['name' => $items]);
+            Requirement::create([
+                'name' => $items,
+                'job_id' => $job->id,
+            ]);
+        }
+        Toastr::success('Thanks,You have added The Job ('.$request->title.')   with successful :)', 'Success!!');
+
 
         $requirement=$request->requirements;
 
