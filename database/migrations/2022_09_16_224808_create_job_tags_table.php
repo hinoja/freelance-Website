@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('job_tags', function (Blueprint $table) {
+        Schema::create('job_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tag_id')->constrained();
             $table->foreignId('job_id')->constrained();
             $table->timestamps();
-         
         });
     }
 

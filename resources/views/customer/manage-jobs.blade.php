@@ -62,9 +62,11 @@
                 {{-- @endforeach --}}
 
                   <!-- Item #2 -->
+
                     @foreach ($jobs as $job )
                         <tr>
-                            <td class="title"><a href="#"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
+                            {{-- <a href="{{ route('job.show',$job->id) }}"> --}}
+                            <td class="title"><a href="{{ route('job.show',$job->title) }}"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
                             <td class="centered">-</td>
                             <td> {{ $job->created_at->format(' Y m d') }}</td>
                             <td>{{ $job->deadline}}</td>
@@ -74,7 +76,8 @@
                                 <a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
                                 <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
                             </td>
-                        </tr>
+                        </a>
+                    {{-- </tr> --}}
                     @endforeach
 {{--
                 <!-- Item #2 -->
