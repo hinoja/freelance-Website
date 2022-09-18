@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Freelance;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
@@ -32,4 +33,15 @@ class Job extends Model
     {
         return $this->hasMany(Requirement::class);
     }
+    public function likes()
+    {
+        return $this->belongsToMany(Freelance::class);
+    }
+    public function isLiked()
+    {
+        if(auth()->check()){
+            return auth()->user()->userable->likes()->contains('id',$this->id);
+        }
+    }
+
 }

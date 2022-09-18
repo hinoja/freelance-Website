@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class freelance_jobs extends Model
 {
     use HasFactory;
+    protected $guarded=['freelance_id','job_id'];
 }

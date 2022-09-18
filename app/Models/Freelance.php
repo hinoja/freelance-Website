@@ -35,4 +35,8 @@ class Freelance extends Model
     {
         return $this->belongsToMany(Job::class);
     }
+    public function likes()
+    {
+        return $this->belongsToMany(Job::class);
+    }
 }
