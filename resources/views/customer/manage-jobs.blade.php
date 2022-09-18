@@ -66,7 +66,7 @@
                     @foreach ($jobs as $job )
                         <tr>
                             {{-- <a href="{{ route('job.show',$job->id) }}"> --}}
-                            <td class="title"><a href="{{ route('job.show',$job->title) }}"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
+                            <td class="title"><a href="{{ route('job.show',$job->id) }}"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
                             <td class="centered">-</td>
                             <td> {{ $job->created_at->format(' Y m d') }}</td>
                             <td>{{ $job->deadline}}</td>

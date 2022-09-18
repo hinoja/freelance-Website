@@ -31,11 +31,12 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
-
-
 });
 
-Route::get('/showjob/{$id}',[JobController::class,'show'])->name('job.show');
+// Route::get("/showjob/{$id}",function(){
+//     return 'hello';
+// })->name('job.show');
+Route::get('/showjob/{id}', [JobController::class, 'show'])->name('job.show');
 Route::group(['middleware' => 'guest'], function () {
     //login with driver
     Route::get('/auth/redirect/{driver}', [SocialController::class, 'redirect'])->name('SocialRedirect');
@@ -43,16 +44,15 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
 });
-Route::get('/', [JobController::class,'index'])->name('welcome');
+Route::get('/', [JobController::class, 'index'])->name('welcome');
 
 Route::view('/login', 'authentification.login')->name('login.view');
 Route::view('/signup', 'authentification.signUp')->name('signup.view');
 
-
 //freelance
-Route::group(['middleware'=>['auth','checkRole:1']],function(){
-    Route::post('/profile',[ProfileController::class,'store'])->name('freelance.profile.post');
-    Route::view('/profile','freelance.updateProfile')->name('freelance.profile.view');
+Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
+    Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
+    Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
 });
 
 Route::middleware(['auth', 'checkRole:1'])->name('resume.')->group(function () {
@@ -72,8 +72,4 @@ Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
     });
 });
 
-
-Route::get('/moreJob',[JobController::class,'browsejob'])->name('more.job');
-
-
-
+Route::get('/moreJob', [JobController::class, 'browsejob'])->name('more.job');

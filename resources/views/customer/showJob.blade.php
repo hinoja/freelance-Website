@@ -1,5 +1,7 @@
-use App\Models\Status;
-use App\Models\Category;
+@php
+    use App\Models\Status;
+    use App\Models\Category;
+@endphp
 @extends('layouts.app')
 @section('content')
          <!-- Titlebar
@@ -7,8 +9,8 @@ use App\Models\Category;
 <div id="titlebar">
 	<div class="container">
 		<div class="ten columns">
-			<span><a href="browse-jobs.html">Restaurant / Food Service {{  $job->title}}</a></span>
-			<h2>Restaurant Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
+			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
+			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
 		</div>
 
 		<div class="six columns">
@@ -31,28 +33,31 @@ use App\Models\Category;
 		<div class="company-info">
 			<img src="{{ asset('Assets/images/company-logo.png') }}" alt="">
 			<div class="content">
-				<h4>King LLC</h4>
+				<h4>{{ $job->companyName }}</h4>
 				<span><a href="#"><i class="fa fa-link"></i> Website</a></span>
-				<span><a href="#"><i class="fa fa-twitter"></i> @kingrestaurants</a></span>
+				<span><a href="#"><i class="fa fa-twitter"></i> @kingrestaurants {{ $job->companyDescription }}</a></span>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 
-		<p class="margin-reset">
-			The Food Service Specialist ensures outstanding customer service is provided to food customers and that all food offerings meet the required stock levels and presentation standards. Beginning your career as a Food Steward will give you a strong foundation in Speedway’s food segment that can make you a vital member of the front line team!
-		</p>
+		{{-- <p class="margin-reset">
+			{{ $job->description }}
+		</p> --}}
 
 		<br>
-		<p>The <strong>Food Service Specialist</strong> will have responsibilities that include:</p>
+		<p>The <strong>{{ $job->title }}</strong> will have responsibilities that include:</p>
 
-		<ul class="list-1">
-			<li>Executing the Food Service program, including preparing and presenting our wonderful food offerings
+		{{-- les taches --}}
+            <p class="margin-reset">
+                {{ $job->description }}
+            </p>
+			{{-- <li>Executing the Food Service program, including preparing and presenting our wonderful food offerings
 			to hungry customers on the go!
 			</li>
 			<li>Greeting customers in a friendly manner and suggestive selling and sampling items to help increase sales.</li>
 			<li>Keeping our Store food area looking terrific and ready for our valued customers by managing product
 			inventory, stocking, cleaning, etc.</li>
-			<li>We’re looking for associates who enjoy interacting with people and working in a fast-paced environment!</li>
+			<li>We’re looking for associates who enjoy interacting with people and working in a fast-paced environment!</li> --}}
 		</ul>
 
 		<br>
@@ -60,12 +65,7 @@ use App\Models\Category;
 		<h4 class="margin-bottom-10">Job Requirment</h4>
 
 		<ul class="list-1">
-			<li>Excellent customer service skills, communication skills, and a happy, smiling attitude are essential.</li>
-			<li>Must be available to work required shifts including weekends, evenings and holidays.</li>
-			<li>Must be able to perform repeated bending, standing and reaching.</li>
-			<li> Must be able to occasionally lift up to 50 pounds</li>
-
-            @foreach ($job->requirement as $requirements)
+            @foreach ($requirement as $requirements)
                 <li> {{ $requirements->name }}</li>
             @endforeach
 		</ul>
@@ -95,7 +95,7 @@ use App\Models\Category;
 						<i class="fa fa-user"></i>
 						<div>
 							<strong>Job Title:</strong>
-							<span>Food Service Specialist {{ $job->title }}</span>
+							<span> {{ $job->title }}</span>
 						</div>
 					</li>
 					<li>
@@ -109,7 +109,7 @@ use App\Models\Category;
 						<i class="fa fa-money"></i>
 						<div>
 							<strong>Rate:</strong>
-							<span>$9{{ $job->salary }}/ hour</span>
+							<span>${{ $job->salary }}/ hour</span>
 						</div>
 					</li>
 				</ul>
@@ -180,7 +180,3 @@ use App\Models\Category;
 
 @endsection
 
-
-
-</body>
-</html>

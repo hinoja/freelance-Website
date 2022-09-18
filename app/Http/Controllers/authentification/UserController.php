@@ -73,7 +73,7 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'is_active'=>1]) ) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1])) {
             $request->session()->regenerate();
             Toastr::success('Hello Dear '.Auth::user()->name.' :)', 'Success!!');
             if (Auth::user()->role_id === 1) {

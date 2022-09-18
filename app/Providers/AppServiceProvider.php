@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Validator::excludeUnvalidatedArrayKeys();
         Paginator::useBootstrapThree();
-        Paginator::useBootstrapFour();
+        Paginator::useBootstrap();
+        Paginator::useTailwind();
     }
 }

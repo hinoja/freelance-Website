@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Role;
-use Database\Seeders\tagSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

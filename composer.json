@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.10",
         "yoeunes/toastr": "^2.0"
     },
     "require-dev": {

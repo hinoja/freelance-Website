@@ -10,7 +10,8 @@ class Tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $guarded=['tag'];
+
+    protected $guarded = ['tag'];
 
     public function jobs()
     {

@@ -24,7 +24,7 @@ class StoreResumeRequest extends FormRequest
     public function rules()
     {
         return [
-           
+
             'start_date' => ['nullable', 'array'],
             'start_date.*' => ['nullable', 'date', 'nullable'],
             'end_date' => ['nullable', 'array'],

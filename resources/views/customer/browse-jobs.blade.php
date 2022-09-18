@@ -31,16 +31,17 @@
             <div class="eleven columns">
             <div class="padding-right">
 
-                <form action="#" method="get" class="list-search">
+                {{-- <form action="#" method="get" class="list-search">
                     <button><i class="fa fa-search"></i></button>
                     <input type="text" placeholder="job title, keywords or company name" value=""/>
                     <div class="clearfix"></div>
-                </form>
+                </form> --}}
+                @livewire('search')
 
                 <ul class="job-list full">
 
                      @foreach ($job as $items )
-                            <li><a href="job-page.html">
+                            <li><a href="{{ route('job.show',$items->id) }}">
                                 <img src="{{ asset('Assets/images/job-list-logo-01.png') }}" alt="">
                                 <div class="job-list-content">
                                     <h4> {{ (Category::find( $items->category_id))->name }}   / {{ $items->title }}
@@ -141,12 +142,7 @@
                         </ul>
                     </nav>
 
-                    {{-- <nav class="pagination-next-prev">
-                        <ul>
-                            <li><a href="#" class="prev">Previous</a></li>
-                            <li><a href="#" class="next">Next</a></li>
-                        </ul>
-                    </nav> --}}
+
                 </div>
 
             </div>

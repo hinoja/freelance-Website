@@ -36,6 +36,7 @@
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+  @livewireStyles()
 </head>
 
 <body class="antialiased">
@@ -97,10 +98,11 @@
 
    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-       
+
 <!-- Scripts
 ================================================== -->
   @yield('script')
+  @livewireScripts()
 {{-- <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/custom.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
