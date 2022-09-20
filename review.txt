@@ -18,34 +18,30 @@
     - le souci relatif aux old values est en partie réglé pour les urls. Il faudra faire pareil pour les expériences. 
     - (array_filter() a été utilisé pour retirer les valeurs nulles/vides du tableau).
 
+############################################################
 
-Route::middleware(['auth', 'what:2'])->name('job.')->group(function () {
-        Route::view('/addJob', 'customer.add-job')->name('index');
-        Route::controller(JobController::class)->group(function(){
-            Route::get('/managejob', 'resume')->name('manage');
-            Route::post('/addJobpost', 'store')->name('add');
-        });
+20/09/2022
 
+1. UserController - authenticate() : 
+    - Utiliser les relations Eloquent pour récupérer les jobs et expériences du customer et du freelance respectivement;
+    - Personnaliser la connexion en renvoyant un message spécifique lorsque le compte de l'utilisateur est désactivé.
 
+2. JobController :
+    - show() :
+        * Documente toi sur le Route Model Binding;
+        * Ajoute un champ "slug" à la table jobs, qui sera obtenu à partir du titre du job. Puis il faudra l'utiliser dans l'url à la place de l'id;
+        * Tu n'as pas obligatoirement besoin de récupérer les requirements à partir du Model mais à partir de la relation Eloquent;
+    - index() :
+        * La pagination ne fonctionne pas au niveau de la vue;
+        * Pourquoi avoir passé deux variables (job et job2) à la vue?
+    - store() - Validation :
+        * Conserver les old values pour les champs "Job type", "Category" et "Tags" en cas d'erreur;
+        * Tous les "requirements" ne sont pas conservés en cas d'erreur (par exemple lorsqu'il y'en 3 le formulaire revient avec deux valeurs);
+        * Chaque "requirement" doit être différent des autres;
+        * Revoir les contraintes de dates; "opening date" doit être supérieure ou égale à la date actuelle;
+        * Le message d'erreur "The end date must be a date before start date." ne permet pas de savoir où est situé l'erreur vu qu'il n'y a pas de champ "end date" ni "start date" dans le formulaire.
+    - Que font les méthodes resume() et browsejob() ?
 
- <div class="form with-line">
-                        <h5>URL(s)  <span style="color: red">(*)</span></h5>
-                        <div class="form-inside">
-                            @if (old('url'))
-                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
-                                    <div class="form boxed url-box">
-                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                      <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
-                                      <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
-                                    </div>
-                                @endfor
-                            @endif
-
-                            {{-- Il faut conserver cette div --}}
-
-                            <!-- Adding URL(s) -->
-                            <div class="form boxed box-to-clone url-box">
-                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
-                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
-                            </div>
+3. ProfileController :
+    - Rajouter le champ email et retirer le status (c'est l'admin qui se charge d'activer et désactiver les comptes utilisateurs);
+    - Remplir les champs lorsque les valeurs sont déjà présentes en DB. 
