@@ -33,9 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
 });
 
-// Route::get("/showjob/{$id}",function(){
-//     return 'hello';
-// })->name('job.show');
+
 Route::get('/showjob/{id}', [JobController::class, 'show'])->name('job.show');
 Route::group(['middleware' => 'guest'], function () {
     //login with driver
