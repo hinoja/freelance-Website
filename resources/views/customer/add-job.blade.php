@@ -1,6 +1,5 @@
 
 @php
-  use App\Models\Tag;
   use App\Models\Requirement;
   use App\Models\Status;
   use App\Models\Category;
@@ -47,13 +46,13 @@
                                 <!-- Title -->
                                 <div class="form">
                                     <h5>Job Title</h5>
-                                    <input class="search-field" name="title" required type="text" placeholder="" value="{{ old('title') }}"/>
+                                    <input class="search-field" name="title" type="text" placeholder="" value="{{ old('title') }}"/>
                                 </div>
 
                                 <!-- Location -->
                                 <div class="form">
                                     <h5>Location <span>(optional)</span></h5>
-                                    <input required class="search-field" name="location" value="{{ old('location') }}" type="text" placeholder="e.g. London" value=""/>
+                                    <input class="search-field" name="location" value="{{ old('location') }}" type="text" placeholder="e.g. London" value=""/>
                                     <p class="note">Leave this blank if the location is not important</p>
                                 </div>
 
@@ -68,30 +67,16 @@
                                 </div>
 
                                  <!-- Requirements -->
-                                <div class="form with-line">
-                                    <h5>Requirement(s)  <span style="color: red">(*)</span></h5>
-                                    <div class="form-inside">
-                                        @if (old('requirements'))
-                                            @for ($i=0; $i < count(array_filter(old('requirements'))) -1; $i++)
-                                                <div class="form boxed url-box">
-                                                    <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                                {{-- <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/> --}}
-                                                <input class="search-field" name="requirements[]" value="{{ old('requirements')[$i] }}" type="text" placeholder="e.g. PHP, Social Media, Management"/>
-                                                </div>
-                                            @endfor
-                                        @endif
-                                        <!-- Adding URL(s) -->
-                                        <div class="form boxed box-to-clone url-box">
-                                            <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-                                            <input class="search-field" name="requirements[]"  type="text" placeholder="e.g. PHP, Social Media, Management"/>
-                                            {{-- <input class="search-field" type="url" placeholder="http://" name="url[]" value=""/> --}}
-                                        </div>
+                                 <div class="form">
+                                    <h5>Requirements</h5>
+                                    <input class="search-field" name="requirements" value="{{ old('requirements') }}" type="text" placeholder="e.g. PHP, Social Media, Management"/>
 
-                                        <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add Requirement</a>
-                                        {{-- <p class="note">Optionally provide links to any of your websites or social network profiles.</p> --}}
-                                    </div>
+                                    {{-- <select data-placeholder="Full-Time" name="requirement" multiple class="chosen-select-no-single">
+                                        @foreach (Requirement::all() as $Requirement )
+                                            <option value="{{ $Requirement->id }}">{{ $Requirement->name }}</option>
+                                        @endforeach
+                                    </select> --}}
                                 </div>
-
 
 
                                 <!-- Choose Category -->
@@ -105,39 +90,36 @@
                                         </select>
                                     </div>
                                 </div>
-                                 <!-- Tags -->
+
+                                {{-- <!-- Tags -->
                                 <div class="form">
-                                    <h5>Job Tags </h5>
-                                    <select data-placeholder="Choose Categories" multiple class="chosen-select" name="tag[]" >
-                                        @foreach (Tag::all() as $tag )
-                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
+                                    <h5>Job Tags <span>(optional)</span></h5>
+                                    <input class="search-field" name="tag" value="{{ old('tag') }}" class="chosen-select" multiple type="text" placeholder="e.g. PHP, Social Media, Management" value=""/>
+                                    <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p> --}}
                                 </div>
 
 
                                 <!-- Description -->
                                 <div class="form">
                                     <h5>Description</h5>
-                                    <textarea required class="WYSIWYG" name="summary" value={{old('summary')}} cols="40" rows="3" id="summary" spellcheck="true"> {{old('summary')}} </textarea>
+                                    <textarea class="WYSIWYG" name="summary" value={{old('summary')}} cols="40" rows="3" id="summary" spellcheck="true"> {{old('summary')}} </textarea>
                                 </div>
 
                                 <!-- Application email/url -->
                                 <div class="form">
                                     <h5> Salary</h5>
-                                    <input type="number" required name="salary" value="{{ old('salary') }}" min="0" placeholder=" Salary  ($Fcfa) ">
+                                    <input type="number" name="salary" value="{{ old('salary') }}" min="0" placeholder=" Salary  ($Fcfa) ">
                                 </div>
                                 <!-- TStarting Date -->
                                 <div class="form">
-                                    <h5>Opening Date <span></span></h5>
+                                    <h5>Opening Date <span>(optional)</span></h5>
                                     <input data-role="date" value="{{ old('startDate') }}" name="startDate" type="date" placeholder="yyyy-mm-dd">
                                     <p class="note">Start for new applicants.</p>
                                 </div>
 
                                 <!-- TClosing Date -->
                                 <div class="form">
-                                    <h5>Closing Date </h5>
+                                    <h5>Closing Date <span>(optional)</span></h5>
                                     <input data-role="date" value="{{ old('endDate') }}" name="endDate" type="date" placeholder="yyyy-mm-dd">
                                     <p class="note">Deadline for new applicants.</p>
                                 </div>
@@ -160,7 +142,7 @@
 
                                 <!-- Teagline -->
                                 <div class="form">
-                                    <h5>Tagline <span> </span></h5>
+                                    <h5>Tagline <span>(optional)</span></h5>
                                     <input type="text" name="company_description" value="{{ old('company_description') }}" placeholder="Briefly describe your company">
                                 </div>
 

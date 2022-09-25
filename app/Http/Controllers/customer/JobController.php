@@ -7,25 +7,19 @@ use App\Http\Requests\StorePostRequestJob;
 use App\Models\Job;
 use App\Models\Requirement;
 use Brian2694\Toastr\Facades\Toastr;
+use Flasher\Laravel\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function index()
     {
-        // dd('passe');
-        $job = Job::findOrFail($id);
-        $requirement = Requirement::where('job_id', $id)->get();
-        // $requirement=Requirement::all();
-        // $requirement=$job->requirements();
-        // dd($requirement);
-        return view('customer.showJob', ['job' => $job, 'requirement' => $requirement]);
+        //
     }
 
     /**
@@ -33,11 +27,9 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function create()
     {
-        $job = Job::orderBy('created_at', 'DESC');
-
-        return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->paginate(5), 'job2' => $job->paginate(3)]);
+        //
     }
 
     /**
@@ -48,9 +40,15 @@ class JobController extends Controller
      */
     public function store(StorePostRequestJob $request)
     {
-        $jobarray =
+        // $test=request();
+
+        // $test2=explode(',',$test->requirements);
+        // dd($test2);
+        // //  dd( Auth::user());
+        $array =
         ([
             'title' => $request->title,
+            // 'email' => $request->email,
             'location' => $request->location,
             'category_id' => $request->category,
             'type' => $request->type,
@@ -62,26 +60,28 @@ class JobController extends Controller
             'companyDescription' => $request->company_description,
             'customer_id' => Auth::user()->userable->id,
         ]);
-        $tag_id = $request->tag;
-
-        $requirement = $request->requirements;
-
-        $job = Job::create($jobarray);
-
-        $job->tags()->attach($tag_id);
-
-        $requirement = array_filter($requirement);
-        foreach ($requirement as $requirements) {
-            $datarequirement = [
-                'name' => $requirements,
-                'job_id' => (int) $job->id,
-            ];
-            Requirement::updateOrCreate($datarequirement);
+        $job = Job::create($array);
+        $tableau = explode(',', $request->requirements);
+        foreach ($tableau as $items) {
+            Requirement::create([
+                'name' => $items,
+                'job_id' => $job->id,
+            ]);
         }
-
-        Toastr::success('Thanks,You have added The Job with title ('.$request->title.')   with successful :)', 'Success!!');
+        Toastr::success('Thanks,You have added The Job ('.$request->title.')   with successful :)', 'Success!!');
 
         return redirect()->route('job.manage');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -92,12 +92,16 @@ class JobController extends Controller
      */
     public function resume()
     {
-        if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
-            return redirect()->route('job.index');
-        } else {
-            $job = Job::where('customer_id', Auth::user()->userable->id)->get();
+        if (Auth::check()) {
+            if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
+                return redirect()->route('job.index');
+            } else {
+                $job = Job::where('customer_id', Auth::user()->userable->id)->get();
 
-            return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
+                return view('customer.manage-jobs', ['jobs' => $job, 'customer' => Auth::user()->userable]);
+            }
+        } else {
+            return redirect()->route('welcome');
         }
     }
 
@@ -112,7 +116,7 @@ class JobController extends Controller
     {
         $job = Job::orderBy('created_at', 'DESC');
 
-        return view('customer.browse-jobs', ['job' => $job->paginate(6)]);
+        return view('customer.browse-jobs', ['jobs' => $job->paginate(2)]);
     }
 
     /**

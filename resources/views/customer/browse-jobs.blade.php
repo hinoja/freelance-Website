@@ -1,3 +1,4 @@
+
 @php
 
    use App\Models\Status;
@@ -14,11 +15,10 @@
                     <span>We found 1,412 jobs matching:</span>
                     <h2>Web, Software & IT</h2>
                 </div>
-                @if(Auth::user()->role_id != 1)
-                    <div class="six columns">
-                        <a href="{{ route('job.index') }}" class="button">Post a Job, It’s Free!</a>
-                    </div>
-                @endif
+
+                <div class="six columns">
+                    <a href="add-job.html" class="button">Post a Job, It’s Free!</a>
+                </div>
 
             </div>
         </div>
@@ -31,39 +31,25 @@
             <div class="eleven columns">
             <div class="padding-right">
 
-                {{-- <form action="#" method="get" class="list-search">
+                <form action="#" method="get" class="list-search">
                     <button><i class="fa fa-search"></i></button>
                     <input type="text" placeholder="job title, keywords or company name" value=""/>
                     <div class="clearfix"></div>
-                </form> --}}
-                @livewire('search')
+                </form>
 
                 <ul class="job-list full">
 
-                     @foreach ($job as $items )
-                            <li><a href="{{ route('job.show',$items->id) }}">
-                                <img src="{{ asset('Assets/images/job-list-logo-01.png') }}" alt="">
+                     @foreach ($jobs as $item )
+                            <li><a href="job-page.html">
+                                <img src="images/job-list-logo-01.png" alt="">
                                 <div class="job-list-content">
-                                    <h4> {{ (Category::find( $items->category_id))->name }}   / {{ $items->title }}
-                                        @if ((Status::find( $items->type))->id === 1)
-                                            <span   class="part-time">  {{ (Status::find( $items->type))->name }} </span></h4>
-                                        @elseif ((Status::find( $items->type))->id==3)
-                                            <span class="full-time">  {{ (Status::find( $items->type))->name }} </span></h4>
-                                        @elseif ((Status::find( $items->type))->id ==4)
-                                            <span class="internship"> {{ (Status::find( $items->type))->name }} </span></h4>
-                                        @elseif ((Status::find( $items->type))->id==5)
-                                            <span class="temporary">  {{ (Status::find( $items->type))->name }} </span></h4>
-                                        @else
-                                            <span class="full-time">  {{ (Status::find( $items->type))->name }} </span></h4>
-                                        @endif
-
-                                        {{-- <span class="full-time">  {{ (Status::find( $items->type))->name }} </span></h4> --}}
+                                    <h4> {{ (Category::find( $item->category_id))->name }}   / {{ $item->title }} <span class="full-time">Full-Time  {{ (Status::find( $item->type))->name }} </span></h4>
                                     <div class="job-icons">
                                         <span><i class="fa fa-briefcase"></i> King</span>
-                                        <span><i class="fa fa-map-marker"></i> {{ $items->location }} </span>
-                                        <span><i class="fa fa-money"></i> $100 / hour  {{ $items->salary }}/ hour</span>
+                                        <span><i class="fa fa-map-marker"></i> {{ $item->location }} </span>
+                                        <span><i class="fa fa-money"></i> $100 / hour  {{ $item->salary }}/ hour</span>
                                     </div>
-                                    {{-- <p> {{  $items->description  }}</p> --}}
+                                    <p> {!!  $item->description  !!}</p>
                                 </div>
                                 </a>
                                 <div class="clearfix"></div>
@@ -138,11 +124,16 @@
                     <nav class="pagination">
                         <ul>
                             {{-- <li><a href="#" class="current-page"> {{ $jobs->links() }}</a></li> --}}
-                           <li>{{ $job->links() }}</li>
+                            {{ $jobs->links() }}
                         </ul>
                     </nav>
 
-
+                    <nav class="pagination-next-prev">
+                        <ul>
+                            <li><a href="#" class="prev">Previous</a></li>
+                            <li><a href="#" class="next">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
 
             </div>

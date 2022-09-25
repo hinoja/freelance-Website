@@ -27,7 +27,7 @@ class ProfileRequest extends FormRequest
             'name' => ['required', 'string'],
             'location' => ['required', 'string'],
             'title' => ['required', 'string'],
-            'status' => ['required', 'boolean'],
+            'email' => ['required', 'email'],
             'description' => ['required', 'string'],
         ];
     }

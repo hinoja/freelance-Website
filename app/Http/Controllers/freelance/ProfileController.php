@@ -16,7 +16,8 @@ class ProfileController extends Controller
         $freelance = Freelance::where('id', Auth::user()->userable_id)->first();
         $user = User::find(Auth::user()->id);
         $user->name = $request->name;
-        $user->is_active = $request->status;
+        // $user->is_active = $request->status;
+        $user->mail = $request->mail;
         $freelance->location = $request->location;
         $freelance->profession = $request->title;
         $freelance->description = $request->description;

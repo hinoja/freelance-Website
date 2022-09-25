@@ -1,9 +1,3 @@
-
-
-@php
-    use App\Models\Status;
-    use App\Models\Job;
-@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -60,7 +54,7 @@
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
-		<a href="" class="button centered">Browse All Categories</a>
+		<a href="browse-categories.html" class="button centered">Browse All Categories</a>
 		<div class="margin-bottom-50"></div>
 	</div>
 </div>
@@ -74,7 +68,7 @@
 		<h3 class="margin-bottom-25">Recent Jobs</h3>
 		<ul class="job-list">
 
-			{{-- <li class="highlighted"><a href="job-page.html">
+			<li class="highlighted"><a href="job-page.html">
 				<img src="{{ asset('Assets/images/job-list-logo-01.png') }}" alt="">
 				<div class="job-list-content">
 					<h4>Marketing Coordinator - SEO / SEM Experience <span class="full-time">Full-Time</span></h4>
@@ -128,36 +122,9 @@
 				</div>
 				</a>
 				<div class="clearfix"></div>
-			</li> --}}
-            @foreach ($job as $jobs)
-                <li><a href="job-page.html">
-                    <img src="{{ asset('Assets/images/job-list-logo-04.png') }}" alt="">
-                    <div class="job-list-content">
-                        <h4> {{ $jobs->title }}
-                         @if ((Status::find( $jobs->type))->id === 1)
-                            <span style="background-color: red" class="part-time">  {{ (Status::find( $jobs->type))->name }} </span></h4>
-                         @elseif ((Status::find( $jobs->type))->id==3)
-                            <span class="full-time">  {{ (Status::find( $jobs->type))->name }} </span></h4>
-                         @elseif ((Status::find( $jobs->type))->id ==4)
-                            <span class="internship"> {{ (Status::find( $jobs->type))->name }} </span></h4>
-                         @elseif ((Status::find( $jobs->type))->id==5)
-                            <span class="temporary">  {{ (Status::find( $jobs->type))->name }} </span></h4>
-                         @else
-                            <span class="full-time">  {{ (Status::find( $jobs->type))->name }} </span></h4>
-                        @endif
+			</li>
 
-                        <div class="job-icons">
-                            <span><i class="fa fa-briefcase"></i> Hexagon</span>
-                            <span><i class="fa fa-map-marker"></i> {{ $jobs->location }}</span>
-                            <span><i class="fa fa-money"></i> ${{ $jobs->salary }} / hour</span>
-                        </div>
-                    </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
-            @endforeach
-
-			{{-- <li><a href="job-page.html">
+			<li><a href="job-page.html">
 				<img src="{{ asset('Assets/images/job-list-logo-05.png') }}" alt="">
 				<div class="job-list-content">
 					<h4>iPhone / Android Music App Development <span class="temporary">Temporary</span></h4>
@@ -169,10 +136,10 @@
 				</div>
 				</a>
 				<div class="clearfix"></div>
-			</li> --}}
+			</li>
 		</ul>
 
-		<a href="{{ route('more.job') }}" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>
+		<a href="browse-jobs.html" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>
 		<div class="margin-bottom-55"></div>
 	</div>
 	</div>
@@ -228,6 +195,7 @@
 							</div>
 						</li>
 
+
 					</ul>
 					<div class="clearfix"></div>
 
@@ -271,7 +239,7 @@
 <!-- Infobox -->
 <div class="infobox">
 	<div class="container">
-		<div class="sixteen columns">Start Building Your Own Job Board Now @guest <a href="{{ route('login.view') }}">Get Started</a> @endguest </div>
+		<div class="sixteen columns">Start Building Your Own Job Board Now <a href="my-account.html">Get Started</a></div>
 	</div>
 </div>
 
@@ -330,25 +298,6 @@
 			<a href="blog-single-post.html" class="button">Read More</a>
 		</div>
 	</div>
-                  {{-- <div class="row">
-                            @foreach ($job2 as $jobs )
-                                <div class="col-md-3 col-lg-3">
-                                    <!-- Post #1 -->
-                                        <div class="recent-post">
-                                            <div class="recent-post-img"><a href="{{ route('job.show',$jobs->id) }}"><img src="{{ asset('Assets/images/recent-post-01.jpg') }}" alt=""></a><div class="hover-icon"></div></div>
-                                            <a href="blog-single-post.html"><h4>Hey Job Seeker, It’s Time To Get Up And Get Hired</h4></a>
-                                            <div class="meta-tags">
-                                                <span>{{ $jobs->created_at->format('M , D , Y')  }}</span>
-                                                <span><a href="#">0 Comments</a></span>
-                                            </div>
-                                            <p>The world of job seeking can be all consuming. From secretly stalking the open reqs page of your dream company to sending endless applications.</p>
-                                            <a href="{{ route('job.show',$jobs->id) }}" class="button">Read More</a>
-                                        </div>
-                                </div>
-                            @endforeach
-
-                        </div> --}}
-
 
 </div>
 

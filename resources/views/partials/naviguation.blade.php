@@ -7,7 +7,7 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a href="{{ route('welcome') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
+			<h1><a href="{{ route('index') }}"><img src="{{ asset('Assets/images/logo.png') }}" alt="Work Scout" /></a></h1>
 		</div>
 
 		<!-- Menu -->
@@ -27,7 +27,7 @@
 
                     <li><a href="#">Pages</a>
                         <ul>
-                            <li><a href="{{ route('welcome') }}">Job Page</a></li>
+                            <li><a href="{{ route('job') }}">Job Page</a></li>
                             <li><a href="job-page-alt.html">Job Page Alternative</a></li>
                             <li><a href="resume-page.html">Resume Page</a></li>
                             <li><a href="shortcodes.html">Shortcodes</a></li>
@@ -39,7 +39,7 @@
                     @if(Auth::user()->role_id != 2)
                         <li><a href="#">For Candidates</a>
                             <ul>
-                                <li><a href="{{ route('more.job') }}">Browse Jobs</a></li>
+                                <li><a href="browse-jobs.html">Browse Jobs</a></li>
                                 <li><a href="browse-categories.html">Browse Categories</a></li>
                                 <li><a href="{{ route('resume.index') }}">Add Resume</a></li>
                                 <li><a href="{{ route('resume.manage') }}">Manage Resumes</a></li>
@@ -51,32 +51,22 @@
 
                         <li><a href="#">For Employers</a>
                             <ul>
-                                <li><a href="{{ route('job.index') }}">Add Job</a></li>
-                                <li><a href="{{ route('job.manage') }}">Manage Jobs</a></li>
+                                <li><a href="add-job.html">Add Job</a></li>
+                                <li><a href="manage-jobs.html">Manage Jobs</a></li>
                                 <li><a href="manage-applications.html">Manage Applications</a></li>
                                 <li><a href="browse-resumes.html">Browse Resumes</a></li>
                             </ul>
                         </li>
                     @endif
                     <li style="margin-right: 15px;"><a href="blog.html">Blog</a></li>
-
-
-                </ul>
-                <ul class="float-right">
                     <li class="float-right"><a href="#" style="color: blue">{{ Auth::user()->name }}</a>
                         <ul>
-                          @if(Auth::user()->role_id != 2)
-                                   <li><a href= "{{ route('freelance.profile.view') }}"><i class="fa fa-pencil"></i> Update Profile</a></li>
-                          @endif
                             <li><a href= "{{ route('logout') }}"><i class="fa fa-lock"></i> LogOut</a></li>
 
                         </ul>
                     </li>
+
                 </ul>
-
-
-
-
 
             @else
                 <ul class="float-right">

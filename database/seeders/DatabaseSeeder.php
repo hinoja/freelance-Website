@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Database\Seeders\StatusSeeder;
+use Database\Seeders\categorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,12 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
         ]);
-        $this->call([
-            tagSeeder::class,
-        ]);
-        // $this->call([
-        //     requirementSeeder::class,
-        // ]);
 
         $this->call([
             StatusSeeder::class,

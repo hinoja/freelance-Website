@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $guarded = [];
-
+    protected $guarded=[];
     /**
      * Run the migrations.
      *
@@ -19,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
-            $table->SoftDeletes();
         });
     }
 

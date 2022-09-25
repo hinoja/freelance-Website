@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->text('description')->nullable();
             $table->float('salaries')->nullable();
+
             $table->timestamps();
-            $table->SoftDeletes();
         });
     }
 

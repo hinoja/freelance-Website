@@ -38,26 +38,30 @@
                             <!-- Title -->
                     <div class="form">
                         <h5>Professional Title</h5>
-                        <input class="search-field" name="title" required type="text" placeholder="e.g. Web Developer" value="{{ old('title') }}"/>
+                        <input class="search-field" name="title" required type="text" placeholder="e.g. Web Developer"   @if( Auth::user()->userable->profession) value={{ Auth::user()->userable->profession }} @else {{  old('title')}} @endif>
                     </div>
 
                     <!-- Location -->
                     <div class="form">
                         <h5>Location</h5>
-                        <input class="search-field" name="location" required type="text" placeholder="e.g. London, UK" value="{{ old('location') }}"/>
+                        <input class="search-field" name="location" required type="text" placeholder="e.g. London, UK"  @if( Auth::user()->userable->location) value={{ Auth::user()->userable->location }} @else {{  old('location')}} @endif/>
+                    </div>
+                    <div class="form">
+                        <h5>Email</h5>
+                        <input class="search-field" name="email" required type="text" placeholder="e.g. name@gmail.com"  @if( Auth::user()->userable->email) value={{ Auth::user()->userable->email }} @else {{  old('email')}} @endif/>
                     </div>
                     <!-- Description -->
 
                         <div class="form">
                             <h5>Resume Content</h5>
-                            <textarea class="WYSIWYG" name="description"  cols="40" rows="3" id="summary" spellcheck="true" value="{{ old('description') }}" required> {{ old('description') }}  </textarea>
+                            <textarea class="WYSIWYG" name="description"  cols="40" rows="3" id="summary" spellcheck="true" value="{{ old('description') }}" required>  @if( Auth::user()->userable->description) {{ Auth::user()->userable->description }} @else {{  old('title')}} @endif  </textarea>
                         </div>
                          <!-- Notice -->
-                        <div class="notification notice closeable margin-bottom-40 " style="background-color: rgb(245, 216, 216)">
+                        {{-- <div class="notification notice closeable margin-bottom-40 " style="background-color: rgb(245, 216, 216)">
                             <p><span>Do you Delete Your account?<strong style="color: red">(Danger)</strong></span> If true .</p>
-                        </div>
+                        </div> --}}
                            <!-- Desactivation -->
-                        <div class="form">
+                        {{-- <div class="form">
 
                             <h5>State Account </h5>
                             <select name="status"   class="notification notice  margin-bottom-40">
@@ -65,7 +69,7 @@
                                <option value="0"> Delete</option>
                             </select>
 
-                        </div>
+                        </div> --}}
                             <button type="submit" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></button>
 
                         </div>

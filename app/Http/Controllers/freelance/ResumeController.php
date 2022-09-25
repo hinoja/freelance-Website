@@ -59,8 +59,9 @@ class ResumeController extends Controller
         $url = $request->url;
         $name_url = $request->name_url;
         $freelance = Auth::user()->userable;
-        // $freelance->location = $request->location;
-        // $freelance->profession = $request->title;
+        $freelance->description = $request->description;
+        $freelance->location = $request->location;
+        $freelance->profession = $request->title;
         $freelance->save();
 
         for ($i = 0; $i < count($start_date) - 1; $i++) {

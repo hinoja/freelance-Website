@@ -41,8 +41,8 @@
 		<table class="manage-table resumes responsive-table">
 
 			<tr>
-                <th><i class="fa fa-file-text"></i> COMANY </th>
 				<th><i class="fa fa-user"></i> Job Title</th>
+				<th><i class="fa fa-file-text"></i> Role </th>
 				<th><i class="fa fa-map-marker"></i> Location</th>
 				<th><i class="fa fa-calendar"></i> Date Posted</th>
 				<th></th>
@@ -54,10 +54,10 @@
 
                                 @forelse ($experiences as $experience )
                                     <tr>
-                                        <td class="title">{{$experience->company  }}</td>
-                                        <td> {{ $experience->job_title }}</td>
+                                        <td class="title"><a href="#">{{$experience->job_title  }}</a></td>
+                                        <td> {{ $freelance->nn }}</td>
                                         <td>{{ $freelance->location }} </td>
-                                        <td>  {{ $experience->start_at}} To  @if (empty($experience->end_at))  EN cours ... @else {{ $experience->end_at }} @endif</td>
+                                        <td>  {{ $experience->start_at}} To  {{ $experience->end_at }}</td>
                                         <td class="action">
                                             {{-- <a href="#"><i class="fa fa-pencil"></i> Edit</a> --}}
                                             {{-- <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a> --}}
@@ -70,6 +70,11 @@
 
 
                                 @endforelse
+
+
+
+
+
 		</table>
 
 		<br>

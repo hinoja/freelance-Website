@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Freelance extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     public function user()
     {
@@ -30,12 +29,7 @@ class Freelance extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-
     public function jobs()
-    {
-        return $this->belongsToMany(Job::class);
-    }
-    public function likes()
     {
         return $this->belongsToMany(Job::class);
     }
