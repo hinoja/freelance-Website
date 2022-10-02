@@ -1,4 +1,3 @@
-
 @php
 
    use App\Models\Status;
@@ -15,10 +14,12 @@
                     <span>We found 1,412 jobs matching:</span>
                     <h2>Web, Software & IT</h2>
                 </div>
+                @if(Auth::user()->role_id != 1)
+                    <div class="six columns">
+                        <a href="{{ route('job.index') }}" class="button">Post a Job, It’s Free!</a>
+                    </div>
+                @endif
 
-                <div class="six columns">
-                    <a href="add-job.html" class="button">Post a Job, It’s Free!</a>
-                </div>
 
             </div>
         </div>
@@ -31,110 +32,14 @@
             <div class="eleven columns">
             <div class="padding-right">
 
-                <form action="#" method="get" class="list-search">
+                {{-- <form action="#" method="get" class="list-search">
                     <button><i class="fa fa-search"></i></button>
                     <input type="text" placeholder="job title, keywords or company name" value=""/>
                     <div class="clearfix"></div>
-                </form>
-
-                <ul class="job-list full">
-
-                     @foreach ($jobs as $item )
-                            <li><a href="job-page.html">
-                                <img src="images/job-list-logo-01.png" alt="">
-                                <div class="job-list-content">
-                                    <h4> {{ (Category::find( $item->category_id))->name }}   / {{ $item->title }} <span class="full-time">Full-Time  {{ (Status::find( $item->type))->name }} </span></h4>
-                                    <div class="job-icons">
-                                        <span><i class="fa fa-briefcase"></i> King</span>
-                                        <span><i class="fa fa-map-marker"></i> {{ $item->location }} </span>
-                                        <span><i class="fa fa-money"></i> $100 / hour  {{ $item->salary }}/ hour</span>
-                                    </div>
-                                    <p> {!!  $item->description  !!}</p>
-                                </div>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
-
-                     @endforeach
+                </form> --}}
+                @livewire('search')
 
 
-                    {{-- <li><a href="job-page.html">
-                        <img src="images/job-list-logo-02.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Core PHP Developer for Site Maintenance <span class="part-time">Part-Time</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Cubico</span>
-                                <span><i class="fa fa-map-marker"></i> London</span>
-                                <span><i class="fa fa-money"></i> $50 / hour</span>
-                            </div>
-                            <p>Vivamus eleifend metus elit. Aenean facilisis placerat faucibus. Praesent commodo at mi nec imperdiet. Etiam at libero nec nunc iaculis ullamcorper.</p>
-                        </div>
-                        </a>
-                        <div class="clearfix"></div>
-                    </li>
-
-                    <li><a href="job-page-alt.html">
-                        <img src="images/job-list-logo-03.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> King</span>
-                                <span><i class="fa fa-map-marker"></i> Sydney</span>
-                                <span><i class="fa fa-money"></i> $15 / hour</span>
-                            </div>
-                            <p>Duis eu sem erat. Aliquam vestibulum justo at quam facilisis, sit amet condimentum dui laoreet. Nunc feugiat ante quis pulvinar ornare. In tempus lorem ipsum.</p>
-                        </div>
-                        </a>
-                        <div class="clearfix"></div>
-                    </li>
-
-                    <li><a href="job-page.html">
-                        <img src="images/job-list-logo-04.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Power Systems User Experience Designer  <span class="internship">Internship</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Hexagon</span>
-                                <span><i class="fa fa-map-marker"></i> London</span>
-                                <span><i class="fa fa-money"></i> $75 / hour</span>
-                            </div>
-                            <p>Praesent eu imperdiet quam. Fusce posuere venenatis lorem vel lacinia. Integer orci magna, accumsan nec velit quis, porttitor pulvinar nulla. Nullam viverra risus massa.</p>
-                        </div>
-                        </a>
-                        <div class="clearfix"></div>
-                    </li>
-
-                    <li><a href="job-page-alt.html">
-                        <img src="images/job-list-logo-05.png" alt="">
-                        <div class="job-list-content">
-                            <h4>iPhone / Android Music App Development <span class="temporary">Temporary</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Mates</span>
-                                <span><i class="fa fa-map-marker"></i> New York</span>
-                                <span><i class="fa fa-money"></i> $115 / hour</span>
-                            </div>
-                            <p>Sodales mollis metus eget egestas. Duis sit amet sem pretium, facilisis libero ut, lobortis arcu. Cras ipsum libero, suscipit ut nisl vitae, commodo pretium mauris.</p>
-                        </div>
-                        </a>
-                        <div class="clearfix"></div>
-                    </li> --}}
-                </ul>
-                <div class="clearfix"></div>
-
-                <div class="pagination-container">
-                    <nav class="pagination">
-                        <ul>
-                            {{-- <li><a href="#" class="current-page"> {{ $jobs->links() }}</a></li> --}}
-                            {{ $jobs->links() }}
-                        </ul>
-                    </nav>
-
-                    <nav class="pagination-next-prev">
-                        <ul>
-                            <li><a href="#" class="prev">Previous</a></li>
-                            <li><a href="#" class="next">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
 
             </div>
             </div>
@@ -245,3 +150,21 @@
 
 
 @endsection
+
+@section('script')
+<script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/custom.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.flexslider-min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
+<script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
+<script src="{{ asset('Assets/scripts/js/bootstrap.bundle.min.js') }}"></script>
+@endsection
+

@@ -9,11 +9,15 @@ use Livewire\WithPagination;
 class JobsPagination extends Component
 {
     use WithPagination;
+
     protected $paginationTheme = 'bootstrap';
-    public  $jobs="";
+
+    public $jobs = '';
+
     public function render()
     {
         $job = Job::orderBy('created_at', 'DESC');
-        return view('livewire.jobs-pagination', ['job' => $job->paginate(5)]);
+
+        return view('livewire.jobs-pagination', ['job' => $job->paginate(4)]);
     }
 }

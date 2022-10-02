@@ -9,22 +9,27 @@ use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
-{
-    public function store(ProfileRequest $request)
-    {
-        $freelance = Freelance::where('id', Auth::user()->userable_id)->first();
-        $user = User::find(Auth::user()->id);
-        $user->name = $request->name;
-        // $user->is_active = $request->status;
-        $user->mail = $request->mail;
-        $freelance->location = $request->location;
-        $freelance->profession = $request->title;
-        $freelance->description = $request->description;
-        $freelance->save();
-        $user->save();
-        Toastr::success('You Have Successfully update your Profile :)', 'Success');
 
-        return redirect()->route('welcome');
-    }
-}
+ class ProfileController extends Controller
+ {
+     public function store(ProfileRequest $request)
+     {
+        //  $freelance = Freelance::where('id', Auth::user()->userable_id)->first();
+         $freelance=Auth::user()->userable;
+        //  $user = Auth::user();
+         $user = User::find(Auth::user()->id);
+         $user->name = $request->name;
+         // $user->is_active = $request->status;
+        //  $user->mail = $request->mail;  //a remettre
+         $freelance->salaries = $request->salaries;
+        //  $freelance->email = $request->email;//a remetttre
+         $freelance->location = $request->location;
+         $freelance->profession = $request->title;
+         $freelance->description = $request->description;
+         $freelance->save();
+         $user->save();
+         Toastr::success('You Have Successfully update your Profile :)', 'Success');
+
+         return redirect()->route('welcome');
+     }
+ }

@@ -6,8 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Database\Seeders\StatusSeeder;
-use Database\Seeders\categorySeeder;
 
 class DatabaseSeeder extends Seeder
 {

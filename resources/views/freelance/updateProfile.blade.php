@@ -35,7 +35,8 @@
                         <h5>Update Name</h5>
                         <input class="search-field" name="name" type="text" required  value="{{ Auth::user()->name }}"/>
                     </div>
-                            <!-- Title -->
+
+                     <!-- Title -->
                     <div class="form">
                         <h5>Professional Title</h5>
                         <input class="search-field" name="title" required type="text" placeholder="e.g. Web Developer"   @if( Auth::user()->userable->profession) value={{ Auth::user()->userable->profession }} @else {{  old('title')}} @endif>
@@ -44,12 +45,18 @@
                     <!-- Location -->
                     <div class="form">
                         <h5>Location</h5>
-                        <input class="search-field" name="location" required type="text" placeholder="e.g. London, UK"  @if( Auth::user()->userable->location) value={{ Auth::user()->userable->location }} @else {{  old('location')}} @endif/>
+                        <input class="search-field" name="location" required type="text" placeholder="e.g. London, UK"  @if( empty(old('location'))) value={{ Auth::user()->userable->location  }} @else {{ old('location')  }} @endif >
                     </div>
+
+                    <!-- Salaries -->
                     <div class="form">
-                        <h5>Email</h5>
-                        <input class="search-field" name="email" required type="text" placeholder="e.g. name@gmail.com"  @if( Auth::user()->userable->email) value={{ Auth::user()->userable->email }} @else {{  old('email')}} @endif/>
+                        <h5>Salary(optional)</h5>
+                        <input class="search-field" name="salaries"  type="numeric" min="5"  placeholder="30 ($)"   @if( empty(old('salaries'))) value={{ Auth::user()->userable->salaries  }} @else {{ old('salaries')  }} @endif >
                     </div>
+                    {{-- <div class="form">
+                        <h5>Email</h5>
+                                 <input class="search-field" name="email" required type="text" placeholder="e.g. name@gmail.com"   @if( empty(old('mail'))) value={{  old('mail')}} @else {{ Auth::user()->userable->mail }} @endif />
+                    </div> --}}
                     <!-- Description -->
 
                         <div class="form">

@@ -12,10 +12,13 @@
 			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
 			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
 		</div>
+        @if(Auth::user()->role_id != 2)
+            @livewire('favorite',['job'=>$job])
+        @endif
 
-		<div class="six columns">
-			<a href="#" class="button dark"><i class="fa fa-star"></i> Bookmark This Job</a>
-		</div>
+
+
+
 
 	</div>
 </div>
@@ -49,7 +52,7 @@
 
 		{{-- les taches --}}
             <p class="margin-reset">
-                {!! $job->description !!}
+                {{ $job->description }}
             </p>
 			{{-- <li>Executing the Food Service program, including preparing and presenting our wonderful food offerings
 			to hungry customers on the go!
@@ -63,13 +66,11 @@
 		<br>
 
 		<h4 class="margin-bottom-10">Job Requirment</h4>
-
+        {{-- $requirement = $job->requirements()->get() --}}
 		<ul class="list-1">
-            @forelse ( $requirement as $requirements )
-                 <li> {{ $requirements->name }} </li>
-            @empty
-                  <p class="text-center">  No Requirement (s) </p>
-            @endforelse
+            @foreach ($job->requirements()->get() as $requirements)
+                <li> {{ $requirements->name }}</li>
+            @endforeach
 		</ul>
 
 	</div>
@@ -181,4 +182,3 @@
     <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 
 @endsection
-

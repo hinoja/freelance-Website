@@ -31,7 +31,7 @@
                         <p><span>Have an account?</span> If you don’t have an account you can create one below by entering your email address. A password will be automatically emailed to you.</p>
                     </div>
                     <!-- Title -->
-			<div class="form">
+			{{-- <div class="form">
 				<h5>Professional Title</h5>
 				<input class="search-field" name="title" type="text" placeholder="e.g. Web Developer" value="{{ old('title') }}"/>
 			</div>
@@ -47,7 +47,7 @@
                     <h5>Resume Content</h5>
                     <textarea class="WYSIWYG" name="description" cols="40" rows="3" id="summary" spellcheck="true" value="{{ old('description') }}"> {{ old('description') }}  </textarea>
                 </div>
-
+ --}}
 
                     <!-- Add URLs -->
                     <div class="form with-line">
@@ -139,4 +139,3 @@
 <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script>
-

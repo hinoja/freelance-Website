@@ -27,17 +27,17 @@ class StorePostRequestJob extends FormRequest
 
             'title' => ['required', 'string'],
             'location' => ['required', 'string'],
-            'category' => ['required'],
-            'type' => ['required'],
+            'category' => ['required', 'exists:categories,id'],
+            'status_id' => ['required', 'exists:statuses,id'],
             'salary' => ['required', 'numeric'],
-            // 'tag' => ['required', 'string'],
-            'startDate' => ['required', 'date'],
-            'endDate' => ['required', 'date', 'after:startDate'],
+            'tag' => ['nullable', 'exists:tags,id'],
+            'openingDate' => ['required', 'date'],
+            'closingDate' => ['required', 'date', 'before:openingDate', 'before_or_equal:now'],
             'summary' => ['required', 'string'],
             'companyName' => ['nullable'],
             'companyDescription' => ['nullable'],
             'company_name' => ['required', 'string'],
-            'requirements' => ['nullable', 'string'],
+            'requirements' => ['nullable'],
 
         ];
     }
