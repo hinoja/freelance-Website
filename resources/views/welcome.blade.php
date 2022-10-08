@@ -85,55 +85,19 @@
 				</a>
 				<div class="clearfix"></div>
 			</li>
-			<li><a href="job-page.html">
-				<img src="{{ asset('Assets/images/job-list-logo-02.png') }}" alt="">
-				<div class="job-list-content">
-					<h4>Core PHP Developer for Site Maintenance <span class="part-time">Part-Time</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> Cubico</span>
-						<span><i class="fa fa-map-marker"></i> London</span>
-						<span><i class="fa fa-money"></i> $50 / hour</span>
-					</div>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-			<li><a href="job-page.html">
-				<img src="{{ asset('Assets/images/job-list-logo-03.png') }}" alt="">
-				<div class="job-list-content">
-					<h4>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> King</span>
-						<span><i class="fa fa-map-marker"></i> Sydney</span>
-						<span><i class="fa fa-money"></i> $15 / hour</span>
-					</div>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-			<li><a href="job-page.html">
-				<img src="{{ asset('Assets/images/job-list-logo-04.png') }}" alt="">
-				<div class="job-list-content">
-					<h4>Power Systems User Experience Designer  <span class="internship">Internship</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> Hexagon</span>
-						<span><i class="fa fa-map-marker"></i> London</span>
-						<span><i class="fa fa-money"></i> $75 / hour</span>
-					</div>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li> --}}
+		 --}}
             @foreach ($job as $jobs)
                 <li><a href="{{ route('job.show',$jobs->slug) }}">
                     <img src="{{ asset('Assets/images/job-list-logo-04.png') }}" alt="">
                     <div class="job-list-content">
                         <h4> {{ $jobs->title }}
                          @if ((Status::find( $jobs->status_id))->id === 1)
-                            <span style="background-color: red" class="part-time">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
-                         @elseif ((Status::find( $jobs->status_id))->id==3)
+                            <span  class="part-time">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
+                         @elseif ((Status::find( $jobs->status_id))->id==2)
+                            <span style="background-color: red">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
+                        @elseif ((Status::find( $jobs->status_id))->id==3)
                             <span class="full-time">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
-                         @elseif ((Status::find( $jobs->status_id))->id ==4)
+                        @elseif ((Status::find( $jobs->status_id))->id ==4)
                             <span class="internship"> {{ (Status::find( $jobs->status_id))->name }} </span></h4>
                          @elseif ((Status::find( $jobs->status_id))->id==5)
                             <span class="temporary">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
@@ -166,8 +130,10 @@
 				<div class="clearfix"></div>
 			</li> --}}
 		</ul>
+        @if (Auth::user())
+            <a href="{{ route('more.job') }}" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>
+        @endif
 
-		<a href="{{ route('more.job') }}" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>
 		<div class="margin-bottom-55"></div>
 	</div>
 	</div>

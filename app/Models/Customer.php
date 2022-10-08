@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Job;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
@@ -12,9 +11,11 @@ class Customer extends Model
 
     public function user()
     {
-       return $this->morphOne(User::class, 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
-    public function jobs (){
+
+    public function jobs()
+    {
         return  $this->hasMany(Job::class);
     }
 }

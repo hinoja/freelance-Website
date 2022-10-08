@@ -24,18 +24,18 @@ class StoreResumeRequest extends FormRequest
     public function rules()
     {
         return [
-                'start_date' => ['nullable', 'array'],
-                'start_date.*' => ['nullable', 'date', 'nullable'],
-                'end_date' => ['nullable', 'array'],
-                'end_date.*' => ['date', 'nullable', 'nullable', 'after_or_equal:start_date.*','before_or_equal:now'],
-                'company' => ['nullable', 'array'],
-                'company.count.*' => ['nullable', 'string', 'nullable'],
-                'job_title' => ['nullable',  'array'],
-                'job_title.count.*' => ['nullable',  'string', 'nullable'],
-                'url' => ['nullable',  'array'],
-                'url.*' => ['nullable'],
-                'name_url' => ['nullable',  'array'],
-                'name_url.*' => ['nullable', 'string'],
-             ];
+            'start_date' => ['nullable', 'array'],
+            'start_date.*' => ['nullable', 'date', 'nullable'],
+            'end_date' => ['nullable', 'array'],
+            'end_date.*' => ['date', 'nullable', 'nullable', 'after_or_equal:start_date.*', 'before_or_equal:now'],
+            'company' => ['nullable', 'array'],
+            'company.count.*' => ['nullable', 'string', 'nullable'],
+            'job_title' => ['nullable',  'array'],
+            'job_title.count.*' => ['nullable',  'string', 'nullable'],
+            'url' => ['nullable',  'array'],
+            'url.*' => ['nullable'],
+            'name_url' => ['nullable',  'array'],
+            'name_url.*' => ['nullable', 'string'],
+        ];
     }
 }

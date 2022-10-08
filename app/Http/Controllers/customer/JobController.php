@@ -7,7 +7,6 @@ use App\Http\Requests\StorePostRequestJob;
 use App\Models\Job;
 use App\Models\Requirement;
 use Brian2694\Toastr\Facades\Toastr;
-use Flasher\Laravel\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -63,7 +62,7 @@ class JobController extends Controller
 
         $requirement = $request->requirements;
 
-        $job = Job::create($array);
+        $job = Job::firstOrCreate($array);
 
         $job->tags()->attach($tag_id);
 
@@ -71,11 +70,12 @@ class JobController extends Controller
         foreach ($requirement as $requirements) {
             $datarequirement = [
                 'name' => $requirements,
-                'job_id' => (int) $job->id,
+                'job_id' => $job->id,
             ];
+
             Requirement::updateOrCreate($datarequirement);
         }
-
+        // dd('passe');
         Toastr::success('Thanks,You have added The Job with title ('.$request->title.')   with successful :)', 'Success!!');
 
         return redirect()->route('job.manage');
@@ -103,15 +103,13 @@ class JobController extends Controller
      */
     public function resume()
     {
+        if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
+            return redirect()->route('job.index');
+        } else {
+            // $job = Job::where('customer_id', Auth::user()->userable->id)->get();
 
-            if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
-                return redirect()->route('job.index');
-            } else {
-                // $job = Job::where('customer_id', Auth::user()->userable->id)->get();
-
-                return view('customer.manage-jobs');
-            }
-
+            return view('customer.manage-jobs');
+        }
     }
 
     /**

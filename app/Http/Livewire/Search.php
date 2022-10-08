@@ -19,6 +19,7 @@ class Search extends Component
         if (strlen($this->query) > 2) {
             $this->jobs = Job::where('title', 'like', $words)
         ->orWhere('description', 'like', $words)
+        ->orWhere('companyName', 'like', $words)
         ->get();
             // dd($this->jobs);
         }

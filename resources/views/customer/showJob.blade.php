@@ -12,9 +12,9 @@
 			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
 			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
 		</div>
-        @if(Auth::user()->role_id != 2)
+        {{-- @if(Auth::user()->role_id != 2)
             @livewire('favorite',['job'=>$job])
-        @endif
+        @endif --}}
 
 
 

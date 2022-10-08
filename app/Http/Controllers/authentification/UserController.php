@@ -36,22 +36,23 @@ class UserController extends Controller
         ]);
         // try {
             // 1. Recuperer le role
-            if ((int) $request->role_id === 1) {//freelance
-                $account = Freelance::create();
-                $route = 'resume.manage';
-            } else {//Customer
-                $account = Customer::create();
-                $route = 'job.index';
-            }
-            $user = $account->user()->create($request->only('name', 'email', 'password', 'role_id'));
-            event(new Registered($user));
-            Auth::login($user);
-            Toastr::success('You Have Successfully created your account :)', 'Success!!');
-            return redirect()->route($route);
-        // } catch (Exception $e) {
-            // Toastr::Warning('Your Email is incorrect :)', 'Error!!');
+        if ((int) $request->role_id === 1) {//freelance
+            $account = Freelance::create();
+            $route = 'resume.manage';
+        } else {//Customer
+            $account = Customer::create();
+            $route = 'job.index';
+        }
+        $user = $account->user()->create($request->only('name', 'email', 'password', 'role_id'));
+        event(new Registered($user));
+        Auth::login($user);
+        Toastr::success('You Have Successfully created your account :)', 'Success!!');
 
-            // return back();
+        return redirect()->route($route);
+        // } catch (Exception $e) {
+        // Toastr::Warning('Your Email is incorrect :)', 'Error!!');
+
+        // return back();
         // }
         // $user=User::create($request->only('name', 'email', 'password', 'role_id'));
         // 2. Verifier le role (Customer role_id = 2 par exemple)
@@ -72,16 +73,16 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1]))  {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1])) {
             $request->session()->regenerate();
             Toastr::success('Hello Dear '.Auth::user()->name.' :)', 'Success!!');
             if (Auth::user()->role_id === 1) {
-                $experience=Auth::user()->userable->experiences()->get();
+                $experience = Auth::user()->userable->experiences()->get();
                 // $experience = Experience::where('freelance_id', Auth::user()->userable_id)->get();
                 return redirect()->route('resume.manage');
             } elseif (Auth::user()->role_id === 2) {
                 // $job = Job::where('customer_id', Auth::user()->userable_id)->get();
-                $job=Auth::user()->userable->jobs()->get();
+                $job = Auth::user()->userable->jobs()->get();
                 if (count($job) === 0) {
                     return redirect()->route('job.index');
                 } else {
@@ -90,13 +91,13 @@ class UserController extends Controller
             } else {
                 return redirect()->route('welcome');
             }
-        }
-        elseif (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 0])){
+        } elseif (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 0])) {
             Toastr::Warning('Your account is disable, contact administrator ', 'Error!!');
+
             return back();
-        }
-        else {
+        } else {
             Toastr::Warning('Invalid UserName /PassWord. :)', 'Error!!');
+
             return back();
         }
     }

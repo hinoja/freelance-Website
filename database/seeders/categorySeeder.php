@@ -15,7 +15,7 @@ class categorySeeder extends Seeder
     public function run()
     {
         $categories = ['Mobile Developers', 'Designers Creatives', 'Writers', 'Virtual Assistants', 'Accountants Consultants', 'Customer Service Agents', 'Sales Marketing Experts'];
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             DB::table('categories')->insert([
                 'name' => $categories[$i],
             ]);

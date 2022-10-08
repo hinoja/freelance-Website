@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
+            $table->id('name');
+            // $table->string('content');
             $table->foreignId('job_id')->constrained();
             $table->timestamps();
         });

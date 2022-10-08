@@ -20,6 +20,8 @@
                             <h4> {{ (Category::find( $items->category_id))->name }}   / {{ $items->title }}
                                 @if ((Status::find( $items->status_id))->id === 1)
                                     <span   class="part-time">  {{ (Status::find( $items->status_id))->name }} </span></h4>
+                               @elseif ((Status::find( $items->status_id))->id == 2)
+                                    <span style="background-color: red">  {{ (Status::find( $items->status_id))->name }} </span></h4>
                                 @elseif ((Status::find( $items->status_id))->id==3)
                                     <span class="full-time">  {{ (Status::find( $items->status_id))->name }} </span></h4>
                                 @elseif ((Status::find( $items->status_id))->id ==4)

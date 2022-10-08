@@ -18,6 +18,6 @@ class JobsPagination extends Component
     {
         $job = Job::orderBy('created_at', 'DESC');
 
-        return view('livewire.jobs-pagination', ['job' => $job->paginate(4)]);
+        return view('livewire.jobs-pagination', ['job' => $job->paginate(5)]);
     }
 }
