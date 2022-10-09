@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('profession')->nullable();
             $table->string('location')->nullable();
+            $table->string('email')->nullable();
             $table->text('description')->nullable();
-            $table->float('salaries')->nullable();
+            $table->double('salaries')->nullable();
 
             $table->timestamps();
         });

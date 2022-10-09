@@ -68,7 +68,7 @@
 		<h4 class="margin-bottom-10">Job Requirment</h4>
         {{-- $requirement = $job->requirements()->get() --}}
 		<ul class="list-1">
-            @foreach ($job->requirements()->get() as $requirements)
+            @foreach ($job->requirements as $requirements)
                 <li> {{ $requirements->name }}</li>
             @endforeach
 		</ul>

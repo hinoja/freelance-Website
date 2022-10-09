@@ -5,12 +5,12 @@
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <form action="#" class="list-search">
-               <button><i class="fa fa-search"></i></button>
-               <input type="text" placeholder="job title, keywords or company name"  wire:model.debounce="query"/>
+               <button wire:click="searchJob"><i class="fa fa-search"></i></button>
+               <input type="text" placeholder="job title, keywords or company name"  wire:model.defer="query"/>
                <div class="clearfix"></div>
 
                {{-- @livewire('jobs-pagination') --}}
-         @if(count($ResultJob) >0 && !empty($query))
+         @if(count($ResultJob) >0 )
             <ul class="job-list full">
 
                 @foreach ($ResultJob as $items )
@@ -48,22 +48,26 @@
 
 
             </ul>
-         @elseif(count($ResultJob) == 0 && !empty($query) )
-         <ul class="job-list full">
-            <li >
-                <div class="alert alert-primary mt-3">
-                    No matching to "{{ $query }} "
-                </div>
 
-            </li>
 
-         </ul>
-         @elseif ( empty($query))
-                @livewire('jobs-pagination')
-        @endif
+            @elseif(count($ResultJob) == 0  )
+            {{-- {{ var_dump($exist) }} --}}
+            <ul class="job-list full">
+                <li >
+                        <div class="alert alert-primary mt-3">
+                            No matching to "{{ $query }} "
+                        </div>
+                </li>
+
+            </ul>
+             @elseif($exist== 0  )
+                  @livewire('jobs-pagination')
+
+
+            @endif
     </form>
 
-    {{-- @livewire('jobs-pagination') --}}
+
 
 
 </div>

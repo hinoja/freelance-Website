@@ -18,12 +18,11 @@ return new class extends Migration
             $table->string('title');
             // $table->string('email')->nullable();
             $table->string('location');
-            $table->string('slug')->unique();
-            // $table->string('type');
+            $table->string('slug');
             $table->longText('description');
             $table->date('start_at');
             $table->date('deadline');
-            $table->float('salary');
+            $table->double('salary');
             $table->string('companyName')->nullable();
             $table->string('companyDescription')->nullable();
             $table->foreignId('customer_id')->constrained();

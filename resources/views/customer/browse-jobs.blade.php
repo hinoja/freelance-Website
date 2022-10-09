@@ -14,10 +14,13 @@
                     <span>We found 1,412 jobs matching:</span>
                     <h2>Web, Software & IT</h2>
                 </div>
-                @if(Auth::user()->role_id != 1)
-                    <div class="six columns">
-                        <a href="{{ route('job.index') }}" class="button">Post a Job, It’s Free!</a>
-                    </div>
+                @if(Auth::user())
+                  @if (Auth::user()->role_id != 1)
+                        <div class="six columns">
+                            <a href="{{ route('job.index') }}" class="button">Post a Job, It’s Free!</a>
+                        </div>
+                  @endif
+
                 @endif
 
 

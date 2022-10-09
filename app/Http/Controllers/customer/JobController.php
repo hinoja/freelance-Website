@@ -21,7 +21,7 @@ class JobController extends Controller
     {
         $job = Job::orderBy('created_at', 'DESC');
 
-        return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->paginate(4), 'job2' => $job->paginate(3)]);
+        return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->get()->take(4), 'job2' => $job->paginate(3)]);
     }
 
     /**
@@ -43,21 +43,21 @@ class JobController extends Controller
     public function store(StorePostRequestJob $request)
     {
         $array =
-        ([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            // 'email' => $request->email,
-            'location' => $request->location,
-            'category_id' => $request->category,
-            'status_id' => $request->status_id,
-            'salary' => $request->salary,
-            'start_at' => $request->openingDate,
-            'deadline' => $request->closingDate,
-            'description' => $request->summary,
-            'companyName' => $request->company_name,
-            'companyDescription' => $request->company_description,
-            'customer_id' => Auth::user()->userable->id,
-        ]);
+            ([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                // 'email' => $request->email,
+                'location' => $request->location,
+                'category_id' => $request->category,
+                'status_id' => $request->status_id,
+                'salary' => $request->salary,
+                'start_at' => $request->openingDate,
+                'deadline' => $request->closingDate,
+                'description' => $request->summary,
+                'companyName' => $request->company_name,
+                'companyDescription' => $request->company_description,
+                'customer_id' => Auth::user()->userable->id,
+            ]);
         $tag_id = $request->tag;
 
         $requirement = $request->requirements;
@@ -87,16 +87,15 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Job $job)
     {
-        // $slug =$job->slug;
-        $job = Job::where('slug', '=', $slug)->first();
+        //    $job = Job::where('slug', '=', $slug)->first();
         // $requirement = $job->requirements()->get();
         return view('customer.showJob', ['job' => $job]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * show list of a job who a customer adds in the database
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -107,13 +106,12 @@ class JobController extends Controller
             return redirect()->route('job.index');
         } else {
             // $job = Job::where('customer_id', Auth::user()->userable->id)->get();
-
             return view('customer.manage-jobs');
         }
     }
 
     /**
-     * Update the specified resource in storage.
+     *  allows do action to search a job in database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

@@ -27,8 +27,8 @@ class ProfileRequest extends FormRequest
             'name' => ['required', 'string'],
             'location' => ['required', 'string', 'min:2'],
             'title' => ['required', 'string'],
-            'salaries' => ['nullable', 'min:2'],
-            // 'email' => ['required', 'email'],//a remettre
+            'salaries' => ['nullable', 'numeric'],
+            'email' => ['required', 'email'],
             'description' => ['required', 'string'],
         ];
     }

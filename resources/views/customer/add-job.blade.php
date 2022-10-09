@@ -135,7 +135,7 @@
                             <!-- Application email/url -->
                             <div class="form">
                                     <h5> Salary</h5>
-                                    <input type="number" required name="salary" value="{{ old('salary') }}" min="0" placeholder=" Salary  ($Fcfa) ">
+                                    <input type="number" required name="salary" value="{{ old('salary') }}" min=0 placeholder=" Salary  ($Fcfa) ">
                             </div>
                             <!-- TStarting Date -->
                             <div class="form">

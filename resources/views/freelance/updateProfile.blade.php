@@ -47,11 +47,16 @@
                         <h5>Location</h5>
                         <input class="search-field" name="location" required type="text" placeholder="e.g. London, UK"  @if( empty(old('location'))) value={{ Auth::user()->userable->location  }} @else {{ old('location')  }} @endif >
                     </div>
+                      <!-- amail -->
+                      <div class="form">
+                        <h5>Email</h5>
+                        <input class="search-field" name="email" required type="text" placeholder="e.g. London, UK"  @if( empty(old('location'))) value={{ Auth::user()->mail  }} @else {{ old('mail')  }} @endif >
+                    </div>
 
                     <!-- Salaries -->
                     <div class="form">
-                        <h5>Salary(optional)</h5>
-                        <input class="search-field" name="salaries"  type="numeric" min="5"  placeholder="30 ($)"   @if( empty(old('salaries'))) value={{ Auth::user()->userable->salaries  }} @else {{ old('salaries')  }} @endif >
+                        <h5>Salary</h5>
+                        <input class="search-field" name="salaries"  type="number" min="5"  placeholder="30 ($)"   @if( empty(old('salaries'))) value={{ Auth::user()->userable->salaries  }} @else {{ old('salaries')  }} @endif >
                     </div>
                     {{-- <div class="form">
                         <h5>Email</h5>

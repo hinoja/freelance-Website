@@ -11,22 +11,25 @@ class Search extends Component
 
     public string $query = '';
 
+    public $search = 0;
+
     public $jobs = [];
 
-    public function updatedQuery()
+    public function searchJob()
     {
         $words = '%'.$this->query.'%';
-        if (strlen($this->query) > 2) {
-            $this->jobs = Job::where('title', 'like', $words)
+        // if (strlen($this->query) > 2) {
+        $this->jobs = Job::where('title', 'like', $words)
         ->orWhere('description', 'like', $words)
         ->orWhere('companyName', 'like', $words)
         ->get();
-            // dd($this->jobs);
-        }
+        $this->search = 1;
+
+        // }
     }
 
     public function render()
     {
-        return view('livewire.search', ['ResultJob' => $this->jobs]);
+        return view('livewire.search', ['ResultJob' => $this->jobs, 'exist' => $this->search]);
     }
 }

@@ -37,7 +37,7 @@ class StorePostRequestJob extends FormRequest
             'companyName' => ['nullable'],
             'companyDescription' => ['nullable'],
             'company_name' => ['required', 'string'],
-            'requirements' => ['nullable'],
+            'requirements' => ['nullable', 'distinct'],
 
         ];
     }

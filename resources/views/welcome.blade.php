@@ -130,11 +130,8 @@
 				<div class="clearfix"></div>
 			</li> --}}
 		</ul>
-        @if (Auth::user())
             <a href="{{ route('more.job') }}" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>
-        @endif
-
-		<div class="margin-bottom-55"></div>
+     		<div class="margin-bottom-55"></div>
 	</div>
 	</div>
 
