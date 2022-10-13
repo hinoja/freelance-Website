@@ -4,13 +4,18 @@
 @endphp
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-    <form action="#" class="list-search">
+    {{-- <form action="#" class="list-search">
                <button wire:click="searchJob"><i class="fa fa-search"></i></button>
                <input type="text" placeholder="job title, keywords or company name"  wire:model.defer="query"/>
+               <div class="clearfix"></div> --}}
+
+     <form action="#" class="list-search">
+               <button wire:click="searchJob"><i class="fa fa-search"></i></button>
+               <input type="text" placeholder="job title, keywords or company name"  wire:model="query"/>
                <div class="clearfix"></div>
 
                {{-- @livewire('jobs-pagination') --}}
-         @if(count($ResultJob) >0 )
+         @if(count($ResultJob) >0  && $search == 1)
             <ul class="job-list full">
 
                 @foreach ($ResultJob as $items )
@@ -50,7 +55,7 @@
             </ul>
 
 
-            @elseif(count($ResultJob) == 0  )
+            @elseif(count($ResultJob) == 0  && $search==1)
             {{-- {{ var_dump($exist) }} --}}
             <ul class="job-list full">
                 <li >
@@ -60,8 +65,9 @@
                 </li>
 
             </ul>
-             @elseif($exist== 0  )
-                  @livewire('jobs-pagination')
+             {{-- @elseif($exist== 0  )
+             @elseif($search== 0  && count($ResultJob)==0 && $query== "")
+                  @livewire('jobs-pagination') --}}
 
 
             @endif

@@ -9,12 +9,16 @@ class Search extends Component
 {
     protected $paginationTheme = 'bootstrap';
 
-    public string $query = '';
+    public   $query;
 
     public $search = 0;
 
     public $jobs = [];
 
+    public function mount(){
+        // $query="";
+        $this->query = "";
+    }
     public function searchJob()
     {
         $words = '%'.$this->query.'%';
