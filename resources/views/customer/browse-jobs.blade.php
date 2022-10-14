@@ -1,13 +1,21 @@
-@php
-
-   use App\Models\Status;
-   use App\Models\Category;
-@endphp
-
 @extends('layouts.app')
 @section('content')
             <!-- Titlebar
         ================================================== -->
+
+        
+    @push('css')
+        <link rel="stylesheet" href="{{ asset('Assets/css/search-spinner.css') }}">
+
+        <style>
+            .search-info{
+                text-align: center; 
+                margin: 10px 0 10px 0; 
+                font-weight: bolder;
+            }
+        </style>
+    @endpush
+
         <div id="titlebar">
             <div class="container">
                 <div class="ten columns">
@@ -152,22 +160,5 @@
         </div>
 
 
-@endsection
-
-@section('script')
-<script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/custom.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.revolution.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.themepunch.showbizpro.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.flexslider-min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/chosen.jquery.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/waypoints.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
-<script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
-<script src="{{ asset('Assets/scripts/js/bootstrap.bundle.min.js') }}"></script>
 @endsection
 
