@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\freelance;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreResumeRequest;
 use App\Models\Experience;
 use App\Models\Links;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
@@ -18,7 +19,6 @@ class ResumeController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -31,6 +31,7 @@ class ResumeController extends Controller
         // On recupere les expériences à partir des relations : userable pour récupérer l'instance de Customer connecté et experiences pour ...
         $freelance = auth()->user()->userable;
         $experiences = $freelance->experiences;
+<<<<<<< HEAD
         if ($experiences->isEmpty() // 
             // empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())
             ) {
@@ -41,6 +42,17 @@ class ResumeController extends Controller
             return view('freelance.manage-resumes', [
                 'experiences' => $experiences,
                 'freelance' => $freelance
+=======
+        if ($experiences->isEmpty() //
+            // empty(Experience::where('freelance_id', Auth::user()->userable->id)->get())
+        ) {
+            return redirect()->route('resume.index');
+        } else {
+            // $experi = Experience::where('freelance_id', Auth::user()->userable->id)->get();
+            return view('freelance.manage-resumes', [
+                'experiences' => $experiences,
+                'freelance' => $freelance,
+>>>>>>> joel
             ]);
         }
     }
@@ -53,18 +65,15 @@ class ResumeController extends Controller
      */
     public function store(StoreResumeRequest $request)
     {
-        
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $company = $request->company;
         $job_title = $request->job_title;
         $url = $request->url;
         $name_url = $request->name_url;
-
         $freelance = Auth::user()->userable;
-        $freelance->description = $request->description;
-        $freelance->location = $request->location;
-        $freelance->profession = $request->title;
+        // $freelance->location = $request->location;
+        // $freelance->profession = $request->title;
         $freelance->save();
 
         for ($i = 0; $i < count($start_date) - 1; $i++) {
@@ -87,20 +96,9 @@ class ResumeController extends Controller
             ];
             Links::updateOrCreate($dataurl);
         }
-        toastr()->success('Thanks,Your Profil ('.count($url).'Link(s) And '.count($start_date).'Experience(s) ) have created  with successful');
-        // dd('test');
-        return redirect()->route('resume.manage');
-    }
+        Toastr::success('You Have Successfully created  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) )  :)', 'Success!!');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('resume.manage');
     }
 
     /**

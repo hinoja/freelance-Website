@@ -1,0 +1,51 @@
+﻿Review 10/09/2022
+
+1. web.php : 
+    Correction du dysfonctionnement du middleware 'what' et utilisation des méthodes name(), controller(), prefix() sur les routes groupées (Voir les dernières routes, celles concernant le customer).
+2. middleware IsWhat : 
+    - Il faudra changer ce nom pour le remplacer par un autre plus parlant (exemple: CheckRole/CheckUserRole/CheckAuthRole et l'enregistrer tout simplement 'role' dans Kernel.php);
+    * Toujours penser à retourner des messages compréhensifs à l'utilisateur (lorsque l'on le redirige vers un autre espace tout simplement il ne comprend pas ce qu'il s'est passé. Raison pour laquelle j'ai ajouté un message dans le abort(). Tu pourrais, avec ce que tu as fait, ajouter un message flash pour régler ce souci).
+3. UserController :
+    - Refactoring de la méthode signup();
+    - Changer le package de messages flash;
+    * Lorsque l'on crée un compte, on est redirigé vers le formulaire (d'ajout de job pour le customer et de complet du profil pour le freelance);
+    * Revue d'une partie de la logique de la methode authenticate() (Principalement l'utilisation de quelques relations Eloquent ecrites dans les Models).
+
+4. ResumeController :
+    - méthode resume() : La vérification de l'authentification n'est pas nécessaire à ce niveau, vu qu'il y'a déjà le middleware auth qui le fait (faudra modifier le middleware Authenticate en mettant la route correcte de la vue de connexion 'login.view') + Utilisation de la relation experiences...
+
+5. add-resume.blade :
+    - le souci relatif aux old values est en partie réglé pour les urls. Il faudra faire pareil pour les expériences. 
+    - (array_filter() a été utilisé pour retirer les valeurs nulles/vides du tableau).
+
+
+Route::middleware(['auth', 'what:2'])->name('job.')->group(function () {
+        Route::view('/addJob', 'customer.add-job')->name('index');
+        Route::controller(JobController::class)->group(function(){
+            Route::get('/managejob', 'resume')->name('manage');
+            Route::post('/addJobpost', 'store')->name('add');
+        });
+
+
+
+ <div class="form with-line">
+                        <h5>URL(s)  <span style="color: red">(*)</span></h5>
+                        <div class="form-inside">
+                            @if (old('url'))
+                                @for ($i=0; $i < count(array_filter(old('name_url'))); $i++)
+                                    <div class="form boxed url-box">
+                                        <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                      <input class="search-field" name="name_url[]" type="text" value="{{ old('name_url')[$i]}}"/>
+                                      <input class="search-field" name="url[]" type="text" value="{{ old('url')[$i]}}"/>
+                                    </div>
+                                @endfor
+                            @endif
+
+                            {{-- Il faut conserver cette div --}}
+
+                            <!-- Adding URL(s) -->
+                            <div class="form boxed box-to-clone url-box">
+                                <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+                                <input class="search-field" type="text" placeholder="Name" name="name_url[]" value=""/>
+                                <input class="search-field" type="text" placeholder="http://" name="url[]" value=""/>
+                            </div>

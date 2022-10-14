@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\authentification;
 
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 class VerifyEmailController extends Controller

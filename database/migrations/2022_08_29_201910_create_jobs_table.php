@@ -16,18 +16,19 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('email')->nullable();
+            // $table->string('email')->nullable();
             $table->string('location');
-            $table->string('type');
+            $table->string('slug');
             $table->longText('description');
             $table->date('start_at');
             $table->date('deadline');
-            $table->float('salary');
+            $table->double('salary');
             $table->string('companyName')->nullable();
             $table->string('companyDescription')->nullable();
             $table->foreignId('customer_id')->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->foreignId('category_id')->constrained();
-
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

@@ -10,4 +10,9 @@ class Experience extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function freelances()
+    {
+        return $this->belongsTo(Freelance::class);
+    }
 }

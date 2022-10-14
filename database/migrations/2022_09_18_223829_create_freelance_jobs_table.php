@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('freelances', function (Blueprint $table) {
+        Schema::create('freelance_job', function (Blueprint $table) {
             $table->id();
-            $table->string('profession')->nullable();
-            $table->string('location')->nullable();
-            $table->string('email')->nullable();
-            $table->text('description')->nullable();
-            $table->double('salaries')->nullable();
-
+            $table->foreignId('freelance_id')->constrained();
+            $table->foreignId('job_id')->constrained();
+            $table->boolean('is_hired')->default(1);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('freelances');
+        Schema::dropIfExists('freelance_jobs');
     }
 };

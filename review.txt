@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Review 10/09/2022
 
 1. web.php : 
@@ -17,3 +18,39 @@ Review 10/09/2022
 5. add-resume.blade :
     - le souci relatif aux old values est en partie réglé pour les urls. Il faudra faire pareil pour les expériences. 
     - (array_filter() a été utilisé pour retirer les valeurs nulles/vides du tableau).
+=======
+﻿Review 10/09/2022
+
+
+20/09/2022
+
+1. UserController - authenticate() : 
+    - Utiliser les relations Eloquent pour récupérer les jobs et expériences du customer et du freelance respectivement; 
+    * OK (!)
+    - Personnaliser la connexion en renvoyant un message spécifique lorsque le compte de l'utilisateur est désactivé.
+    *!OK - L'utilisateur est connecté malgré que son compte soit désactivé.
+    *Trop de conditions, je pense qu'elles pourraient être raccourcies.
+
+2. JobController :
+    - show() :
+        * Documente toi sur le Route Model Binding; !OK
+        * Ajoute un champ "slug" à la table jobs, qui sera obtenu à partir du titre du job. Puis il faudra l'utiliser dans l'url à la place de l'id; !OK
+        * Tu n'as pas obligatoirement besoin de récupérer les requirements à partir du Model mais à partir de la relation Eloquent;
+    - index() :
+        * La pagination ne fonctionne pas au niveau de la vue;
+        * Pourquoi avoir passé deux variables (job et job2) à la vue?
+    - store() - Validation :
+        * Conserver les old values pour les champs "Job type", "Category" et "Tags" en cas d'erreur; *OK
+        * Tous les "requirements" ne sont pas conservés en cas d'erreur (par exemple lorsqu'il y'en 3 le formulaire revient avec deux valeurs); *OK
+        * Chaque "requirement" doit être différent des autres; *!OK
+        * Revoir les contraintes de dates; "opening date" doit être supérieure ou égale à la date actuelle; *!OK
+        * Le message d'erreur "The end date must be a date before start date." ne permet pas de savoir où est situé l'erreur vu qu'il n'y a pas de champ "end date" ni "start date" dans le formulaire.
+    - Que font les méthodes resume() et browsejob() ? *??
+
+3. ProfileController :
+    - Rajouter le champ email et retirer le status (c'est l'admin qui se charge d'activer et désactiver les comptes utilisateurs); *OK
+    - Remplir les champs lorsque les valeurs sont déjà présentes en DB. *OK
+
+    - Erreur au niveau du champ 'salary'; il doit être une valeur numérique.
+    - Retourner vers la même page de profil après succès.
+>>>>>>> joel

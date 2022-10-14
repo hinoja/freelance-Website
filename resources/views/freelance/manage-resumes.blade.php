@@ -57,7 +57,9 @@
                                         <td class="title"><a href="#">{{$experience->job_title  }}</a></td>
                                         <td> {{ $freelance->nn }}</td>
                                         <td>{{ $freelance->location }} </td>
-                                        <td>  {{ $experience->start_at}} To  {{ $experience->end_at }}</td>
+
+                                        <td>  {{ $experience->start_at}} To  @if ($experience->end_at == null)  Now @else {{ $experience->end_at }} @endif
+                                         </td>
                                         <td class="action">
                                             {{-- <a href="#"><i class="fa fa-pencil"></i> Edit</a> --}}
                                             {{-- <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a> --}}
@@ -90,3 +92,4 @@
 
 
 @endsection
+

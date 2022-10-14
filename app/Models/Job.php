@@ -11,6 +11,21 @@ class Job extends Model
 
     use HasFactory;
 
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class);
+    }
+
+    public function statuses()
+    {
+        return $this->belongsToMany(Status::class);
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
@@ -21,13 +36,8 @@ class Job extends Model
         return $this->belongsToMany(Freelance::class);
     }
 
-    public function categories()
+    public function customers()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function requirements()
-    {
-        return $this->hasMany(Requirement::class);
+        return $this->belongsTo(Customer::class);
     }
 }
