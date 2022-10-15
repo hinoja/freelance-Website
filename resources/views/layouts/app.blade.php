@@ -24,6 +24,8 @@ use Brian2694\Toastr\Facades\Toastr;
 <!-- CSS
 ================================================== -->
 
+@stack('css')
+
 @yield('connexion')
 
 <!-- CSS
