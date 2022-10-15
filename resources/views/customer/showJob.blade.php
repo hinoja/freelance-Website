@@ -1,4 +1,8 @@
+
+
 @php
+    use App\Models\JobTag;
+    use App\Models\Tag;
     use App\Models\Status;
     use App\Models\Category;
 @endphp
@@ -10,16 +14,27 @@
 	<div class="container">
 		<div class="ten columns">
 			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
-			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
+			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew
+
+                    @if ((Status::find( $job->status_id))->id === 1)
+                        <span  class="part-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @elseif ((Status::find( $job->status_id))->id==2)
+                        <span style="background-color: red">  {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @elseif ((Status::find( $job->status_id))->id==3)
+                        <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @elseif ((Status::find( $job->status_id))->id ==4)
+                        <span class="internship"> {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @elseif ((Status::find( $job->status_id))->id==5)
+                        <span class="temporary">  {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @else
+                        <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
+                    @endif
+
+            </h2>
 		</div>
         {{-- @if(Auth::user()->role_id != 2)
             @livewire('favorite',['job'=>$job])
         @endif --}}
-
-
-
-
-
 	</div>
 </div>
 
@@ -48,6 +63,13 @@
 		</p> --}}
 
 		<br>
+        {{-- <div class="badge badge-dark">
+
+            @foreach (job_tag::where('job_id','=', $job)->get() as  $value)
+                <span class="full-time">{{ $value}}</span>,
+            @endforeach
+
+        </div> --}}
 		<p>The <strong>{{ $job->title }}</strong> will have responsibilities that include:</p>
 
 		{{-- les taches --}}
