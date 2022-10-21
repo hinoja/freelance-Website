@@ -1,5 +1,3 @@
-
-
 @php
     use App\Models\JobTag;
     use App\Models\Tag;
@@ -8,8 +6,7 @@
 @endphp
 @extends('layouts.app')
 @section('content')
-         <!-- Titlebar
-================================================== -->
+         <!-- Titlebar================================================== -->
 <div id="titlebar">
 	<div class="container">
 		<div class="ten columns">
