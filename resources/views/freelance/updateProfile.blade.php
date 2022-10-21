@@ -50,7 +50,7 @@
                       <!-- amail -->
                       <div class="form">
                         <h5>Email</h5>
-                        <input class="search-field" name="email" required type="text" placeholder="e.g. London, UK"  @if( empty(old('location'))) value={{ Auth::user()->mail  }} @else {{ old('mail')  }} @endif >
+                        <input class="search-field" name="email" required type="text" placeholder="e.g. London, UK"  @if( empty(old('email'))) value={{ Auth::user()->email  }} @else {{ old('email')  }} @endif >
                     </div>
 
                     <!-- Salaries -->

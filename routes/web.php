@@ -1,15 +1,19 @@
 <?php
 
-use App\Http\Controllers\authentification\SocialController;
-use App\Http\Controllers\authentification\UserController;
-use App\Http\Controllers\authentification\VerifyEmailController;
-use App\Http\Controllers\customer\JobController;
-use App\Http\Controllers\freelance\ProfileController;
-use App\Http\Controllers\freelance\ResumeController;
 use App\Models\Job;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Models\User;
 use GuzzleHttp\Middleware;
+use App\Mail\mailToApplyJob;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\customer\JobController;
+use App\Http\Controllers\freelance\ResumeController;
+use App\Http\Controllers\freelance\ProfileController;
+use App\Http\Controllers\freelance\applyJobController;
+use App\Http\Controllers\authentification\UserController;
+use App\Http\Controllers\authentification\SocialController;
+use App\Http\Controllers\authentification\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +57,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
     Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
+    Route::get('/apply/{Job}',[applyJobController::class,'apply'])->name('job.apply');
 });
-Route::middleware(['auth', 'checkRole:1'])->name('resume.')->group(function () {
-    Route::view('/addResume', 'freelance.add-resume')->name('index');
-    Route::controller(ResumeController::class)->group(function () {
+Route::middleware(['auth', 'checkRole:1'])->group(function () {
+    Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
+
+    Route::controller(ResumeController::class)->name('resume.')->group(function () {
         Route::get('/manageResume', 'resume')->name('manage');
         Route::post('/addresumepost', 'store')->name('add');
     });
@@ -75,3 +81,6 @@ Route::get('/moreJob', [JobController::class, 'browsejob'])->name('more.job');
 // Route::fallback(function () {
 //     Toastr::Info(' sorry,This page don\'t  exist ):', 'Info!!');
 // });
+
+
+
