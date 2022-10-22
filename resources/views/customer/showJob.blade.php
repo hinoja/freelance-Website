@@ -1,40 +1,27 @@
+
+
 @php
-    use App\Models\JobTag;
-    use App\Models\Tag;
+    use App\Models\User;
     use App\Models\Status;
     use App\Models\Category;
+    use App\Models\freelance_job;
 @endphp
 @extends('layouts.app')
 @section('content')
-         <!-- Titlebar================================================== -->
+         <!-- Titlebar
+================================================== -->
 <div id="titlebar">
 	<div class="container">
 		<div class="ten columns">
 			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
-			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew
-
-                    @if ((Status::find( $job->status_id))->id === 1)
-                        <span  class="part-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @elseif ((Status::find( $job->status_id))->id==2)
-                        <span style="background-color: red">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @elseif ((Status::find( $job->status_id))->id==3)
-                        <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @elseif ((Status::find( $job->status_id))->id ==4)
-                        <span class="internship"> {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @elseif ((Status::find( $job->status_id))->id==5)
-                        <span class="temporary">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @else
-                        <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                    @endif
-
-            </h2>
-
+			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
 		</div>
-
+        {{-- @if(Auth::user()->role_id != 2)
+            @livewire('favorite',['job'=>$job])
+        @endif --}}
 
 
 	</div>
-
 </div>
 
 
@@ -62,13 +49,6 @@
 		</p> --}}
 
 		<br>
-        {{-- <div class="badge badge-dark">
-
-            @foreach (job_tag::where('job_id','=', $job)->get() as  $value)
-                <span class="full-time">{{ $value}}</span>,
-            @endforeach
-
-        </div> --}}
 		<p>The <strong>{{ $job->title }}</strong> will have responsibilities that include:</p>
 
 		{{-- les taches --}}
@@ -138,33 +118,47 @@
 					</li>
 				</ul>
 
+
+
+
+
              @if(Auth::user())
                 @if (Auth::user()->role_id != 2)
-                {{-- <a href="{{ route('job.apply',$job->id) }}" class="popup-with-zoom-anim button">Apply For This Job</a> --}}
-                <a href="{{ route('job.apply',$job->id) }}" class=" button">Apply For This Job</a>
+                    @if (count(freelance_job::where('freelance_id', Auth::user()->userable_id)->where('job_id', $job->id)->where('is_hired', 1)->get()) >0)
+                        <a href="#small-dialog" class="popup-with-zoom-anim button">Apply For This Job</a>
+                    @else
+                       <a href="{{ route('job.retry',$job->id) }}" class=" button"> Retry For This Job</a>
+                    @endif
 
                 @endif
-
-              @endif
-
-
+             @endif
 				<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 					<div class="small-dialog-headline">
 						<h2>Apply For This Job</h2>
 					</div>
 
 					<div class="small-dialog-content">
-						<form action="#" method="get" >
-							<input type="text" placeholder="Full Name" value=""/>
-							<input type="text" placeholder="Email Address" value=""/>
-							<textarea placeholder="Your message / cover letter sent to the employer"></textarea>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+						<form action="{{ route('job.apply',$job->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+							<input type="text" name="name" required placeholder="Full Name" value="{{ old('name') }}"/>
+							<input type="email" name="email" readonly placeholder="Email Address" value="{{ (User::where('userable_id','=',$job->customer_id )->first())->email }}"/>
+							<textarea name="message" placeholder="Your message / cover letter sent to the employer"></textarea>
 
 							<!-- Upload CV -->
 							<div class="upload-info"><strong>Upload your CV (optional)</strong> <span>Max. file size: 5MB</span></div>
 							<div class="clearfix"></div>
 
 							<label class="upload-btn">
-							    <input type="file" multiple />
+							    <input type="file" name="file" />
 							    <i class="fa fa-upload"></i> Browse
 							</label>
 							<span class="fake-input">No file selected</span>

@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-        <h1>Hello,{{ $customer->name  }}</h1>
+        <h1>Hello,{{ $freelance->name  }}</h1>
 
             <h3>Letter to Retry</h3>
-
-      Sorry to retry on your  apply on the  task  <h4 >{{$jobInfo->title }} <hr> that payment is :{{$jobInfo->salary  }}</h4>
+      My full name is {{ $freelance->name  }}
+      Sorry to retry on your  apply, {{$jobInfo->title }} <hr> that payment is :{{$jobInfo->salary  }}
     This Job is at  {{ $jobInfo->location }} and had  created by {{  (User::where('userable_id','=',$jobInfo->customer_id )->first())->name }}
     {{-- this job is in fact : {{$job->description  }} --}}
 

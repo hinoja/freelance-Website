@@ -36,7 +36,7 @@ class mailToFreelance extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail To Freelance',
+            subject: 'Confirmed your apply to Job ',
         );
     }
 

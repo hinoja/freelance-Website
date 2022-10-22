@@ -54,10 +54,12 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 //freelance
+
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
     Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
-    Route::get('/apply/{Job}',[applyJobController::class,'apply'])->name('job.apply');
+    Route::post('/apply/{Job}',[applyJobController::class,'apply'])->name('job.apply');
+    Route::get('/retry/{Job}',[applyJobController::class,'retry'])->name('job.retry');
 });
 Route::middleware(['auth', 'checkRole:1'])->group(function () {
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');

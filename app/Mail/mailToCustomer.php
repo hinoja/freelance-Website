@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -15,16 +16,19 @@ class mailToCustomer extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $freelance;
+    public $message,$file,$name;
     public $jobInfo;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $freelance,Job $jobInfo)
+    // public function __construct($name,$message,$jobInfo)
+    public function __construct(String $name,String $message, String $file,Job $jobInfo)
     {
-        $this->freelance=$freelance;
+        $this->message=$message;
+        $this->$name=$name;
+        $this->$file=$file;
         $this->jobInfo=$jobInfo;
     }
 
@@ -36,7 +40,7 @@ class mailToCustomer extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail To Customer',
+            subject: 'Apply To Customer for job',
         );
     }
 
@@ -59,6 +63,12 @@ class mailToCustomer extends Mailable
      */
     public function attachments()
     {
-        return [];
+        return [
+                                    //   Attachment::fromPath("/storage/$this->file")
+            // attachFromStorage('/path/to/file')
+            // /storage/post_image/{{  $post->image }}
+            // Attachment::fromStorage("/storage/$this->file),
+
+        ];
     }
 }

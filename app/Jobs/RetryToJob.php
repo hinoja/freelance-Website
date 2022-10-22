@@ -16,7 +16,7 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 class RetryToJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $freelance,$customer,$jobInfo;
+    protected $freelance,$jobInfo;
 
     /**
      * Create a new job instance.
@@ -36,6 +36,7 @@ class RetryToJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->freelance->email)->queue(new mailToFreelanceRetry($this->freelance,$this->jobInfo))->delay(now()->addMinutes(2));
+        sleep(2);
+        Mail::to($this->freelance->email)->queue(new mailToFreelanceRetry($this->freelance,$this->jobInfo));
     }
 }
