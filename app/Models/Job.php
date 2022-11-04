@@ -36,7 +36,7 @@ class Job extends Model
         return $this->belongsToMany(Freelance::class);
     }
 
-    public function customers()
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }

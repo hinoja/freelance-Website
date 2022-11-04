@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Job;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class Search extends Component
 {
@@ -23,7 +23,7 @@ class Search extends Component
 
     public function searchJob()
     {
-        if (!empty($this->query) || strlen($this->query) > 2) {
+        if (! empty($this->query) || strlen($this->query) > 2) {
             $words = '%'.$this->query.'%';
             $this->jobs = Job::where('title', 'like', $words)
             ->orWhere('description', 'like', $words)
@@ -31,9 +31,9 @@ class Search extends Component
             ->get();
 
             if (empty($this->jobs)) {
-                $this->message = 'No matching result for "' . $this->query . '"';
+                $this->message = 'No matching result for "'.$this->query.'"';
             } else {
-                $this->message = $this->jobs->count() . ' ' . Str::plural('job', $this->jobs->count()) . ' found for "' . $this->query . '"';
+                $this->message = $this->jobs->count().' '.Str::plural('job', $this->jobs->count()).' found for "'.$this->query.'"';
             }
         } else {
             $this->message = 'Please type at least 3 characters.';

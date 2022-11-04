@@ -16,7 +16,6 @@ class SocialController extends Controller
 
     public function callback($driver)
     {
-
         //   $user = User::updateOrCreate
         //  ([
         //      'driver_id' => $driverUser->id,

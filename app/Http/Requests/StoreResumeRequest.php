@@ -27,7 +27,7 @@ class StoreResumeRequest extends FormRequest
             'start_date' => ['nullable', 'array'],
             'start_date.*' => ['nullable', 'date', 'nullable'],
             'end_date' => ['nullable', 'array'],
-            'end_date.*' => ['date', 'nullable','after_or_equal:start_date.*', 'before_or_equal:now'],
+            'end_date.*' => ['date', 'nullable', 'after_or_equal:start_date.*', 'before_or_equal:now'],
             'company' => ['nullable', 'array'],
             'company.count.*' => ['nullable', 'string', 'nullable'],
             'job_title' => ['nullable',  'array'],

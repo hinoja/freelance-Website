@@ -118,21 +118,19 @@
 					</li>
 				</ul>
 
-
-
-
-
              @if(Auth::user())
-                @if (Auth::user()->role_id != 2)
-                    @if (count(freelance_job::where('freelance_id', Auth::user()->userable_id)->where('job_id', $job->id)->where('is_hired', 1)->get()) >0)
-                        <a href="#small-dialog" class="popup-with-zoom-anim button">Apply For This Job</a>
-                    @else
-                       <a href="{{ route('job.retry',$job->id) }}" class=" button"> Retry For This Job</a>
-                    @endif
-
-                @endif
-             @endif
-				<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+					@if (Auth::user()->role_id != 2)
+								@if (count ($job->freelances) > 0)
+									<a href="{{ route('job.cancel',$job->id) }}" class=" button"> Cancel Apply</a>						
+								@else
+									<a href="{{ route('job.apply',$job->id) }}" class="button">Apply For This Job</a>
+								@endif
+						@endif
+			   @else
+							<a href="{{ route('login.view') }}" class=" button" >Please Sign In to apply this job</a>
+            
+              @endif
+				{{-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 					<div class="small-dialog-headline">
 						<h2>Apply For This Job</h2>
 					</div>
@@ -169,7 +167,7 @@
 						</form>
 					</div>
 
-				</div>
+				</div> --}}
 
 			</div>
 
@@ -204,3 +202,4 @@
     <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 
 @endsection
+ 

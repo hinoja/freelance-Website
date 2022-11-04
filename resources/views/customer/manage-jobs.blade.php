@@ -9,7 +9,6 @@
     ================================================== -->
     <div id="titlebar" class="single">
         <div class="container">
-
             <div class="sixteen columns">
                 <h2>Manage Jobs</h2>
                 <nav id="breadcrumbs">

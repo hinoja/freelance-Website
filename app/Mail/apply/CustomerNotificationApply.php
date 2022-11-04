@@ -1,31 +1,32 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\apply;
 
-use App\Models\Job;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 
-class mailToFreelance extends Mailable
+class CustomerNotificationApply extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public $freelance;
-    public $jobInfo;
+    public $customer;
+    public $job;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $freelance,Job $jobInfo)
+    public function __construct($freelance,$customer, $job)
     {
-        $this->freelance=$freelance;
-        $this->jobInfo=$jobInfo;
+        $this->freelance = $freelance;
+        $this->customer = $customer;
+        $this->job = $job;
     }
 
     /**
@@ -36,7 +37,7 @@ class mailToFreelance extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Confirmed your apply to Job ',
+            subject: 'Customer Notification Apply',
         );
     }
 
@@ -48,7 +49,7 @@ class mailToFreelance extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.freelance.notificationFreelance',
+            view: 'emails.apply.ToCustomer',
         );
     }
 

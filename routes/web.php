@@ -1,19 +1,18 @@
 <?php
 
-use App\Models\Job;
-use App\Models\User;
-use GuzzleHttp\Middleware;
-use App\Mail\mailToApplyJob;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\customer\JobController;
-use App\Http\Controllers\freelance\ResumeController;
-use App\Http\Controllers\freelance\ProfileController;
-use App\Http\Controllers\freelance\applyJobController;
-use App\Http\Controllers\authentification\UserController;
 use App\Http\Controllers\authentification\SocialController;
+use App\Http\Controllers\authentification\UserController;
 use App\Http\Controllers\authentification\VerifyEmailController;
+use App\Http\Controllers\customer\JobController;
+use App\Http\Controllers\freelance\ApplyController;
+use App\Http\Controllers\freelance\CancelController;
+use App\Http\Controllers\freelance\ProfileController;
+use App\Http\Controllers\freelance\ResumeController;
+use App\Models\Job;
+use Brian2694\Toastr\Facades\Toastr;
+// use App\Http\Controllers\freelance\ApplyController;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +57,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
     Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
-    Route::post('/apply/{Job}',[applyJobController::class,'apply'])->name('job.apply');
-    Route::get('/retry/{Job}',[applyJobController::class,'retry'])->name('job.retry');
+    Route::get('/apply/{job}', ApplyController::class)->name('job.apply');
+    Route::get('/cancel/{job}', CancelController::class)->name('job.cancel');
 });
 Route::middleware(['auth', 'checkRole:1'])->group(function () {
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
@@ -83,6 +82,3 @@ Route::get('/moreJob', [JobController::class, 'browsejob'])->name('more.job');
 // Route::fallback(function () {
 //     Toastr::Info(' sorry,This page don\'t  exist ):', 'Info!!');
 // });
-
-
-
