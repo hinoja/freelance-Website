@@ -21,11 +21,24 @@ class CancelController extends Controller
      */
     public function __invoke(Job $job)
     {
+
         $freelance = Auth::user();
         $customer = $job->customer->user;
         $job->freelances()->toggle($freelance->userable_id);
-        Notification::send($freelance, new ToFreelanceNotificationsApply($freelance,$customer, $job));
-        Notification::send($customer, new ToCustomerNotificationsCancel($freelance,$customer, $job));
+        if ($job->deadline > now())
+            $job->state_id = 4;
+        elseif (count($job->freelances) > 0)
+            $job->state_id = 1;
+        else
+            $job->state_id = 3;
+
+
+
+
+
+
+            Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
+        Notification::send($customer, new ToCustomerNotificationsCancel($freelance, $customer, $job));
         Toastr::Info('Your cancel is considerated, ckeck your confirmation mail   :)', 'Info!!');
 
         return back();

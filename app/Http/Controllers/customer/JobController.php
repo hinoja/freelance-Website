@@ -57,6 +57,7 @@ class JobController extends Controller
                 'companyName' => $request->company_name,
                 'companyDescription' => $request->company_description,
                 'customer_id' => Auth::user()->userable->id,
+                'state_id' => 3,
             ]);
         $tag_id = $request->tag;
 

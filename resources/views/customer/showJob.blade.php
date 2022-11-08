@@ -14,7 +14,11 @@
 	<div class="container">
 		<div class="ten columns">
 			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
-			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time">{{ Status::find($job->catgeory_id) }}</span></h2>
+			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time"> {{ $job->state->name }}  {{ Status::find($job->catgeory_id) }}</span>
+                {{-- <span class="badge badge-secondary">New</span> --}}
+
+
+            </h2>
 		</div>
         {{-- @if(Auth::user()->role_id != 2)
             @livewire('favorite',['job'=>$job])
@@ -121,14 +125,14 @@
              @if(Auth::user())
 					@if (Auth::user()->role_id != 2)
 								@if (count ($job->freelances) > 0)
-									<a href="{{ route('job.cancel',$job->id) }}" class=" button"> Cancel Apply</a>						
+									<a href="{{ route('job.cancel',$job->id) }}" class=" button"> Cancel Apply</a>
 								@else
 									<a href="{{ route('job.apply',$job->id) }}" class="button">Apply For This Job</a>
 								@endif
 						@endif
 			   @else
 							<a href="{{ route('login.view') }}" class=" button" >Please Sign In to apply this job</a>
-            
+
               @endif
 				{{-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 					<div class="small-dialog-headline">
@@ -202,4 +206,4 @@
     <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 
 @endsection
- 
+
