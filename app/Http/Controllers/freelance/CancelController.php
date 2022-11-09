@@ -32,12 +32,10 @@ class CancelController extends Controller
         else
             $job->state_id = 3;
 
+        $job->save();
 
 
-
-
-
-            Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
+        Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
         Notification::send($customer, new ToCustomerNotificationsCancel($freelance, $customer, $job));
         Toastr::Info('Your cancel is considerated, ckeck your confirmation mail   :)', 'Info!!');
 

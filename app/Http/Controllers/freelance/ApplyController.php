@@ -30,17 +30,26 @@ class ApplyController extends Controller
         $customer = $job->customer->user;
         $job->freelances()->toggle($freelance->userable_id);
 
+
+        // dd(count($job->freelances), $job->freelances);
         if ($job->deadline > now())
             $job->state_id = 4;
-        elseif (count($job->freelances) > 0)
+        elseif (count($job->freelances) > 0){
             $job->state_id = 1;
+            // dd($job->state_id);
+
+        }
+
+
         else
             $job->state_id = 3;
+
+        $job->save();
 
         Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
         Notification::send($customer, new ToCustomerNotificationsApply($freelance, $customer, $job));
         Toastr::Info('Your apply is considerated, ckeck your confirmation mail  :)', 'Info!!');
-        (count($job->freelances) > 0) ? $job->state_id = 3 : $job->state_id = 4;
+        // (count($job->freelances) > 0) ? $job->state_id = 3 : $job->state_id = 4;
 
         // ApplyJob::dispatch($freelance ,$Job,$customer);
         return back();

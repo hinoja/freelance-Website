@@ -13,9 +13,9 @@
 <div id="titlebar">
 	<div class="container">
 		<div class="ten columns">
-			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  {{  $job->title}}</a></span>
-			<h2>{{ (Category::find($job->category_id))->name }} Team Member - Crew <span class="full-time"> {{ $job->state->name }}  {{ Status::find($job->catgeory_id) }}</span>
-                {{-- <span class="badge badge-secondary">New</span> --}}
+			<span><a href="browse-jobs.html">{{ (Category::find($job->category_id))->name }}  /  Team Member-Crew </a></span>
+			<h2>{{ (Category::find($job->category_id))->name }} <br> <strong>{{  $job->title}}</strong> <span class="full-time"> {{ $job->state->name }}  {{ Status::find($job->catgeory_id) }}</span>
+
 
 
             </h2>
@@ -45,13 +45,18 @@
 				<span><a href="#"><i class="fa fa-link"></i> Website</a></span>
 				<span><a href="#"><i class="fa fa-twitter"></i> @kingrestaurants {{ $job->companyDescription }}</a></span>
 			</div>
-			<div class="clearfix"></div>
+			<div class="clearfix"> </div>
+            @forelse ( $job->tags  as $tag)
+                 <span class="internship" style="padding: 5px;"> {{ $tag->name }}  </span>
+            @empty
+                 <span class="internship" style="padding: 5px;">   NO-Tag </span>
+
+            @endforelse
 		</div>
 
 		{{-- <p class="margin-reset">
 			{{ $job->description }}
 		</p> --}}
-
 		<br>
 		<p>The <strong>{{ $job->title }}</strong> will have responsibilities that include:</p>
 
@@ -59,13 +64,7 @@
             <p class="margin-reset">
                 {{ $job->description }}
             </p>
-			{{-- <li>Executing the Food Service program, including preparing and presenting our wonderful food offerings
-			to hungry customers on the go!
-			</li>
-			<li>Greeting customers in a friendly manner and suggestive selling and sampling items to help increase sales.</li>
-			<li>Keeping our Store food area looking terrific and ready for our valued customers by managing product
-			inventory, stocking, cleaning, etc.</li>
-			<li>We’re looking for associates who enjoy interacting with people and working in a fast-paced environment!</li> --}}
+
 		</ul>
 
 		<br>
@@ -73,9 +72,13 @@
 		<h4 class="margin-bottom-10">Job Requirment</h4>
         {{-- $requirement = $job->requirements()->get() --}}
 		<ul class="list-1">
-            @foreach ($job->requirements as $requirements)
-                <li> {{ $requirements->name }}</li>
-            @endforeach
+
+            @forelse ( $job->requirements as $requirements )
+                    <li> {{ $requirements->name }}</li>
+            @empty
+                   <span style="text-transform: uppercase">#   No-Requirement (S)   #</span>
+            @endforelse
+
 		</ul>
 
 	</div>
