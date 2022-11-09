@@ -37,7 +37,15 @@ class ProfileController extends Controller
      * display all freelances who apply to a job
      */
     public function index(Job $job){
-       
+
         return view('customer.list-profile',['profiles'=>$job->freelances]);
     }
+    /**
+     * display all freelances who apply to a job
+     */
+    public function show(User $user){
+
+        return view('freelance.resumeProfileCV',['user'=>$user]);
+    }
+
 }

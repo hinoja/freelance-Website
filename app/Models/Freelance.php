@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Job;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Links;
+use App\Models\Experience;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Freelance extends Model
 {

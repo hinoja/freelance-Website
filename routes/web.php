@@ -53,10 +53,10 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 //freelance
-
+Route::get('/profile/{user:name}', [ProfileController::class,'show'])->name('freelance.profileCV.view');
+Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
-    Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
     Route::get('/apply/{job}', ApplyController::class)->name('job.apply');
     Route::get('/cancel/{job}', CancelController::class)->name('job.cancel');
 });
@@ -71,7 +71,7 @@ Route::middleware(['auth', 'checkRole:1'])->group(function () {
 //customer
 Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
     Route::view('/addJob', 'customer.add-job')->name('index');
-    Route::get('/listApplier/{job:slug}', [ProfileController::class,'index'])->name('applier');
+    Route::get('/listAppliers/{job:slug}', [ProfileController::class,'index'])->name('applier');
     Route::controller(JobController::class)->group(function () {
         Route::get('/managejob', 'resume')->name('manage');
         Route::post('/addJobpost', 'store')->name('add');
