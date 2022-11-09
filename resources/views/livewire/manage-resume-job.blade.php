@@ -18,11 +18,11 @@
 
         @foreach ($jobs as $job )
             <tr>
-                <td class="title"><a href="{{ route('job.show',$job->slug) }}"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
+                <td class="title"><a href="{{ route('job.show',$job) }}"> {{ (Category::find( $job->category_id))->name }}  , {{ $job->title   }}</a></td>
                 <td class="centered">-</td>
                 <td> {{ $job->created_at->format(' Y m d') }}</td>
                 <td>{{ $job->deadline}}</td>
-                <td class="centered"><a href="manage-applications.html" class="button">Show (4)</a></td>
+                <td class="centered"><a href="{{ route('job.applier',$job) }}" class="button">Show ({{ (count($job->freelances)) }})</a></td>
                 <td class="action">
                     <a href="#"><i class="fa fa-pencil"></i> Edit</a>
                     <a href="#"><i class="fa  fa-check "></i> Mark Filled</a>

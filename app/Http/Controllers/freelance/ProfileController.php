@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\freelance;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileRequest;
-use App\Models\Freelance;
+use App\Models\Job;
 use App\Models\User;
+use App\Models\Freelance;
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -31,5 +32,12 @@ class ProfileController extends Controller
         Toastr::success('You Have Successfully update your Profile :)', 'Success');
 
         return redirect()->route('resume.manage');
+    }
+    /**
+     * display all freelances who apply to a job
+     */
+    public function index(Job $job){
+       
+        return view('customer.list-profile',['profiles'=>$job->freelances]);
     }
 }

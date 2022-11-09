@@ -71,6 +71,7 @@ Route::middleware(['auth', 'checkRole:1'])->group(function () {
 //customer
 Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
     Route::view('/addJob', 'customer.add-job')->name('index');
+    Route::get('/listApplier/{job:slug}', [ProfileController::class,'index'])->name('applier');
     Route::controller(JobController::class)->group(function () {
         Route::get('/managejob', 'resume')->name('manage');
         Route::post('/addJobpost', 'store')->name('add');
