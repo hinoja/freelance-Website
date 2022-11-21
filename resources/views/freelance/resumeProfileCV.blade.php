@@ -16,9 +16,10 @@
                             <span class="icons"><a href="#"><i class="fa fa-link"></i> Website</a></span>
                             <span class="icons"><a href="mailto:{{  $user->email }}"><i class="fa fa-envelope"></i> {{  $user->email }}</a></span>
                             <div class="skills">
-                                <span>JavaScript</span>
-                                <span>PHP</span>
-                                <span>WordPress</span>
+                                    {{-- <span>test</span> --}}
+                                @foreach (  $user->userable->tags  as $tag )
+                                        <span>{{ $tag->name}}</span>
+                                @endforeach
                             </div>
                             <div class="clearfix"></div>
 
@@ -41,13 +42,12 @@
                                     <input type="text" placeholder="Full Name" value=""/>
                                     <input type="text" placeholder="Email Address" value=""/>
                                     <textarea placeholder="Message"></textarea>
-
                                     <button class="send">Send Application</button>
                                 </form>
                             </div>
 
                         </div>
-                        <a href="#" class="button dark"><i class="fa fa-star"></i> Bookmark This Resume</a>
+                        {{-- <a href="#" class="button dark"><i class="fa fa-star"></i> Bookmark This Resume</a> --}}
 
 
                     </div>
@@ -67,7 +67,7 @@
                 <h3 class="margin-bottom-15">About Me</h3>
 
                 <p class="margin-reset">
-                    {{  $user->userable->description }}
+                    {{ trim($user->userable->description)  }}
                 </p>
 
                 <br>
@@ -93,14 +93,15 @@
                 <!-- Resume Table -->
                 <dl class="resume-table">
                     @foreach ($user->userable->experiences as $experience)
-                        <dt>
-                            <small class="date">{{ $experience->start_at }}  - {{ $experience->end_at }}</small>
-                            <strong>{{ $experience->company }}</strong>
+                        <dt style="font-weight:bold;text-align:center;font-size:1.4em;">
+                            <small  class="date">{{ $experience->start_at }}       To     @if ($experience->end_at == null || $experience->end_at == now())  Now @else {{ $experience->end_at }} @endif</small>
+                          <hr>  <strong>{{ $experience->company }}</strong>
                         </dt>
-                        <dd>
+                        <dd style="text-align:center;">
                             <p>{{ $experience->job_title }}</p>
                             {{-- <p>Captain, why are we out here chasing comets? Maybe we better talk out here; the observation lounge has turned into a swamp. Ensign Babyface!</p> --}}
                         </dd>
+                        <br>
                     @endforeach
 
 

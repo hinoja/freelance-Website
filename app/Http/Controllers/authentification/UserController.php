@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\authentification;
 
-use App\Http\Controllers\Controller;
-use App\Models\Customer;
-use App\Models\Experience;
-use App\Models\Freelance;
+use Exception;
 use App\Models\Job;
 use App\Models\User;
-use Brian2694\Toastr\Facades\Toastr;
-use Exception;
-use Illuminate\Auth\Events\Registered;
+use App\Models\Customer;
+use App\Models\Freelance;
+use App\Models\Experience;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -45,10 +46,11 @@ class UserController extends Controller
             $route = 'job.index';
         }
         $user = $account->user()->create($request->only('name', 'email', 'password', 'role_id'));
+        $user->slug = Str::slug($request->name) ;
+        $user->save();
         event(new Registered($user));
         Auth::login($user);
         Toastr::success('You Have Successfully created your account :)', 'Success!!');
-
         return redirect()->route($route);
         // } catch (Exception $e) {
         // Toastr::Warning('Your Email is incorrect :)', 'Error!!');

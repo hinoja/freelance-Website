@@ -17,7 +17,9 @@ class ToFreelanceNotificationsApply extends Notification implements ShouldQueue
      * @return void
      */
     // public $freelance ,$job;
-    public $freelance,$customer;
+    public $freelance;
+
+    public $customer;
 
     public $job;
 
@@ -26,7 +28,7 @@ class ToFreelanceNotificationsApply extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct( $freelance, $customer, $job)
+    public function __construct($freelance, $customer, $job)
     {
         $this->freelance = $freelance;
         $this->customer = $customer;
@@ -52,7 +54,7 @@ class ToFreelanceNotificationsApply extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new FreelanceNotificationApply($this->freelance ,$this->customer, $this->job))
+        return (new FreelanceNotificationApply($this->freelance, $this->customer, $this->job))
                             ->to($notifiable->email);
     }
 

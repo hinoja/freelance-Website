@@ -261,13 +261,14 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
 
-  <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
-                    Name :  <strong>{{ $job->title }}</strong>   <br>
-					Location : <strong> {{ $job->location }}</strong> <br>
+        <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
+            Your cancel is confirmed on this Job: Name :  <strong>{{ $job->title }}</strong>  <br><br> <br>
 
-					Salary :  <strong>{{ $job->salary }} Fcfa</strong>  <br>
-					Deadline :  <strong>{{ $job->deadline }}  </strong>  <br>
-  </h1>
+</h1>
+<h3>
+
+    Posted at: {{$job->created_at }} By <strong>{{ $job->customer->name }} </strong>
+</h3>
 
       </td>
     </tr>

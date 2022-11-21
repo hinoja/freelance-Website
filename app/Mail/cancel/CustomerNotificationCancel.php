@@ -18,20 +18,18 @@ class CustomerNotificationCancel extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public $freelance,$customer;
 
-    public $job;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $freelance, $customer, $job)
-    {
-        $this->freelance = $freelance;
-        $this->customer = $customer;
-        $this->job = $job;
+    public function __construct(
+        public $freelance,
+        public $customer,
+        public $job
+    ) {
     }
 
     /**

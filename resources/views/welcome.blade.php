@@ -1,6 +1,5 @@
 @php
     use App\Models\Status;
-    use App\Models\Job;
 @endphp
 @extends('layouts.app')
 
@@ -94,7 +93,7 @@
                          @if ((Status::find( $jobs->status_id))->id === 1)
                             <span  class="part-time">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
                          @elseif ((Status::find( $jobs->status_id))->id==2)
-                            <span style="background-color: red">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
+                            <span style="background-color: red">  {{ (Status::find( $jobs->status_id))->name }}  </span></h4>
                         @elseif ((Status::find( $jobs->status_id))->id==3)
                             <span class="full-time">  {{ (Status::find( $jobs->status_id))->name }} </span></h4>
                         @elseif ((Status::find( $jobs->status_id))->id ==4)

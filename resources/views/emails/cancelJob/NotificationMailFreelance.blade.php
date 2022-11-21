@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="x-apple-disable-message-reformatting">
   <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
-  <title>Apply To Your Job </title>
+  <title>Cancel Apply Confirmation</title>
 
 
     <style type="text/css">
@@ -94,9 +94,6 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 <body class="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #c95858;color: #000000">
   <!--[if IE]><div class="ie-container"><![endif]-->
   <!--[if mso]><div class="mso-container"><![endif]-->
-
-    <h1> List Freelances For {{ $job->title }} </h1>
-    <br>
   <table id="u_body" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #c95858;width:100%" cellpadding="0" cellspacing="0">
   <tbody>
   <tr style="vertical-align: top">
@@ -122,9 +119,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
-                                                                        <img src="{{ public_path("Assets/images/laravel.png") }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
 
-      {{-- <img align="center" border="0" src="{{ public_path('Assets/images/laravel.png') }}" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 27%;max-width: 162px;" width="162" class="v-src-width v-src-max-width"/> --}}
+      {{-- <img align="center" border="0" src="/../../public/Assets/images/laravel.png"   alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 27%;max-width: 162px;" width="162" class="v-src-width v-src-max-width"/> --}}
 
     </td>
   </tr>
@@ -211,7 +207,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
     {{-- <p style="font-size: 14px; line-height: 140%;">Juneteenth is a day to celebrate freedom and the struggle against slavery. The date marking the year WITHOUT forgiving or forgetting, serves as an important reminder for all Americans that we must always work together and carry on what was started so many years ago - justice and freedom for everyone!.</p> --}}
-    <p style="font-size: 14px; line-height: 140%;">Hello    {{ $customer->name}} </p>
+    <p style="font-size: 14px; line-height: 140%;">Hello    {{ $freelance->name}} </p>
   </div>
 
       </td>
@@ -267,20 +263,10 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
 
-                     SomeOne would like do your Job :  <br>
-
-                    Name of Freelance :{{ $freelance->name }} <br>
-                    Email:{{ $freelance->email }}  <br>
-                    {{-- Location:{{ $freelance->location }} <br> --}}
-
-
-                    <br>  <br>
-                <h2 style="color:#387142">
-                    On your Job <strong>{{ $job->title }}</strong>  <br> whose Price is  <strong>{{ $job->salary }} Fcfa</strong>  and Deadline is  <strong>{{ $job->deadline }}  <br>
-                </h2>
-
- </h1>
-
+                    <strong style="font-size: 1.5em;"> {{ $freelance->name }} Cancel Job also it's don't considerated:</strong>
+                    Name :  <strong>{{ $job->title }}</strong>   <br>
+					Location : <strong> {{ $job->location }}</strong> <br>
+  </h1>
 
       </td>
     </tr>
@@ -293,8 +279,9 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:1px 80px 10px;font-family:arial,helvetica,sans-serif;" align="left">
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: georgia, palatino; font-size: 14px; line-height: 19.6px;">
-
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: georgia, palatino; font-size: 14px; line-height: 19.6px;"> ***************************** </span></p>
+    {{-- <p style="font-size: 14px; line-height: 140%;"><span style="font-family: georgia, palatino; font-size: 14px; line-height: 19.6px;"> 2261 Market Street #4667 San Francisco, CA 94114</span></p> --}}
+  </div>
 
       </td>
     </tr>
@@ -309,8 +296,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
 <div align="center">
   <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.unlayer.com" style="height:39px; v-text-anchor:middle; width:220px;" arcsize="10.5%"  stroke="f" fillcolor="#df2e13"><w:anchorlock/><center style="color:#FFFFFF;font-family:arial,helvetica,sans-serif;"><![endif]-->
-    <a href="https://www.unlayer.com" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #df2e13; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:38%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;"> <a href="{{ route('freelance.profile.view') }}">View Profiles</a>
-      <span style="display:block;padding:10px 20px;line-height:120%;"><span style="font-size: 16px; line-height: 19.2px;"><strong><span style="line-height: 19.2px; font-family: arial, helvetica, sans-serif; font-size: 16px;"> </span></strong></span></span>
+    <a href="https://www.unlayer.com" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #df2e13; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:38%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;"><a href="{{ route('welcome') }}"> Look Else Job</a>
+      <span style="display:block;padding:10px 20px;line-height:120%;"><span style="font-size: 16px; line-height: 19.2px;"><strong><span style="line-height: 19.2px; font-family: arial, helvetica, sans-serif; font-size: 16px;">  </span></strong></span></span>
     </a>
   <!--[if mso]></center></v:roundrect><![endif]-->
 </div>

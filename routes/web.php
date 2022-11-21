@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\authentification\SocialController;
-use App\Http\Controllers\authentification\UserController;
-use App\Http\Controllers\authentification\VerifyEmailController;
+use App\Models\Job;
+use GuzzleHttp\Middleware;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\customer\JobController;
 use App\Http\Controllers\freelance\ApplyController;
 use App\Http\Controllers\freelance\CancelController;
-use App\Http\Controllers\freelance\ProfileController;
 use App\Http\Controllers\freelance\ResumeController;
-use App\Models\Job;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Controllers\freelance\ProfileController;
 // use App\Http\Controllers\freelance\ApplyController;
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\authentification\UserController;
+use App\Http\Controllers\authentification\SocialController;
+use App\Http\Controllers\authentification\VerifyEmailController;
+use App\Http\Controllers\customer\ChoiceFreelanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +55,12 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 //freelance
-Route::get('/profile/{user:name}', [ProfileController::class,'show'])->name('freelance.profileCV.view');
+Route::get('/profile/{user:name}', [ProfileController::class, 'show'])->name('freelance.profileCV.view');
 Route::view('/profile', 'freelance.updateProfile')->name('freelance.profile.view');
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('freelance.profile.post');
-    Route::get('/apply/{job}', ApplyController::class)->name('job.apply');
-    Route::get('/cancel/{job}', CancelController::class)->name('job.cancel');
+    Route::get('/apply/{job:slug}', ApplyController::class)->name('job.apply');
+    Route::get('/cancel/{job:slug}', CancelController::class)->name('job.cancel');
 });
 Route::middleware(['auth', 'checkRole:1'])->group(function () {
     Route::view('/addResume', 'freelance.add-resume')->name('resume.index');
@@ -70,16 +72,24 @@ Route::middleware(['auth', 'checkRole:1'])->group(function () {
 });
 //customer
 Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
+    Route::get('/choice/{job:slug}/{freelance}', [ChoiceFreelanceController::class, 'selected'])->name('selected.freelance');
+    Route::get('/cancel/{job:slug}/{freelance}', [ChoiceFreelanceController::class, 'CancelChoice'])->name('cancel.freelance');
     Route::view('/addJob', 'customer.add-job')->name('index');
-    Route::get('/listAppliers/{job:slug}', [ProfileController::class,'index'])->name('applier');
+    Route::get('/listAppliers/{job:slug}', [ProfileController::class, 'index'])->name('applier');
     Route::controller(JobController::class)->group(function () {
         Route::get('/managejob', 'resume')->name('manage');
         Route::post('/addJobpost', 'store')->name('add');
+        Route::get('/managejob/finish/{job:slug}', 'finish')->name('finish');
+        Route::get('/delete/{job:slug}', 'delete')->name('delete'); //delete method
+        Route::get('/managejob/cancel/{job:slug}', 'cancel')->name('customer.cancel');
     });
 });
 Route::get('/', [JobController::class, 'index'])->name('welcome');
 Route::get('/moreJob', [JobController::class, 'browsejob'])->name('more.job');
 
+
+
+Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->name('download.pdf');
 // Route::fallback(function () {
 //     Toastr::Info(' sorry,This page don\'t  exist ):', 'Info!!');
 // });

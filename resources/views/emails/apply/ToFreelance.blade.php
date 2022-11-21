@@ -117,6 +117,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
+      {{-- <img align="center" border="0" src="{{ public_path('Assets/images/laravel.png') }}" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 27%;max-width: 162px;" width="162" class="v-src-width v-src-max-width"/> --}}
+                                                                        <img src="{{ public_path("Assets/images/laravel.png") }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
 
       {{-- <img align="center" border="0" src="/../../public/Assets/images/laravel.png" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 27%;max-width: 162px;" width="162" class="v-src-width v-src-max-width"/> --}}
 
@@ -205,7 +207,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
     {{-- <p style="font-size: 14px; line-height: 140%;">Juneteenth is a day to celebrate freedom and the struggle against slavery. The date marking the year WITHOUT forgiving or forgetting, serves as an important reminder for all Americans that we must always work together and carry on what was started so many years ago - justice and freedom for everyone!.</p> --}}
-    <p style="font-size: 14px; line-height: 140%;">Hello   {{$freelance->name  }} </p>
+    <p style="font-size: 20px; line-height: 140%;">Hello <strong>{{$freelance->name  }}</strong>  </p>
   </div>
 
       </td>
@@ -260,11 +262,16 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
 
   <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
+                   <span style="color: green">Confirmation Mail for Appling Job</span>   <br>
+
                     Name :  <strong>{{ $job->title }}</strong>   <br>
 					Location : <strong> {{ $job->location }}</strong> <br>
 
 					Salary :  <strong>{{ $job->salary }} Fcfa</strong>  <br>
 					Deadline :  <strong>{{ $job->deadline }}  </strong>  <br>
+
+                    Posted at: {{$job->created_at }} By <strong>{{ $job->customer->name }} </strong>
+
   </h1>
 
       </td>

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Notifications\cancel;
+namespace App\Notifications\CancelJob;
 
-use App\Mail\cancel\FreelanceNotificationCancel;
+use App\Mail\CancelJob\CancelNotificationFreelanceMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ToFreelanceNotificationsCancel extends Notification implements ShouldQueue
+class CancelFreelanceNotification extends Notification
 {
     use Queueable;
 
@@ -16,23 +17,8 @@ class ToFreelanceNotificationsCancel extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public $freelance;
-
-    public $customer;
-
-    public $job;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($freelance, $customer, $job)
-    {
-        $this->freelance = $freelance;
-        $this->customer = $customer;
-        $this->job = $job;
-    }
+    public function __construct( public $freelance,public $customer,public $job)
+    { }
 
     /**
      * Get the notification's delivery channels.
@@ -53,8 +39,8 @@ class ToFreelanceNotificationsCancel extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new FreelanceNotificationCancel($this->freelance, $this->customer, $this->job))
-        ->to($notifiable->email);
+                return (new CancelNotificationFreelanceMail($this->freelance, $this->customer, $this->job))
+                                    ->to($notifiable->email);
     }
 
     /**

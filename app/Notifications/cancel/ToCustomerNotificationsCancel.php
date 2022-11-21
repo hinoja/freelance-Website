@@ -16,8 +16,9 @@ class ToCustomerNotificationsCancel extends Notification implements ShouldQueue
      *
      * @return void
      */
-  
-    public $freelance,$customer;
+    public $freelance;
+
+    public $customer;
 
     public $job;
 
@@ -26,7 +27,7 @@ class ToCustomerNotificationsCancel extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct( $freelance, $customer, $job)
+    public function __construct($freelance, $customer, $job)
     {
         $this->freelance = $freelance;
         $this->customer = $customer;
@@ -52,7 +53,7 @@ class ToCustomerNotificationsCancel extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new CustomerNotificationCancel($this->freelance, $this->customer , $this->job))
+        return (new CustomerNotificationCancel($this->freelance, $this->customer, $this->job))
                             ->to($notifiable->email);
     }
 

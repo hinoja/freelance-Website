@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class freelance_tags extends Model
 {
     use HasFactory;
+    public $timestamps=true;
+
 }

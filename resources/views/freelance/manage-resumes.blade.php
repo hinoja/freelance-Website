@@ -58,7 +58,7 @@
                                         <td> {{ $freelance->nn }}</td>
                                         <td>{{ $freelance->location }} </td>
 
-                                        <td>  {{ $experience->start_at}} To  @if ($experience->end_at == null)  Now @else {{ $experience->end_at }} @endif
+                                        <td>  {{ $experience->begin}} To  @if ($experience->end_at == null)  Now @else {{ $experience->end_at }} @endif
                                          </td>
                                         <td class="action">
                                             {{-- <a href="#"><i class="fa fa-pencil"></i> Edit</a> --}}
