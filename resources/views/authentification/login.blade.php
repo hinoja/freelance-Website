@@ -4,20 +4,37 @@
 
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar" class="single">
+{{-- <div id="titlebar" class="single">
 	<div class="container">
 		<div class="sixteen columns">
 			<h2 class="text-center text-uppercase">Connexion</h2>
 		</div>
 	</div>
-</div>
+</div> --}}
 
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>LogIn</h2>
+			<nav id="breadcrumbs">
+				<ul>
+					<li>You are here:</li>
+					<li><a href="#">Home</a></li>
+					<li>LogIn</li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+</div>
 
 <section class="order-form py-5">
     <div class="container">
         <form action="{{ route('login') }}" method="POST">
             @csrf
             @method('post')
+            
             <div class="row">
                 <div class="col-md-12 col-sm ">
                     <div class="input-group mb-3">
@@ -29,11 +46,9 @@
                         <input type="password" class="form-control text-center" name="password" placeholder="Mot de passe" />
                     </div>
 
-                        <div class="input-group mb-3 row offset-lg-6">
-                            <button class="btn btn-success " type="submit" class="">Connexion</button>
-                        </div>
-
-
+                    <div class="input-group mb-3 row offset-lg-6">
+                        <button class="btn btn-success " type="submit" class="">Connexion</button>
+                    </div>
                 </div>
             </div>
         </form>

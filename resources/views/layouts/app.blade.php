@@ -37,6 +37,7 @@ use Brian2694\Toastr\Facades\Toastr;
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 @livewireStyles()
+
 </head>
 
 <body class="antialiased">
