@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Mail\cancel;
+namespace App\Mail\CancelJob;
 
-use App\Models\Customer;
-use App\Models\Job;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FreelanceNotificationCancel extends Mailable implements ShouldQueue
+class CancelNotificationCustomerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,18 +18,7 @@ class FreelanceNotificationCancel extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    // public $freelance;
-
-    // public $customer;
-
-    // public $job;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(public  $freelance,public  $customer,public  $job)
+    public function __construct( public $freelance,public $customer,public $job)
     { }
 
     /**
@@ -43,7 +29,7 @@ class FreelanceNotificationCancel extends Mailable implements ShouldQueue
     public function envelope()
     {
         return new Envelope(
-            subject: 'Freelance Notification Cancel',
+            subject: 'Cancel Notification Customer Mail',
         );
     }
 
@@ -55,7 +41,7 @@ class FreelanceNotificationCancel extends Mailable implements ShouldQueue
     public function content()
     {
         return new Content(
-            view: 'emails.cancel.ToFreelance',
+            view: 'cancelJob.NotificationMailCustomer',
         );
     }
 

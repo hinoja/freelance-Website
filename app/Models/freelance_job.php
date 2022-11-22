@@ -12,4 +12,7 @@ class freelance_job extends Model
     protected $guarded = [];
 
     protected $table = 'freelance_job';
+    public $timestamps=true;
+    
+
 }

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tag;
+use App\Models\Status;
+use App\Models\Category;
+use App\Models\Requirement;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
@@ -11,7 +15,7 @@ class Job extends Model
 
     use HasFactory;
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
@@ -41,7 +45,8 @@ class Job extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function state(){
-        return $this->belongsTo(State::class);
+    public function states()
+    {
+        return $this->belongsToMany(State::class);
     }
 }

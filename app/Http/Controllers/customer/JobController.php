@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePostRequestJob;
 use App\Models\Job;
 use App\Models\Requirement;
+use Illuminate\Support\Str;
+use App\Models\freelance_jobs;
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use App\Http\Requests\StorePostRequestJob;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CancelJob\CancelCustomerNotification;
+use App\Notifications\CancelJob\CancelFreelanceNotification;
 
 class JobController extends Controller
 {
@@ -20,7 +24,6 @@ class JobController extends Controller
     public function index()
     {
         $job = Job::orderBy('created_at', 'DESC');
-
         return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->get()->take(4), 'job2' => $job->paginate(3)]);
     }
 
@@ -51,34 +54,30 @@ class JobController extends Controller
                 'category_id' => $request->category,
                 'status_id' => $request->status_id,
                 'salary' => $request->salary,
-                'start_at' => $request->openingDate,
-                'deadline' => $request->closingDate,
+                'begin' => $request->closingDate, //begin date to apply
+                'deadline' => $request->closingDate, //end date to apply
+                // 'start_at' => $request->openingDate,
+                // 'end_at' => $request->openingDate,
                 'description' => $request->summary,
                 'companyName' => $request->company_name,
                 'companyDescription' => $request->company_description,
                 'customer_id' => Auth::user()->userable->id,
-                'state_id' => 3,
             ]);
+        // 'state_id' => 3,
         $tag_id = $request->tag;
-
         $requirement = $request->requirements;
-
         $job = Job::firstOrCreate($array);
-
         $job->tags()->attach($tag_id);
-
+        $job->states()->attach(3);
         $requirement = array_filter($requirement);
         foreach ($requirement as $requirements) {
             $datarequirement = [
                 'name' => $requirements,
                 'job_id' => $job->id,
             ];
-
             Requirement::updateOrCreate($datarequirement);
         }
-        // dd('passe');
-        Toastr::success('Thanks,You have added The Job with title ('.$request->title.')   with successful :)', 'Success!!');
-
+        Toastr::success('Thanks,You have added The Job with title (' . $request->title . ')   with successful :)', 'Success!!');
         return redirect()->route('job.manage');
     }
 
@@ -131,8 +130,44 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function finish(Job $job)
     {
-        //
+        // Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
+        $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
+        // $freelance_job->is_hired = 1; //activate
+        $job->end_at = now();
+        $job->save();
+        // $freelance_job->save();
+        $job->states()->attach(2); //finish state
+        Toastr::success(' (' . $job->title . ')   is mark as  Finish :)', 'Success!!');
+        return back();
+    }
+    /**
+     *Here,we want to cancel a job
+     */
+    public function cancel(Job $job)
+    {
+        $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
+        // $freelance_job->is_hired = 0; //cancel activate
+        $job->end_at = null;
+        $customer=$job->customer;
+        $job->save();
+        $job->states()->detach(2); //finish-cancel state
+        foreach($job->freelances as $freelance){
+            Notification::send($freelance, new CancelFreelanceNotification($freelance, $customer, $job));
+        }
+        Toastr::Info(' (' . $job->title . ')   is Not  Finish :)', 'Info!!');
+        return back();
+    }
+
+    /**
+     * Here we try to do a softdelete of a job
+     */
+    public function delete(Job $job)
+    {
+        $job->delete();
+        Toastr::Success(' (' . $job->title . ')   is deleted  successfully :)', 'Success!!');
+        //notififier les freelances ayant participer aux jobs et aux clients
+        return back();
     }
 }

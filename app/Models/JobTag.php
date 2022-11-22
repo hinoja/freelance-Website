@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class JobTag extends Model
 {
     use HasFactory;
-    protected $table="job_tag";
+
+    protected $table = 'job_tag';
 }

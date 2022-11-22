@@ -96,7 +96,6 @@
   
 </section>
 
-
 @endsection
 
 @section('connexion')

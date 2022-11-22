@@ -39,11 +39,11 @@
                 <div class="col-md-12 col-sm ">
                     <div class="input-group mb-3 w-300">
 						<span class="input-group-text"><i class="fas fa-at"></i></span>
-                        <input type="email" class="form-control text-center" name="email" placeholder="adresse email" />
+                        <input type="email" class="form-control text-center"   name="email" placeholder="Votre adresse email" value="{{ old("email") }}" required/>
                     </div>
                     <div class="input-group mb-3">
 						<span class="input-group-text "><i class="fas fa-key"></i></span>
-                        <input type="password" class="form-control text-center" name="password" placeholder="Mot de passe" />
+                        <input type="password" class="form-control text-center" name="password" placeholder="Mot de passe" required />
                     </div>
 
                     <div class="input-group mb-3 offset-lg-6">
@@ -67,7 +67,7 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fas fa-at"></i></span>
-                    <input type="email" class=" text-center form-control" name="email" placeholder="adresse email"/>
+                    <input type="email" class=" text-center form-control" name="email" placeholder="adresse email" value="{{ old("email") }}" required />
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text "><i class="fas fa-key"></i></span>

@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Database\Seeders\StateSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StatusSeeder::class,
             categorySeeder::class,
-            StateSeeder::class
+            StateSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

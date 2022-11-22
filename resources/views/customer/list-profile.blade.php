@@ -1,4 +1,6 @@
-
+@php
+    use App\Models\freelance_jobs;
+@endphp
 @extends('layouts.app')
 @section('content')
 
@@ -29,8 +31,8 @@
             <!-- Table -->
             <div class="sixteen columns">
 
-                <p class="margin-bottom-25" style="float: left;">The job applications for <strong><a href="#">Power Systems User Experience Designer</a></strong> are listed below.</p>
-                <strong><a href="#" class="download-csv">Download CSV</a></strong>
+                <p class="margin-bottom-25" style="float: left;">The job applications for <strong><a href="{{ route('job.show',$job) }}">{{ $job->title }}</a></strong> are listed below.</p>
+                <strong><a href="{{ route('download.pdf',$job) }}" class="download-csv">Download CSV</a></strong>
 
             </div>
 
@@ -62,7 +64,7 @@
             <div class="sixteen columns">
 
                 <!-- Application #1 -->
-                @forelse ($profiles as $profile)
+                @forelse ($job->freelances as $profile)
                     <div class="application">
                         <div class="app-content">
 
@@ -71,14 +73,18 @@
                                 <img src="{{ asset('Assets/images/resumes-list-avatar-01.png') }}" alt="alt">
                                 <span>{{ $profile->user->name }}</span>
                                 <ul>
-                                    <li><a href="{{ route('freelance.profileCV.view',  $profile->user  ) }}"><i class="fa fa-file-text"></i> Look CV</a></li>
+                                    <li><a href="{{ route('freelance.profileCV.view',  $profile->user ) }}"><i class="fa fa-file-text"></i> Look CV</a></li>
                                     <li><a href="#"><i class="fa fa-envelope"></i> Contact</a></li>
                                 </ul>
                             </div>
 
                             <!-- Buttons -->
                             <div class="buttons">
-                                <a href="#one-1" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
+                                @if ( freelance_jobs::where('job_id',$job->id)->where('is_hired',1)->where('freelance_id',$profile->id)->first())
+                                    <a href="{{ route('job.cancel.freelance',[$job,$profile]) }}"   class="button gray " style="color: white;background:green">  Cancel Selected </a>
+                                @elseif( freelance_jobs::where('job_id',$job->id)->where('is_hired',0)->where('freelance_id',$profile->id)->first())
+                                    <a href="{{ route('job.selected.freelance',[$job,$profile]) }}"  class="button gray "><i class="fa fa-pencil"></i> Selected</a>
+                                @endif
                                 <a href="#two-1" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
                                 <a href="#three-1" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
                             </div>

@@ -10,4 +10,6 @@ class freelance_jobs extends Model
     use HasFactory;
 
     protected $table = 'freelance_job';
+    public $timestamps=true;
+
 }
