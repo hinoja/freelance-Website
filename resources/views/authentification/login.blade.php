@@ -29,37 +29,73 @@
 	</div>
 </div>
 
-<section class="order-form py-5">
-    <div class="container">
-        <form action="{{ route('login') }}" method="POST">
+{{-- <section class="order-form py-5">
+    <div class="container"> --}}
+        {{-- <form action="{{ route('login') }}" method="POST">
             @csrf
             @method('post')
             
             <div class="row">
                 <div class="col-md-12 col-sm ">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 w-300">
 						<span class="input-group-text"><i class="fas fa-at"></i></span>
-                        <input type="email" class="form-control text-center" name="email" placeholder="Votre adresse email" />
+                        <input type="email" class="form-control text-center" name="email" placeholder="adresse email" />
                     </div>
                     <div class="input-group mb-3">
 						<span class="input-group-text "><i class="fas fa-key"></i></span>
                         <input type="password" class="form-control text-center" name="password" placeholder="Mot de passe" />
                     </div>
 
-                    <div class="input-group mb-3 row offset-lg-6">
-                        <button class="btn btn-success " type="submit" class="">Connexion</button>
+                    <div class="input-group mb-3 offset-lg-6">
+                        <button class="btn btn-success" type="submit" >Connexion</button>
                     </div>
                 </div>
             </div>
-        </form>
+        </form> --}}
+        <div class="login-page">
+            <div class="form">
+              <div class="login">
+                <div class="login-header">
+                  <h3>LOGIN</h3>
+                  <p>Please enter your credentials to login.</p>
+                </div>
+              </div>
+              <form class="login-form" action="{{ route('login') }}" method="POST">
+
+                @csrf
+                @method('post')
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    <input type="email" class=" text-center form-control" name="email" placeholder="adresse email"/>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text "><i class="fas fa-key"></i></span>
+                    <input type="password" class="text-center form-control" name="password" placeholder="password"/>
+                </div>
+               
+                <div class="input-group mb-3 offset-lg-5">
+                    <button class="button mod-button"  type="submit">login</button>
+                </div>
+                
+                <p class="message"><a href="#">Forget Password ?</a></p>
+              </form>
+            </div>
+        </div>
     </div>
-</section>
+{{-- </section> --}}
 
 
 @endsection
 
 @section('connexion')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-        <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
 @endsection
+
+<style>
+
+
+</style>
