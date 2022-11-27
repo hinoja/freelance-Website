@@ -18,6 +18,6 @@ class Tag extends Model
 
     public function freelances()
     {
-        return $this->belongsToMany(Freelance::class);
+        return $this->belongsToMany(Freelance::class)->withTimestamps();
     }
 }

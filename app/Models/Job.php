@@ -27,17 +27,17 @@ class Job extends Model
 
     public function statuses()
     {
-        return $this->belongsToMany(Status::class);
+        return $this->belongsToMany(Status::class)->withTimestamps();
     }
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     public function freelances()
     {
-        return $this->belongsToMany(Freelance::class);
+        return $this->belongsToMany(Freelance::class)->withTimestamps();
     }
 
     public function customer()
@@ -47,6 +47,6 @@ class Job extends Model
 
     public function states()
     {
-        return $this->belongsToMany(State::class);
+        return $this->belongsToMany(State::class)->withTimestamps();
     }
 }

@@ -11,5 +11,6 @@ class freelance_jobs extends Model
 
     protected $table = 'freelance_job';
     public $timestamps=true;
+    
 
 }
