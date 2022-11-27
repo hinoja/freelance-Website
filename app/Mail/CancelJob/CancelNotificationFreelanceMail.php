@@ -41,7 +41,7 @@ class CancelNotificationFreelanceMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'cancelJob.NotificationMailFreelance',
+            view: 'emails.cancelJob.NotificationMailFreelance',
         );
     }
 

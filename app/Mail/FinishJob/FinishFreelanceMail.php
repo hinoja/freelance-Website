@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\CancelJob;
+namespace App\Mail\FinishJob;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CancelNotificationCustomerMail extends Mailable
+class FinishFreelanceMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class CancelNotificationCustomerMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Cancel Notification Customer Mail',
+            subject: 'Finish Freelance Mail',
         );
     }
 
@@ -41,7 +41,9 @@ class CancelNotificationCustomerMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.cancelJob.NotificationMailCustomer',
+                        view: 'emails.FinishJob.FinishFreelanceMailNotification',
+            
+
         );
     }
 

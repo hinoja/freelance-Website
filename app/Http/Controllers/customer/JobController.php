@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Job;
+use App\Models\User;
 use App\Models\Requirement;
 use Illuminate\Support\Str;
 use App\Models\freelance_jobs;
@@ -11,8 +12,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequestJob;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\CancelJob\CancelCustomerNotification;
 use App\Notifications\CancelJob\CancelFreelanceNotification;
+use App\Notifications\FinishJob\FinishFreelanceNotification;
 
 class JobController extends Controller
 {
@@ -49,15 +50,12 @@ class JobController extends Controller
             ([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
-                // 'email' => $request->email,
                 'location' => $request->location,
                 'category_id' => $request->category,
                 'status_id' => $request->status_id,
                 'salary' => $request->salary,
                 'begin' => $request->closingDate, //begin date to apply
                 'deadline' => $request->closingDate, //end date to apply
-                // 'start_at' => $request->openingDate,
-                // 'end_at' => $request->openingDate,
                 'description' => $request->summary,
                 'companyName' => $request->company_name,
                 'companyDescription' => $request->company_description,
@@ -89,8 +87,6 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //    $job = Job::where('slug', '=', $slug)->first();
-        // $requirement = $job->requirements()->get();
         return view('customer.showJob', ['job' => $job]);
     }
 
@@ -105,7 +101,6 @@ class JobController extends Controller
         if (empty(Job::where('customer_id', Auth::user()->userable->id)->get())) {
             return redirect()->route('job.index');
         } else {
-            // $job = Job::where('customer_id', Auth::user()->userable->id)->get();
             return view('customer.manage-jobs');
         }
     }
@@ -119,8 +114,6 @@ class JobController extends Controller
      */
     public function browsejob()
     {
-        // $job = Job::orderBy('created_at', 'DESC');
-
         return view('customer.browse-jobs');
     }
 
@@ -132,30 +125,38 @@ class JobController extends Controller
      */
     public function finish(Job $job)
     {
-        // Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
-        $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
-        // $freelance_job->is_hired = 1; //activate
-        $job->end_at = now();
-        $job->save();
-        // $freelance_job->save();
-        $job->states()->attach(2); //finish state
-        Toastr::success(' (' . $job->title . ')   is mark as  Finish :)', 'Success!!');
+        //au prealable avoir choisi un freelance pour le job
+        $customer = $job->customer->user;
+        $freelance_job = freelance_jobs::Where('job_id', $job->id)->where('is_hired', 1)->get();
+        if ($freelance_job) {
+            $freelance_job = freelance_jobs::where('job_id', $job->id)->first();
+            $job->end_at = now();
+            $job->save();
+            $freelance = User::where('userable_id', $freelance_job->freelance_id)->first();
+            $job->states()->attach(2); //finish state
+            Notification::send($customer, new FinishFreelanceNotification($freelance, $customer, $job));
+            Toastr::success(' (' . $job->title . ')   is mark as  Finish :)', 'Success!!');
+        } else {
+            Toastr::Warning(' (' . $job->title . ') has not a selected Freelance like choice,Please verify :)', 'Error!!');
+        }
         return back();
     }
+
+
+
     /**
-     *Here,we want to cancel a job
+     *Here,we want to cancel mark filled in job
      */
     public function cancel(Job $job)
     {
-        $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
+        // $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
         // $freelance_job->is_hired = 0; //cancel activate
         $job->end_at = null;
-        $customer=$job->customer;
+        $customer = $job->customer->user;
         $job->save();
         $job->states()->detach(2); //finish-cancel state
-        foreach($job->freelances as $freelance){
-            Notification::send($freelance, new CancelFreelanceNotification($freelance, $customer, $job));
-        }
+        // dd($job->freelances); //A revoir à partir d'ici
+
         Toastr::Info(' (' . $job->title . ')   is Not  Finish :)', 'Info!!');
         return back();
     }
@@ -165,8 +166,13 @@ class JobController extends Controller
      */
     public function delete(Job $job)
     {
+        $customer = $job->customer->user;
+        $freelance_job = freelance_jobs::Where('job_id', $job->id)->where('is_hired', 1)->get();
         $job->delete();
-        Toastr::Success(' (' . $job->title . ')   is deleted  successfully :)', 'Success!!');
+        Toastr::Success(' (' . $job->title . ')   is Cancelled with successfully :)', 'Success!!');
+         foreach ($job->freelances as $freelance) {
+            Notification::send($freelance->user, new CancelFreelanceNotification($freelance->user, $customer, $job));
+        }
         //notififier les freelances ayant participer aux jobs et aux clients
         return back();
     }

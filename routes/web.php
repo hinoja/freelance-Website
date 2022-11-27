@@ -80,7 +80,7 @@ Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
         Route::get('/managejob', 'resume')->name('manage');
         Route::post('/addJobpost', 'store')->name('add');
         Route::get('/managejob/finish/{job:slug}', 'finish')->name('finish');
-        Route::get('/delete/{job:slug}', 'delete')->name('delete'); //delete method
+        Route::delete('/delete/{job:slug}', 'delete')->name('delete'); //delete method
         Route::get('/managejob/cancel/{job:slug}', 'cancel')->name('customer.cancel');
     });
 });

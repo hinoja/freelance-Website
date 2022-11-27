@@ -207,7 +207,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
     {{-- <p style="font-size: 14px; line-height: 140%;">Juneteenth is a day to celebrate freedom and the struggle against slavery. The date marking the year WITHOUT forgiving or forgetting, serves as an important reminder for all Americans that we must always work together and carry on what was started so many years ago - justice and freedom for everyone!.</p> --}}
-    <p style="font-size: 14px; line-height: 140%;">Hello    {{ $freelance->name}} </p>
+    <p style="font-size: 14px; line-height: 140%;">👌😊 very Thanks Dear   {{ $freelance->name}} 👌👌</p>
   </div>
 
       </td>
@@ -263,9 +263,12 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
 
-                    <strong style="font-size: 1em;">Sorry ,🤒✖ Job whose below  has cancelled😑😥</strong>
-                    Name :  <strong>{{ $job->title }}</strong>   <br>
+                <strong style="font-size: 1em; Color:green"> 👌😊✔ We tell you thanks like you Finish Job 👌👌</strong> <br>
+                    Job's name :  <strong>{{ $job->title }}</strong>   <br>
 					Location : <strong> {{ $job->location }}</strong> <br>
+					Your Salary : <strong> {{ $job->salary }}</strong> <br>
+
+
   </h1>
 
       </td>
@@ -296,7 +299,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
 <div align="center">
   <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.unlayer.com" style="height:39px; v-text-anchor:middle; width:220px;" arcsize="10.5%"  stroke="f" fillcolor="#df2e13"><w:anchorlock/><center style="color:#FFFFFF;font-family:arial,helvetica,sans-serif;"><![endif]-->
-    <a href="https://www.unlayer.com" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #df2e13; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:38%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;"><a href="{{ route('welcome') }}"> Look Else Job</a>
+    <a href="https://www.unlayer.com" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #df2e13; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:38%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;"><a href="{{ route('welcome') }}">Add Else Job</a>
       <span style="display:block;padding:10px 20px;line-height:120%;"><span style="font-size: 16px; line-height: 19.2px;"><strong><span style="line-height: 19.2px; font-family: arial, helvetica, sans-serif; font-size: 16px;">  </span></strong></span></span>
     </a>
   <!--[if mso]></center></v:roundrect><![endif]-->

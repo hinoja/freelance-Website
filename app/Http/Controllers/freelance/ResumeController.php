@@ -65,13 +65,13 @@ class ResumeController extends Controller
 
         for ($i = 0; $i < count($start_date) - 1; $i++) {
             $dataexp =
-                        [
-                            'start_at' => $start_date[$i],
-                            'end_at' => $end_date[$i],
-                            'company' => $company[$i],
-                            'job_title' => $job_title[$i],
-                            'freelance_id' => Auth::user()->userable->id,
-                        ];
+                [
+                    'start_at' => $start_date[$i],
+                    'end_at' => $end_date[$i],
+                    'company' => $company[$i],
+                    'job_title' => $job_title[$i],
+                    'freelance_id' => Auth::user()->userable->id,
+                ];
             Experience::updateOrCreate($dataexp);
         }
 
@@ -83,7 +83,7 @@ class ResumeController extends Controller
             ];
             Links::updateOrCreate($dataurl);
         }
-        Toastr::success('You Have Successfully created  ('.count($url).'Link(s) And '.count($start_date).'Experience(s) )  :)', 'Success!!');
+        Toastr::success('You Have Successfully created  (' . count($url) . 'Link(s) And ' . count($start_date) . 'Experience(s) )  :)', 'Success!!');
 
         return redirect()->route('resume.manage');
     }

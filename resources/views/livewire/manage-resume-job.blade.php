@@ -29,20 +29,24 @@
                 <td>{{ $job->deadline}}</td>
                 <td class="centered"><a href="{{ route('job.applier',$job) }}" class="button">Show ({{ (count($job->freelances)) }})</a></td>
                 <td class="action">
-
+                    <form action="{{ route('job.delete',$job) }}" method="POST" style="display: initial">
+                        <style>
+                            button:hover{
+                                color: red;
+                            }
+                        </style>
+                        @csrf
+                        @method('delete')
+                        <button style="background: white;color:rgb(97, 95, 95);text-transform:inherit;" type="submit" class="delete"><i class="fa fa-remove"></i> delete </button>
+                      </form>
+                    {{-- <a href="{{ route('job.delete',$job) }}" class="delete "><i class="fa fa-remove"></i> Delete</a> --}}
+                    {{-- <a href="{{ route('job.customer.cancel',$job) }}"><i class="fa fa-pencil"></i> Cancel</a> --}}
                     @if (!empty($job->end_at)  )
-                        <a href="{{ route('job.customer.cancel',$job) }}"><i class="fa  fa-square "></i> Cancel </a>
+                        <a href="#"><i class="fa  fa-square "></i> Not Finish (Not give) </a>
                     @elseif(empty($job->end_at) )
-                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
                         {{-- <a href="#"><i class="fa  fa-eye-slash"></i> Do</a> --}}
                         <a href="{{ route('job.finish',$job) }}"><i class="fa  fa-check "></i> Mark Finish</a>
-                        {{-- <form action="{{ route('job.delete',$job) }}" method="get"> --}}
-                            {{-- @csrf --}}
-                            {{-- @method('delete') --}}
-                            {{-- <input type="submit" > --}}
-                            {{-- <input type="button" value=""> --}}
-                            <a href="{{ route('job.delete',$job) }}" class="delete "><i class="fa fa-remove"></i> Delete</a>
-                        {{-- </form> --}}
+
 
                     @endif
                 </td>

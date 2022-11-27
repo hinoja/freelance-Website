@@ -207,7 +207,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
     {{-- <p style="font-size: 14px; line-height: 140%;">Juneteenth is a day to celebrate freedom and the struggle against slavery. The date marking the year WITHOUT forgiving or forgetting, serves as an important reminder for all Americans that we must always work together and carry on what was started so many years ago - justice and freedom for everyone!.</p> --}}
-    <p style="font-size: 14px; line-height: 140%;">Hello    {{ $freelance->name}} </p>
+    <p style="font-size: 14px; line-height: 140%;"> Hey  {{ $Customer->name}}  </p>
   </div>
 
       </td>
@@ -263,9 +263,9 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <h1 class="v-font-size" style="margin: 0px; color: #000000; line-height: 100%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: georgia,palatino; font-size: 25px;">
 
-                    <strong style="font-size: 1em;">Sorry ,🤒✖ Job whose below  has cancelled😑😥</strong>
+                    <strong style="font-size: 1em;"> 🤒😥   Confirmation Cancel Selection of   {{ $freelance->name}} to this Job ✖😑</strong> <br> <br>
                     Name :  <strong>{{ $job->title }}</strong>   <br>
-					Location : <strong> {{ $job->location }}</strong> <br>
+
   </h1>
 
       </td>
