@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('freelance_id')->constrained();
             $table->foreignId('job_id')->constrained();
             $table->boolean('is_hired')->default(0);
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

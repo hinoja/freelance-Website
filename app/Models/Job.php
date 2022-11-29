@@ -7,6 +7,7 @@ use App\Models\Status;
 use App\Models\Category;
 use App\Models\Requirement;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
@@ -14,6 +15,7 @@ class Job extends Model
     protected $guarded = [];
 
     use HasFactory;
+    // use SoftDeletes;
 
     public function category()
     {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('job_id')->constrained();
             $table->foreignId('status_id')->constrained();
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

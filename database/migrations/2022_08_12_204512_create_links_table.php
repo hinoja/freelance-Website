@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('url')->nullable();
             $table->foreignId('freelance_id')->constrained();
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

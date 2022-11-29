@@ -26,10 +26,11 @@ return new class extends Migration
             $table->date('end_at')->nullable();
             $table->string('companyName')->nullable();
             $table->string('companyDescription')->nullable();
-            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('status_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->SoftDeletes();
+            $table->foreignId('customer_id')->constrained()->onUpdate('cascade')->onDelete('cascade');;
+            // $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('status_id')->constrained() ->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreignId('category_id')->constrained() ->onUpdate('cascade')->onDelete('cascade');;
+            // $table->SoftDeletes();
             $table->timestamps();
         });
     }

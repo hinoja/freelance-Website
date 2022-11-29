@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->text('description')->nullable();
             $table->double('salaries')->nullable();
-
+            // $table->SoftDeletes();
             $table->timestamps();
         });
     }

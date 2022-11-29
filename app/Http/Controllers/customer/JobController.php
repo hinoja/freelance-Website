@@ -11,6 +11,9 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequestJob;
+use App\Models\Job_state;
+use App\Models\JobTag;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CancelJob\CancelFreelanceNotification;
 use App\Notifications\FinishJob\FinishFreelanceNotification;
@@ -168,11 +171,29 @@ class JobController extends Controller
     {
         $customer = $job->customer->user;
         $freelance_job = freelance_jobs::Where('job_id', $job->id)->where('is_hired', 1)->get();
-        $job->delete();
-        Toastr::Success(' (' . $job->title . ')   is Cancelled with successfully :)', 'Success!!');
-         foreach ($job->freelances as $freelance) {
+        foreach ($job->freelances as $freelance) {
             Notification::send($freelance->user, new CancelFreelanceNotification($freelance->user, $customer, $job));
         }
+        // dd("passe");
+        $requirements = Requirement::where('job_id', $job->id)->get();
+        foreach ($requirements as $requirement) {
+            $requirement->delete();
+        }
+        $jobStates = Job_state::where('job_id', $job->id)->get();
+        foreach ($jobStates as $itemState) {
+            $itemState->delete();
+        }
+        $jobTags = JobTag::where('job_id', $job->id)->get();
+        foreach ($jobTags as $itemTag) {
+            $itemTag->delete();
+        }
+        $freelanceJob = freelance_jobs::where('job_id', $job->id)->get();
+        foreach ($freelanceJob as $item) {
+            $item->delete();
+        }
+
+        $job->delete();
+        Toastr::Success(' (' . $job->title . ')   is Cancelled with successfully :)', 'Success!!');
         //notififier les freelances ayant participer aux jobs et aux clients
         return back();
     }

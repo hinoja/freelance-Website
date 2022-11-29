@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tag_id')->constrained();
             $table->foreignId('freelance_id')->constrained();
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }
