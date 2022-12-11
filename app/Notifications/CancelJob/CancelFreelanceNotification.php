@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CancelFreelanceNotification extends Notification
+class CancelFreelanceNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -39,7 +39,7 @@ class CancelFreelanceNotification extends Notification
      */
     public function toMail($notifiable)
     {
-                return (new CancelNotificationFreelanceMail($this->freelance, $this->customer, $this->job))
+             return (new CancelNotificationFreelanceMail($this->freelance, $this->customer, $this->job))
                                     ->to($notifiable->email);
     }
 

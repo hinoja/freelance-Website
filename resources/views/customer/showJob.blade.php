@@ -143,7 +143,7 @@ use App\Models\freelance_jobs;
 
 @endsection
 
-@section('script')
+@push('script')
     <!-- Scripts
     ================================================== -->
     <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
@@ -160,5 +160,5 @@ use App\Models\freelance_jobs;
     <script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
     <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
 
-@endsection
+@endpush
 

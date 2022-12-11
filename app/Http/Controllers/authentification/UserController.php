@@ -11,6 +11,7 @@ use App\Models\Experience;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,10 +28,15 @@ class UserController extends Controller
     {
         return view('welcome');
     }
-
+    /**
+     * display  sign up view
+     */
+    public function indexRegister()
+    {
+        return view('authentification.signup',['roles'=>Role::all()]);
+    }
     public function signup(Request $request)
     {
-         
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -127,7 +133,6 @@ class UserController extends Controller
                 }
             } elseif (Hash::check($request->password, $user->password) && $user->is_active == 0) {
                 Toastr::Info('Your account is disable, contact administrator ): ', 'Info!!');
-
                 return back();
             } elseif (! Hash::check($request->password, $user->password) && $user->is_active == 1) {
                 Toastr::Warning('Invalid UserName /PassWord. :)', 'Error!!');

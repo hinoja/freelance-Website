@@ -8,12 +8,14 @@ use App\Models\User;
 use App\Models\Links;
 use App\Models\Experience;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Freelance extends Model
 {
     use HasFactory;
+    use Notifiable;
     // use SoftDeletes;
 
     public function user()

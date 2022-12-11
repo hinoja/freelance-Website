@@ -1,10 +1,4 @@
-@php
-    use App\Models\Role;
-    use Illuminate\Support\Facades\Session;
-@endphp
-
 @extends('layouts.app')
-
 
 @section('content')
     {{-- <div id="titlebar" class="single">
@@ -37,9 +31,9 @@
             <div class="col-lg-3 col-md-3"></div>
             <div class="container form-signup txt-center col-lg-6 col-md-3">
 
-                @if (Session::has('success'))
+                {{-- @if (Session::has('success'))
                     <div class="alert alert-sucess"> {{ Session::get('success') }} </div>
-                @endif
+                @endif --}}
                 <div class="login">
                     <div class="login-header">
                         <h3>SIGNUP</h3>
@@ -72,8 +66,8 @@
                                 <span class="input-group-text"><i class='fas fa-wrench'></i></span>
                                 <select class="form-select text-center form-control" id="inputGroupSelect01" name="role_id">
                                     <option selected>Type compte</option>
-                                    @foreach (Role::all() as $val)
-                                        <option value="{{ $val->id }}">{{ $val->name }}</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select> <br>
                                 {{-- @error('role_id')
@@ -112,12 +106,11 @@
 
     </section>
 @endsection
-
-@section('connexion')
+@push('connexion')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-@endsection
+@endpush

@@ -2,13 +2,14 @@
 
 namespace App\Notifications\EngagedChoice;
 
-use App\Mail\EngagedChoice\EngagedFreelanceMail;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\EngagedChoice\EngagedFreelanceMail;
+use Illuminate\Notifications\Messages\MailMessage;
 
-class EngagedFreelanceNotification extends Notification
+class EngagedFreelanceNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

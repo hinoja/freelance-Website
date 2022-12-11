@@ -199,7 +199,6 @@
                                 <div class="divider margin-top-0"></div>
 
                                          <button class="button big margin-top-5" type="submit">Preview <i class="fa fa-arrow-circle-right"></i></button>
-
                                 </div>
                         </form>
 
@@ -215,7 +214,7 @@
     @endsection
 
 
-    @section('script')
+    @push('script')
             <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
             <script src="{{ asset('Assets/scripts/custom.js') }}"></script>
             <script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
@@ -233,7 +232,7 @@
             <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.bbcode.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script>
 
-    @endsection
+    @endpush
 
 {{--
 <!-- Scripts

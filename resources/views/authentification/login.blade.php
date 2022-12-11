@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Titlebar
-        ================================================== -->
+            ================================================== -->
     {{-- <div id="titlebar" class="single">
 	<div class="container">
 		<div class="sixteen columns">
@@ -91,7 +91,8 @@
     {{-- </section> --}}
 @endsection
 
-@section('connexion')
+
+@push('connexion')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
@@ -99,10 +100,7 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <link href="{{ asset('Assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
+@endpush
+@push('script')
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-@endsection
-
-<style>
-
-
-</style>
+@endpush

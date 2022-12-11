@@ -26,10 +26,17 @@ class ChoiceFreelanceController extends Controller
         } elseif (!empty($job->end_at)) {
             Toastr::Warning('This job : (' . $job->title . ')  is already finish  :)', 'Error!!');
         } else {
+            $freelance_job = freelance_jobs::where('job_id', $job->id)->get();
+            foreach ($freelance_job as $item) {
+                $item->is_hired = 2; //activate
+                $item->save(); //activate
+                // les infos ne s'enregistrent pas dans la BD
+            }
             $freelance_job = freelance_jobs::where('job_id', $job->id)->where('freelance_id', $freelance->id)->first();
             $freelance_job->is_hired = 1; //activate
             $freelance_job->save();
-            $job->start_at = now();
+            $job->start_at = null;
+            $job->end_at = null;
             $freelanceUser = User::where('userable_id', $freelance->id)->first();
             $customer = $job->customer->user;
             $job->save();
@@ -38,7 +45,7 @@ class ChoiceFreelanceController extends Controller
             Notification::send($customer, new EngagedCustomerNotification($freelanceUser, $customer, $job));
             Notification::send($freelanceUser, new EngagedFreelanceNotification($freelanceUser, $customer, $job));
         }
-        return back();
+        return redirect()->route('job.manage');
     }
 
     /**
@@ -46,18 +53,28 @@ class ChoiceFreelanceController extends Controller
      */
     public function CancelChoice(Job $job, Freelance $freelance)
     {
-        $customer = $job->customer->user;
-        $freelanceUser = $freelance->user;
-        $freelance_job = freelance_jobs::where('job_id', $job->id)->where('freelance_id', $freelance->id)->first();
-        $freelance_job->is_hired = 0; //activate
-        $freelance_job->save();
-        $job->start_at = null;
-        $job->save();
-        $job->states()->attach(1); //In progress
-        Notification::send($customer, new DisEngagedCustomerNotification($freelanceUser, $customer, $job));
-        Notification::send($freelanceUser, new DisEngagedFreelanceNotification($freelanceUser, $customer, $job));
-        Toastr::success('Cancel choice  of freelance Selected   (' . $job->title . ')   :)', 'Success!!');
-        //notifications systems
+        if ($job->start_at) {
+            Toastr::Warning('Sorry ,this jb is already in progress   :)', 'Error!!');
+        } else {
+            $customer = $job->customer->user;
+            $freelanceUser = $freelance->user;
+            // $freelance_job = freelance_jobs::where('job_id', $job->id)->where('freelance_id', $freelance->id)->first();
+            $freelance_job = freelance_jobs::where('job_id', $job->id)->get();
+            foreach ($freelance_job as $item) {
+                $item->is_hired = 0; //activate
+                $item->save(); //activate
+            }
+            // $freelance_job->save();
+            // $freelance_job->is_hired = 0; //activate
+            $job->start_at = null;
+            $job->end_at = null;    
+            $job->save();
+            $job->states()->attach(1); //In progress
+            // dd($freelance_job);
+            Notification::send($customer, new DisEngagedCustomerNotification($freelanceUser, $customer, $job));
+            Notification::send($freelanceUser, new DisEngagedFreelanceNotification($freelanceUser, $customer, $job));
+            Toastr::success('Cancel\'s choice  of freelance already Selected is successfully     :)', 'Success!!');
+        }
         return back();
     }
 }

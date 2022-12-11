@@ -2,15 +2,17 @@
 
 namespace App\Notifications\FinishJob;
 
-use App\Mail\FinishJob\FinishFreelanceMail;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use App\Mail\FinishJob\FinishFreelanceMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class FinishFreelanceNotification extends Notification
+class FinishFreelanceNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    use Notifiable;
 
     /**
      * Create a new notification instance.

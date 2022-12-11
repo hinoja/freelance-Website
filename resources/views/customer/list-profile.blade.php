@@ -14,8 +14,8 @@
                     <nav id="breadcrumbs">
                         <ul>
                             <li>You are here:</li>
-                            <li><a href="#">Home</a></li>
-                            <li>Job Dashboard</li>
+                            <li><a href="{{ route('welcome') }}">Home</a></li>
+                            <li><a href="{{ route('job.applier',$job) }}">Job Dashboard</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -84,6 +84,7 @@
                                     <a href="{{ route('job.cancel.freelance',[$job,$profile]) }}"   class="button gray " style="color: white;background:green">  Cancel Selected </a>
                                 @elseif( freelance_jobs::where('job_id',$job->id)->where('is_hired',0)->where('freelance_id',$profile->id)->first())
                                     <a href="{{ route('job.selected.freelance',[$job,$profile]) }}"  class="button gray "><i class="fa fa-pencil"></i> Selected</a>
+                                @elseif(freelance_jobs::where('job_id',$job->id)->where('is_hired',2)->where('freelance_id',$profile->id)->first())
                                 @endif
                                 <a href="#two-1" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
                                 <a href="#three-1" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
@@ -347,7 +348,7 @@
         </div>
 
 @endsection
-@section('script')
+@push('script')
         <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
         <script src="{{ asset('Assets/scripts/custom.js') }}"></script>
         <script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
@@ -361,5 +362,5 @@
         <script src="{{ asset('Assets/scripts/jquery.counterup.min.js') }}"></script>
         <script src="{{ asset('Assets/scripts/jquery.jpanelmenu.js') }}"></script>
         <script src="{{ asset('Assets/scripts/stacktable.js') }}"></script>
-@endsection
+@endpush
 

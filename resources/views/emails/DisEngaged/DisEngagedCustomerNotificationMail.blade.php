@@ -207,7 +207,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
   <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
     {{-- <p style="font-size: 14px; line-height: 140%;">Juneteenth is a day to celebrate freedom and the struggle against slavery. The date marking the year WITHOUT forgiving or forgetting, serves as an important reminder for all Americans that we must always work together and carry on what was started so many years ago - justice and freedom for everyone!.</p> --}}
-    <p style="font-size: 14px; line-height: 140%;"> Hey  {{ $Customer->name}}  </p>
+    <p style="font-size: 14px; line-height: 140%;"> Hey  {{ $customer->name}}  </p>
   </div>
 
       </td>

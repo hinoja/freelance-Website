@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequestJob;
+use App\Models\Category;
 use App\Models\Job_state;
 use App\Models\JobTag;
 use App\Models\Tag;
@@ -28,7 +29,7 @@ class JobController extends Controller
     public function index()
     {
         $job = Job::orderBy('created_at', 'DESC');
-        return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->get()->take(4), 'job2' => $job->paginate(3)]);
+        return view('welcome', ['job' => Job::orderBy('created_at', 'DESC')->get()->take(4),'categories'=>Category::all()]);
     }
 
     /**
@@ -126,12 +127,12 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function finish(Job $job)
+    public function finish(Job $job) //mark like doing
     {
         //au prealable avoir choisi un freelance pour le job
         $customer = $job->customer->user;
         $freelance_job = freelance_jobs::Where('job_id', $job->id)->where('is_hired', 1)->get();
-        if ($freelance_job) {
+        if ($job->start_at ) {
             $freelance_job = freelance_jobs::where('job_id', $job->id)->first();
             $job->end_at = now();
             $job->save();
@@ -140,7 +141,7 @@ class JobController extends Controller
             Notification::send($customer, new FinishFreelanceNotification($freelance, $customer, $job));
             Toastr::success(' (' . $job->title . ')   is mark as  Finish :)', 'Success!!');
         } else {
-            Toastr::Warning(' (' . $job->title . ') has not a selected Freelance like choice,Please verify :)', 'Error!!');
+            Toastr::Warning(' This Job is not launch or in progress,Please verify :)', 'Error!!');
         }
         return back();
     }
@@ -150,17 +151,24 @@ class JobController extends Controller
     /**
      *Here,we want to cancel mark filled in job
      */
-    public function cancel(Job $job)
+    public function launch(Job $job)
     {
         // $freelance_job = freelance_jobs::Where('job_id', $job->id)->first();
         // $freelance_job->is_hired = 0; //cancel activate
-        $job->end_at = null;
         $customer = $job->customer->user;
-        $job->save();
-        $job->states()->detach(2); //finish-cancel state
-        // dd($job->freelances); //A revoir à partir d'ici
-
-        Toastr::Info(' (' . $job->title . ')   is Not  Finish :)', 'Info!!');
+        $freelance_job = freelance_jobs::Where('job_id', $job->id)->where('is_hired', 1)->get();
+        if ($freelance_job) {
+            $freelance_job = freelance_jobs::where('job_id', $job->id)->first();
+            $job->start_at = now();
+            $job->end_at = null;
+            $job->save();
+            // $freelance = User::where('userable_id', $freelance_job->freelance_id)->first();
+            $job->states()->attach(1); //In progress state
+            // Notification::send($customer, new FinishFreelanceNotification($freelance, $customer, $job));
+            Toastr::Info(' (' . $job->title . ')   is mark as  * In Progress * :)', 'Info!!');
+        } else {
+            Toastr::Warning(' (' . $job->title . ') has not a selected Freelance like choice,Please verify :)', 'Error!!');
+        }
         return back();
     }
 

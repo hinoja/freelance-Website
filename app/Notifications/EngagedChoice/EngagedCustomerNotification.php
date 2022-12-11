@@ -2,16 +2,16 @@
 
 namespace App\Notifications\EngagedChoice;
 
-use App\Mail\EngagedChoice\EngagedCustomerMail;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\EngagedChoice\EngagedCustomerMail;
+use Illuminate\Notifications\Messages\MailMessage;
 
-class EngagedCustomerNotification extends Notification
+class EngagedCustomerNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
     /**
      * Create a new notification instance.
      *

@@ -12,9 +12,9 @@ use Brian2694\Toastr\Facades\Toastr;
 <meta charset="utf-8">
 <title>Work Scout</title>
 
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+{{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <!-- Font awesome cdn CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> --}}
 
 
 <!-- Mobile Specific Metas
@@ -26,7 +26,8 @@ use Brian2694\Toastr\Facades\Toastr;
 
 @stack('css')
 
-@yield('connexion')
+@stack('connexion')
+
 
 <!-- CSS
 ================================================== -->
@@ -103,7 +104,7 @@ use Brian2694\Toastr\Facades\Toastr;
 
 <!-- Scripts
 ================================================== -->
-@yield('script')
+@stack('script')
 @livewireScripts()
 {{--
 <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>

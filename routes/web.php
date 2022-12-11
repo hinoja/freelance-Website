@@ -51,7 +51,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
     Route::view('/login', 'authentification.login')->name('login.view');
-    Route::view('/signup', 'authentification.signUp')->name('signup.view');
+    Route::get('/signup', [UserController::class,'indexRegister'])->name('signup.view');
 });
 
 //freelance
@@ -81,7 +81,8 @@ Route::middleware(['auth', 'checkRole:2'])->name('job.')->group(function () {
         Route::post('/addJobpost', 'store')->name('add');
         Route::get('/managejob/finish/{job:slug}', 'finish')->name('finish');
         Route::delete('/delete/{job:slug}', 'delete')->name('delete'); //delete method
-        Route::get('/managejob/cancel/{job:slug}', 'cancel')->name('customer.cancel');
+        // Route::get('/managejob/cancel/{job:slug}', 'cancel')->name('customer.cancel');
+        Route::get('/managejob/launch/{job:slug}', 'launch')->name('customer.launch');
     });
 });
 Route::get('/', [JobController::class, 'index'])->name('welcome');

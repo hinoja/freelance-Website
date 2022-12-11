@@ -4,8 +4,8 @@ namespace App\Http\Controllers\freelance;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
-use App\Notifications\apply\ToFreelanceNotificationsApply;
 use App\Notifications\cancel\ToCustomerNotificationsCancel;
+use App\Notifications\cancel\ToFreelanceNotificationsCancel;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +32,7 @@ class CancelController extends Controller
             $job->states()->attach(3);
         }
         $job->save();
-        Notification::send($freelance, new ToFreelanceNotificationsApply($freelance, $customer, $job));
+        Notification::send($freelance, new ToFreelanceNotificationsCancel($freelance, $customer, $job));
         Notification::send($customer, new ToCustomerNotificationsCancel($freelance, $customer, $job));
         Toastr::Info('Your cancel is considerated, ckeck your confirmation mail   :)', 'Info!!');
 

@@ -1,7 +1,6 @@
 
 @php
 use App\Models\Status;
-use App\Models\Category;
 @endphp
 
 <div class="list-search">
@@ -22,16 +21,16 @@ use App\Models\Category;
          <li><a href="{{ route('job.show',$job->slug) }}">
              <img src="{{ asset('Assets/images/job-list-logo-01.png') }}" alt="">
              <div class="job-list-content">
-                 <h4> {{ (Category::find( $job->category_id))->name }}   / {{ $job->title }}
-                     @if ((Status::find( $job->status_id))->id === 1)
+                 <h4>    {{ $job->category->name }}   / {{ $job->title }}
+                     @if ( $job->status_id === 1)
                          <span   class="part-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                     @elseif ((Status::find( $job->status_id))->id == 2)
+                     @elseif ($job->status_id === 2)
                          <span style="background-color: red">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                     @elseif ((Status::find( $job->status_id))->id==3)
+                     @elseif ($job->status_id ===3)
                          <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
-                     @elseif ((Status::find( $job->status_id))->id ==4)
+                     @elseif ($job->status_id ===4)
                          <span class="internship"> {{ (Status::find( $job->status_id))->name }} </span></h4>
-                     @elseif ((Status::find( $job->status_id))->id==5)
+                     @elseif ($job->status_id ===5)
                          <span class="temporary">  {{ (Status::find( $job->status_id))->name }} </span></h4>
                      @else
                          <span class="full-time">  {{ (Status::find( $job->status_id))->name }} </span></h4>
