@@ -16,6 +16,9 @@ use App\Http\Controllers\authentification\SocialController;
 use App\Http\Controllers\authentification\VerifyEmailController;
 use App\Http\Controllers\customer\ChoiceFreelanceController;
 
+//admin
+use App\Http\Controllers\admin\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,3 +97,44 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 // Route::fallback(function () {
 //     Toastr::Info(' sorry,This page don\'t  exist ):', 'Info!!');
 // });
+
+
+
+//admin
+Route::get('dashboardHome', [AdminController::class, 'dashboardHome'])->name('dashboardHome');
+
+Route::get('eCommerce', [AdminController::class, 'eCommerce'])->name('eCommerce');
+
+Route::get('carDealer', [AdminController::class, 'carDealer'])->name('carDealer');
+
+Route::get('stockMarket', [AdminController::class, 'stockMarket'])->name('stockMarket');
+
+Route::get('dating', [AdminController::class, 'dating'])->name('dating');
+
+Route::get('jobPortal', [AdminController::class, 'jobPortal'])->name('jobPortal');
+
+Route::get('crm', [AdminController::class, 'crm'])->name('crm');
+
+Route::get('realEstate', [AdminController::class, 'realEstate'])->name('realEstate');
+
+Route::get('cryptoCurrency', [AdminController::class, 'cryptoCurrency'])->name('cryptoCurrency');
+
+Route::get('chat', [AdminController::class, 'chat'])->name('chat');
+
+Route::get('calenderList', [AdminController::class, 'calenderList'])->name('calenderList');
+
+Route::get('fullCalender', [AdminController::class, 'fullCalender'])->name('fullCalender');
+
+Route::get('mail', [AdminController::class, 'mail'])->name('mail');
+
+Route::get('dataTable', [AdminController::class, 'dataTable'])->name('dataTable');
+
+Route::get('editableTable', [AdminController::class, 'editableTable'])->name('editableTable');
+
+Route::get('exportTable', [AdminController::class, 'exportTable'])->name('exportTable');
+
+Route::get('login', [AdminController::class, 'login'])->name('login');
+
+Route::get('register', [AdminController::class, 'register'])->name('register');
+
+Route::get('lockScreen', [AdminController::class, 'lockScreen'])->name('lockScreen');
