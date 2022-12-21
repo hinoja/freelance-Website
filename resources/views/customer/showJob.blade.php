@@ -80,7 +80,7 @@ use App\Models\freelance_jobs;
 		<!-- Sort by -->
 		<div class="widget">
 			<h4>Overview <span class="full-time" style="padding:5px;">
-                {{ ($job->states[count($job->states)-1])->name  }} </span></h4>
+                {{ $job->states->last()->name  }} </span></h4>
 			<div class="job-overview">
 
 				<ul>
@@ -114,18 +114,28 @@ use App\Models\freelance_jobs;
 					</li>
 				</ul>
 
-                @if(Auth::user())
+              @auth
                     @if (Auth::user()->role_id != 2)
-                                 {{-- @if(Auth::user()->userable->jobs() appartient $job) --}}
-                                    @if( freelance_jobs::Where('freelance_id',Auth::user()->userable->id)->Where('job_id',$job->id)->first() )
-                                      <a href="{{ route('job.cancel',$job) }}" class=" button"> Cancel Apply</a>
-                                    @else
-                                      <a href="{{ route('job.apply',$job) }}" class="button">Apply For This Job</a>
-                                    @endif
+                       @if (empty($job->end_at))
+                            {{-- @if(Auth::user()->userable->jobs() appartient $job) --}}
+                            {{-- @if( freelance_jobs::Where('freelance_id',Auth::user()->userable->id)->Where('job_id',$job->id)->first() ) --}}
+                            @if($job->isSelected( Auth::user()->userable->id) && $job->isFreelanceHasApplysJob())
+                            <a href="#" class=" button" style="background-color:rgb(3, 70, 33)"> You had already enrolled </a>
+                            @elseif($job->isFreelanceHasApplysJob() )
+                              <a href="{{ route('job.cancel',$job) }}" class=" button"> Cancel Apply</a>
+                             @else
+                            <a href="{{ route('job.apply',$job) }}" class="button">Apply For This Job</a>
+                            @endif
+
+
+                        @else
+                        <a href="#" class="button" style="background-color:gray">Now, You can't  apply to this job</a>
+                       @endif
+
                     @endif
-			     @else
+			    @else
 							<a href="{{ route('login.view') }}" class=" button" >Please Sign In to apply this job</a>
-                @endif
+               @endauth
 
 
 			</div>

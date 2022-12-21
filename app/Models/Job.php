@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Models\Tag;
 use App\Models\Status;
 use App\Models\Category;
+use App\Models\freelance_jobs;
 use App\Models\Requirement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -52,5 +54,20 @@ class Job extends Model
     public function states()
     {
         return $this->belongsToMany(State::class)->withTimestamps();
+    }
+    public function isFreelanceHasApplysJob()
+    {
+        foreach ($this->freelances as $freelance) {
+
+            if ($freelance::Where('id', Auth::user()->userable->id)->first())
+                return true;
+            else return false;
+        }
+    }
+    public function isSelected($freelanceId)
+    {
+        if (freelance_jobs::where('job_id', $this->id)->where('is_hired', 1)->where('freelance_id', $freelanceId)->first())
+            return true;
+        else false;
     }
 }

@@ -18,10 +18,10 @@
         @foreach ($jobs as $job)
             <tr>
                 <td class="title"><a href="{{ route('job.show', $job) }}">
-                        {{ $job->category->name }} , {{ $job->title }} @if (!empty($job->start_at) && empty($job->end_at))
-                            <span
-                                style="padding:3px;background: blue;border:1px solid blue;border-raduis:8px;color:white">
-                                In Progress</span>
+                        {{ $job->category->name }} , {{ $job->title }} @if (!empty($job->start_at) && empty($job->end_at))  <br>
+                            <div
+                                style="color:green;font-weight:bold;padding:0px;margin:0px;font-size:1.2em;">
+                                In Progress...</div>
                         @endif
                     </a></td>
                 <td class="centered">
@@ -32,11 +32,17 @@
                 </td>
                 <td> {{ $job->created_at->format('Y-m-d') }}</td>
                 <td>{{ $job->deadline }}</td>
-                <td class="centered"><a href="{{ route('job.applier', $job) }}" class="button">Show
+                @if (count($job->freelances) >0)
+                    <td class="centered"><a href="{{ route('job.applier', $job) }}" class="button">Show
                         ({{ count($job->freelances) }})
                     </a></td>
+                @else
+                    <td class="centered"><a href="#" style="background-color: gray;"  class="button"><span class="button">Show</span></td></a>
+                @endif
+
                 <td class="action">
-                    <form action="{{ route('job.delete', $job) }}" method="POST" style="display: initial">
+                     @if (empty($job->end_at))
+                     <form action="{{ route('job.delete', $job) }}" method="POST" style="display: initial">
                         <style>
                             button:hover {
                                 color: red;
@@ -47,6 +53,7 @@
                         <button style="background: white;color:rgb(97, 95, 95);text-transform:inherit;" type="submit"
                             class="delete"><i class="fa fa-remove"></i> delete </button>
                     </form>
+                     @endif
                     {{-- <button style="background: white;color:rgb(97, 95, 95);text-transform:inherit;" class="delete"><i class="fa fa-remove"></i> launch job </button> --}}
                     @if (freelance_jobs::where('job_id', $job->id)->where('is_hired', 1)->first() &&
                         empty($job->end_at) &&

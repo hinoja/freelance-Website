@@ -45,24 +45,26 @@
                     @method('post')
                     <div class="row">
                         <div class="col-md-12 col-sm-12 ">
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control text-center" name="name"
                                     value="{{ old('name') }}" placeholder="Votre nom complet" /> <br>
-                                {{-- @error('name')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                @enderror --}}
                             </div>
-                            <div class="input-group mb-3">
+                            @error('name')
+                                <span class="error text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-at"></i></span>
                                 <input type="email" name="email" value="{{ old('email') }}"
                                     class="form-control text-center" placeholder="Votre adresse email" /> <br>
-                                {{-- @error('email')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                @enderror --}}
                             </div>
+                            @error('email')
+                                <span class="error text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
 
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class='fas fa-wrench'></i></span>
                                 <select class="form-select text-center form-control" id="inputGroupSelect01" name="role_id">
                                     <option selected>Type compte</option>
@@ -70,19 +72,21 @@
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select> <br>
-                                {{-- @error('role_id')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                @enderror --}}
+
                             </div>
-                            <div class="input-group mb-3">
+                            @error('role_id')
+                                <span class="error text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 <input type="password" class="form-control text-center" name="password"
                                     placeholder="password" /> <br>
-                                {{-- @error('password')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                @enderror --}}
                             </div>
-                            <div class="input-group mb-3">
+                            @error('password')
+                                <span class="error text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+                            <div class="input-group mb-1">
                                 <input type="submit" class="button btn btn-success offset-lg-5" name=""
                                     value="inscrire" />
                             </div>

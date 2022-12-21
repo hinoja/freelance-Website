@@ -94,3 +94,7 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 // Route::fallback(function () {
 //     Toastr::Info(' sorry,This page don\'t  exist ):', 'Info!!');
 // });
+
+
+//Chat
+Route::view('/app-chat','app-chat');

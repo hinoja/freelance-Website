@@ -14,8 +14,8 @@
                     <nav id="breadcrumbs">
                         <ul>
                             <li>You are here:</li>
-                            <li><a href="{{ route('welcome') }}">Home</a></li>
-                            <li><a href="{{ route('job.applier',$job) }}">Job Dashboard</a></li>
+                            <li><a href="{{ route('job.manage') }}">back</a></li>
+                            <li><a href="{{ route('job.applier',$job) }}">Appliers's List</a></li>
                         </ul>
                     </nav>
                 </div>
