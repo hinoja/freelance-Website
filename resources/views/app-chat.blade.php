@@ -9,13 +9,18 @@
     <meta name="author" content="Potenza Global Solutions" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- app favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="Assets/asset/img/favicon.ico">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
     <link rel="stylesheet" type="text/css" href="{{ asset('Assets/css/vendors.css') }}" />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('Assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Assets/asset/css/style.css') }}" />
+    {{-- <script src="{{ asset('app.js') }}"></script> --}}
+    <script src="{{ resource_path('js/app.js') }}"></script>
+    {{-- <script src="resources/js/app.js"></script> --}}
+
+
 </head>
 
 <body>
@@ -27,7 +32,7 @@
             <div class="loader">
                 <div class="h-100 d-flex justify-content-center">
                     <div class="align-self-center">
-                        <img alt="loader" src="{{ asset('Assets/img/loader/loader.svg') }}" />
+                        <img alt="loader" src="{{ asset('Assets/asset/img/loader/loader.svg') }}" />
                     </div>
                 </div>
             </div>
@@ -41,11 +46,15 @@
                     <div class="navbar-header d-flex align-items-center">
                         <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
                         <a class="navbar-brand" href="index.html">
-                            <img src="{{ asset('Assets/img/logo.png') }}" class="img-fluid logo-desktop" alt="logo" />
-                            <img src="{{ asset('Assets/img/logo-icon.png') }}" class="img-fluid logo-mobile" alt="logo" />
+                            <img src="{{ asset('Assets/asset/img/logo.png') }}" class="img-fluid logo-desktop"
+                                alt="logo" />
+                            <img src="{{ asset('Assets/asset/img/logo-icon.png') }}" class="img-fluid logo-mobile"
+                                alt="logo" />
                         </a>
                     </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <i class="ti ti-align-left"></i>
                     </button>
                     <!-- end navbar-header -->
@@ -59,10 +68,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link  " href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu
+                                    <a class="nav-link  " href="javascript:void(0)" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu
                                         <i class="fa fa-angle-down"></i>
                                     </a>
-                                    <div class="dropdown-menu mega-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu mega-menu animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
                                         <div class="row no-gutters">
                                             <div class="col-sm-2 p-20">
                                                 <h4>UI Kit</h4>
@@ -134,15 +145,18 @@
                                                 <div>
                                                     <form>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" id="Password1" placeholder="Enter Name">
+                                                            <input type="text" class="form-control" id="Password1"
+                                                                placeholder="Enter Name">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="email" class="form-control" id="Email1" placeholder="Enter Email">
+                                                            <input type="email" class="form-control" id="Email1"
+                                                                placeholder="Enter Email">
                                                         </div>
                                                         <div class="form-group">
                                                             <textarea class="form-control" placeholder="Message" id="Textarea1" rows="3"></textarea>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary text-uppercase">Submit</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -162,13 +176,16 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link " id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop Down
+                                    <a href="javascript:void(0)" class="nav-link " id="navbarDropdown1"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Drop Down
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item nav-link" href="javascript:void(0)">Action</a>
                                         <a class="dropdown-item nav-link" href="javascript:void(0)">Another action</a>
-                                        <a class="dropdown-item nav-link" href="javascript:void(0)">Something else here</a>
+                                        <a class="dropdown-item nav-link" href="javascript:void(0)">Something else
+                                            here</a>
                                     </div>
                                 </li>
                                 <li class="nav-item full-screen d-none d-lg-block" id="btnFullscreen">
@@ -179,23 +196,29 @@
                             </ul>
                             <ul class="navbar-nav nav-right ml-auto">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
+                                        id="navbarDropdown2" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
                                         <i class="ti ti-email"></i>
                                     </a>
-                                    <div class="dropdown-menu extended animated fadeIn" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu extended animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
                                         <ul>
                                             <li class="dropdown-header bg-gradient p-4 text-white text-left">Messages
                                                 <label class="label label-info label-round">6</label>
-                                                <a href="#" class="float-right btn btn-square btn-inverse-light btn-xs m-0">
+                                                <a href="#"
+                                                    class="float-right btn btn-square btn-inverse-light btn-xs m-0">
                                                     <span class="font-13"> Mark all as read</span></a>
                                             </li>
                                             <li class="dropdown-body">
                                                 <ul class="scrollbar scroll_dark max-h-240">
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="assets/img/avtar/03.jpg" alt="user3">
+                                                                    <img class="img-fluid"
+                                                                        src="Assets/asset/img/avtar/03.jpg" alt="user3">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Brianing Leyon</p>
@@ -206,9 +229,12 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                        alt="user">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Jimmyimg Leyon</p>
@@ -219,9 +245,11 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="assets/img/avtar/02.jpg" alt="user2">
+                                                                    <img class="img-fluid"
+                                                                        src="Assets/asset/img/avtar/02.jpg" alt="user2">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Brainjon Leyon</p>
@@ -232,9 +260,11 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="assets/img/avtar/04.jpg" alt="user4">
+                                                                    <img class="img-fluid"
+                                                                        src="Assets/asset/img/avtar/04.jpg" alt="user4">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Smithmin Leyon</p>
@@ -245,9 +275,12 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user5">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                        alt="user5">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Jennyns Leyon</p>
@@ -258,9 +291,11 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
-                                                                    <img class="img-fluid" src="assets/img/avtar/06.jpg" alt="user6">
+                                                                    <img class="img-fluid"
+                                                                        src="Assets/asset/img/avtar/06.jpg" alt="user6">
                                                                 </div>
                                                                 <div class="notify-message">
                                                                     <p class="font-weight-bold">Demian Leyon</p>
@@ -278,24 +313,30 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
+                                        id="navbarDropdown3" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
                                         <i class="fe fe-bell"></i>
                                         <span class="notify">
-                                                    <span class="blink"></span>
-                                        <span class="dot"></span>
+                                            <span class="blink"></span>
+                                            <span class="dot"></span>
                                         </span>
                                     </a>
-                                    <div class="dropdown-menu extended animated fadeIn" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu extended animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
                                         <ul>
-                                            <li class="dropdown-header bg-gradient p-4 text-white text-left">Notifications
-                                                <a href="#" class="float-right btn btn-square btn-inverse-light btn-xs m-0">
+                                            <li class="dropdown-header bg-gradient p-4 text-white text-left">
+                                                Notifications
+                                                <a href="#"
+                                                    class="float-right btn btn-square btn-inverse-light btn-xs m-0">
                                                     <span class="font-13"> Clear all</span></a>
                                             </li>
                                             <li class="dropdown-body min-h-240 nicescroll">
                                                 <ul class="scrollbar scroll_dark max-h-240">
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
                                                                     <div class="bg-type bg-type-md">
                                                                         <span>HY</span>
@@ -310,14 +351,16 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
                                                                     <div class="bg-type bg-type-md bg-success">
                                                                         <span>GM</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="notify-message">
-                                                                    <p class="font-weight-bold">New invoice received</p>
+                                                                    <p class="font-weight-bold">New invoice received
+                                                                    </p>
                                                                     <small>22 min</small>
                                                                 </div>
                                                             </div>
@@ -325,7 +368,8 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
                                                                     <div class="bg-type bg-type-md bg-danger">
                                                                         <span>FR</span>
@@ -340,7 +384,8 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
                                                                     <div class="bg-type bg-type-md bg-info">
                                                                         <span>HT</span>
@@ -355,7 +400,8 @@
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0)">
-                                                            <div class="notification d-flex flex-row align-items-center">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
                                                                 <div class="notify-icon bg-img align-self-center">
                                                                     <div class="bg-type bg-type-md">
                                                                         <span>DE</span>
@@ -389,15 +435,19 @@
                                             <form>
                                                 <div class="form-group">
                                                     <i class="ti ti-search magnifier"></i>
-                                                    <input type="text" class="form-control autocomplete" placeholder="Search Here" id="autocomplete-ajax" autofocus="autofocus">
+                                                    <input type="text" class="form-control autocomplete"
+                                                        placeholder="Search Here" id="autocomplete-ajax"
+                                                        autofocus="autofocus">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown user-profile">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="assets/img/avtar/02.jpg" alt="avtar-img">
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle "
+                                        id="navbarDropdown4" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <img src="Assets/asset/img/avtar/02.jpg" alt="avtar-img">
                                         <span class="bg-success user-status"></span>
                                     </a>
                                     <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
@@ -407,8 +457,9 @@
                                                     <h4 class="text-white mb-0">Alice Williams</h4>
                                                     <small class="text-white">Henry@example.com</small>
                                                 </div>
-                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
-                                                                class="zmdi zmdi-power"></i></a>
+                                                <a href="#" class="text-white font-20 tooltip-wrapper"
+                                                    data-toggle="tooltip" data-placement="top" title=""
+                                                    data-original-title="Logout"> <i class="zmdi zmdi-power"></i></a>
                                             </div>
                                         </div>
                                         <div class="p-4">
@@ -693,11 +744,13 @@
                                                 <div class="app-chat-sidebar border-right border-md-n h-100">
                                                     <div class="app-chat-sidebar-search px-4 pb-4 pt-4 border-bottom">
                                                         <div class="input-group">
-                                                            <input aria-describedby="basic-addon1" class="form-control border-right-0" placeholder="Search..." type="text">
+                                                            <input aria-describedby="basic-addon1"
+                                                                class="form-control border-right-0"
+                                                                placeholder="Search..." type="text">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1">
-                                                                        <i class="ti ti-search magnifier"></i>
-                                                                    </span>
+                                                                    <i class="ti ti-search magnifier"></i>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -707,13 +760,17 @@
                                                                 <div class="d-flex active">
                                                                     <div>
                                                                         <div class="bg-img">
-                                                                            <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                            <img class="img-fluid"
+                                                                                src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                                alt="user">
                                                                             <i class="bg-img-status bg-success"></i>
                                                                         </div>
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Demian Leyon</h5>
-                                                                        <p class="text-white"><span><i class="zmdi zmdi-check mr-2"></i></span>I like you</p>
+                                                                        <p class="text-white"><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>I
+                                                                            like you</p>
                                                                         <div class="d-xl-none">
                                                                             <small>Just now</small>
                                                                             <span class="badge badge-success">5</span>
@@ -730,11 +787,15 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/02.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/02.jpg') }}"
+                                                                            alt="user">
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Jennyns Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check mr-2"></i></span>How are you</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>How
+                                                                            are you</p>
                                                                         <small class="d-xl-none">yesterday</small>
                                                                     </div>
                                                                     <div class="ml-auto text-right d-none d-xl-block">
@@ -747,12 +808,16 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/03.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/03.jpg') }}"
+                                                                            alt="user">
                                                                         <i class="bg-img-status bg-success"></i>
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Smithmin Leyon </h5>
-                                                                        <p><span><i class="zmdi zmdi-check-all mr-2"></i></span>Thanks</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check-all mr-2"></i></span>Thanks
+                                                                        </p>
                                                                         <div class="d-xl-none">
                                                                             <small>30 Aug</small>
                                                                             <span class="badge badge-success">35</span>
@@ -769,18 +834,24 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/04.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/04.jpg') }}"
+                                                                            alt="user">
                                                                         <i class="bg-img-status bg-danger"></i>
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Brianing Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check mr-2"></i></span> You will sail along until you...</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>
+                                                                            You will sail along until you...</p>
                                                                         <div class="d-xl-none">
-                                                                            <small>25 Aug</small> <span class="badge badge-success">15</span>
+                                                                            <small>25 Aug</small> <span
+                                                                                class="badge badge-success">15</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="ml-auto text-right d-none d-xl-block">
-                                                                        <small>25 Aug</small> <span class="badge badge-success">15</span>
+                                                                        <small>25 Aug</small> <span
+                                                                            class="badge badge-success">15</span>
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -790,12 +861,16 @@
                                                                 <div class="d-flex">
                                                                     <div>
                                                                         <div class="bg-img">
-                                                                            <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                            <img class="img-fluid"
+                                                                                src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                                alt="user">
                                                                         </div>
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Adrianing Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check mr-2"></i></span>Hi...</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>Hi...
+                                                                        </p>
                                                                         <small class="d-xl-none">20 Aug</small>
                                                                     </div>
                                                                     <div class="ml-auto text-right d-none d-xl-block">
@@ -808,12 +883,16 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                            alt="user">
                                                                         <i class="bg-img-status bg-success"></i>
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Garydmi Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check-all mr-2"></i></span>Thanks</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check-all mr-2"></i></span>Thanks
+                                                                        </p>
                                                                         <div class="d-xl-none">
                                                                             <small>15 Aug</small>
                                                                             <span class="badge badge-success">45</span>
@@ -830,14 +909,19 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                            alt="user">
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Andrewvi Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check mr-2"></i></span>Hello...</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>Hello...
+                                                                        </p>
                                                                         <div class="d-xl-none">
                                                                             <small>06 Aug</small>
-                                                                            <span class="badge badge-success">99+</span>
+                                                                            <span
+                                                                                class="badge badge-success">99+</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="ml-auto text-right d-none d-xl-block">
@@ -851,11 +935,15 @@
                                                             <a href="javascript:void(0)">
                                                                 <div class="d-flex">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                            alt="user">
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="mb-0">Brainjon Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check mr-2"></i></span>So, make the decision...</p>
+                                                                        <p><span><i
+                                                                                    class="zmdi zmdi-check mr-2"></i></span>So,
+                                                                            make the decision...</p>
                                                                         <small class="d-xl-none">30 May</small>
                                                                     </div>
                                                                     <div class="ml-auto text-right d-none d-xl-block">
@@ -864,34 +952,14 @@
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <div class="app-chat-sidebar-user-item">
-                                                            <a href="javascript:void(0)">
-                                                                <div class="d-flex">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                        <i class="bg-img-status bg-danger"></i>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h5 class="mb-0">Jimmyimg Leyon</h5>
-                                                                        <p><span><i class="zmdi zmdi-check-all mr-2"></i></span>Okay</p>
-                                                                        <div class="d-xl-none">
-                                                                            <small>30 May</small>
-                                                                            <span class="badge badge-success">25</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ml-auto text-right d-none d-xl-block">
-                                                                        <small>30 May</small>
-                                                                        <span class="badge badge-success">25</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-8 col-xxl-9 border-md-t">
                                                 <div class="app-chat-msg">
-                                                    <div class="d-flex align-items-center justify-content-between p-3 px-4 border-bottom">
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-between p-3 px-4 border-bottom">
                                                         <div class="app-chat-msg-title">
                                                             <h4 class="mb-0">Demian Leyon</h4>
                                                             <p class="text-success">
@@ -899,19 +967,24 @@
                                                             </p>
                                                         </div>
                                                         <div class="app-chat-msg-btn">
-                                                            <a class="font-20 text-muted btn" href="javascript:void(0)">
+                                                            <a class="font-20 text-muted btn"
+                                                                href="javascript:void(0)">
                                                                 <i class="fa fa-video-camera"></i>
                                                             </a>
-                                                            <a aria-expanded="false" aria-haspopup="true" class="font-20 text-muted btn pr-0" data-toggle="dropdown" href="javascript:void(0)">
+                                                            <a aria-expanded="false" aria-haspopup="true"
+                                                                class="font-20 text-muted btn pr-0"
+                                                                data-toggle="dropdown" href="javascript:void(0)">
                                                                 <i class="fa fa-gear"></i>
                                                             </a>
-                                                            <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
+                                                            <div
+                                                                class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
                                                                 <h6>Action</h6>
                                                                 <a class="dropdown-item" href="javascript:void(0)">
                                                                     <i class="ti ti-pencil pr-2"></i>Rename
                                                                 </a>
                                                                 <a class="dropdown-item" href="javascript:void(0)">
-                                                                    <i class="ti ti-announcement pr-2"></i>Mark as Unread
+                                                                    <i class="ti ti-announcement pr-2"></i>Mark as
+                                                                    Unread
                                                                 </a>
                                                                 <a class="dropdown-item" href="javascript:void(0)">
                                                                     <i class="ti ti-close pr-2"></i>Close
@@ -923,11 +996,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="scrollbar scroll_dark app-chat-msg-chat p-4">
-                                                        <div class="chat">
+                                                        {{-- <div class="chat">
                                                             <div class="chat-img">
                                                                 <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
                                                                     <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
+                                                                        <img class="img-fluid" src="{{ asset('Assets/asset/img/avtar/01.jpg') }}" alt="user">
                                                                     </div>
                                                                 </a>
                                                             </div>
@@ -940,11 +1013,39 @@
                                                                     <p>It should be Bootstrap 4 compatible.</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="text-center py-4">
                                                             <h6>30 May</h6>
                                                         </div>
-                                                        <div class="chat chat-left justify-content-end">
+
+                                                        <div class="chat">
+                                                            <div class="chat-img">
+                                                                <a data-placement="left" data-toggle="tooltip"
+                                                                    href="javascript:void(0)">
+                                                                    <div class="bg-img">
+                                                                        <img class="img-fluid"
+                                                                            src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
+                                                                            alt="user">
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="chat-msg" id="messageDisplay">
+                                                                {{-- <div class="chat-msg-content ">
+                                                                    <p>It should be Bootstrap 4 compatible.</p>
+                                                                </div> --}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="chat-msg" id="messageDisplay">
+                                                                {{-- <div class="chat-msg-content ">
+                                                                    <p>It should be Bootstrap 4 compatible.</p>
+                                                                </div> --}}
+                                                            </div>
+
+
+
+
+
+                                                        {{-- <div class="chat chat-left justify-content-end">
                                                             <div class="chat-msg">
                                                                 <div class="chat-msg-content">
                                                                     <p>Hey John, I am looking for the best admin template.</p>
@@ -954,174 +1055,26 @@
                                                                     <p>It should be Bootstrap 4 compatible.</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center py-4">
-                                                            <h6>06 Aug</h6>
-                                                        </div>
-                                                        <div class="chat chat-left justify-content-end">
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center py-4">
-                                                            <h6>20/07/2018</h6>
-                                                        </div>
-                                                        <div class="chat chat-left justify-content-end">
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center py-4">
-                                                            <h6>Today</h6>
-                                                        </div>
-                                                        <div class="chat chat-left justify-content-end">
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content">
-                                                                    <p>Hey John, I am looking for the best admin template.</p>
-                                                                    <p>Could you please help me to find it out?</p>
-                                                                </div>
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat">
-                                                            <div class="chat-img">
-                                                                <a data-placement="left" data-toggle="tooltip" href="javascript:void(0)">
-                                                                    <div class="bg-img">
-                                                                        <img class="img-fluid" src="{{ asset('Assets/img/avtar/01.jpg') }}" alt="user">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="chat-msg">
-                                                                <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        </div> --}}
+
                                                     </div>
                                                 </div>
                                                 <div class="app-chat-type">
-                                                    <div class="input-group mb-0 ">
+                                                    <div class="input-group mb-0 pb-0 ">
                                                         <div class="input-group-prepend d-none d-sm-flex">
                                                             <span class="input-group-text">
-                                                                    <i class="fa fa-smile-o">
-                                                                    </i>
-                                                                </span>
+                                                                <i class="fa fa-smile-o">
+                                                                </i>
+                                                            </span>
                                                         </div>
-                                                        <input class="form-control" placeholder="Type here..." type="text">
+                                                        <input id="message-chat" class="form-control"
+                                                            placeholder="Type here..." type="text">
+                                                        <input id="nickname" class="form-control"
+                                                            placeholder="Votre pseudo..." type="text">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                    <i class="fa fa-paper-plane"></i>
-                                                                </span>
+                                                            <span class="input-group-text" id="submitButton">
+                                                                <i class="fa fa-paper-plane"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1157,13 +1110,25 @@
 
 
 
+    @vite('resources/js/app.js')
+    <script src="{{ asset('Assets/asset/js/vendors.js') }}"></script>
+    <script src="{{ asset('Assets/asset/js/app.js') }}"></script>
     <!-- plugins -->
-    <script src="{{ asset('Assets/js/vendors.js') }}"></script>
 
     <!-- custom app -->
-    <script src="{{ asset('Assets/js/app.js') }}">
-    </script>
-</body>
+    {{-- <script>
+        $(function(){
+                const Http=window.axios;
+                const Echo=window.Echo;
+                const name=window.Echo;
+        });
+    </script> --}}
+    {{-- <script>
+        const submitButton = document.getElementById("submitButton");
 
 
-</html>
+        submitButton.addEventListener('click', () => {
+          alert('test');
+        });
+    </script> --}}
+</script>

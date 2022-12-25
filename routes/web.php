@@ -14,6 +14,7 @@ use App\Http\Controllers\freelance\ProfileController;
 use App\Http\Controllers\authentification\UserController;
 use App\Http\Controllers\authentification\SocialController;
 use App\Http\Controllers\authentification\VerifyEmailController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\customer\ChoiceFreelanceController;
 
 /*
@@ -97,4 +98,6 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 
 
 //Chat
-Route::view('/app-chat','app-chat');
+// Route::view('/app-chat','app-chat');
+Route::get('/chat', [ChatController::class,'index']);
+
