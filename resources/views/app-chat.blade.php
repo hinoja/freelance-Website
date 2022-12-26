@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <title>Mentor - Bootstrap 4 Admin Dashboard Template</title>
     <meta charset="utf-8" />
@@ -9,18 +10,13 @@
     <meta name="author" content="Potenza Global Solutions" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- app favicon -->
-    <link rel="shortcut icon" href="Assets/asset/img/favicon.ico">
+    <link rel="shortcut icon" href={{asset('Assets/img/favicon.ico')}} >
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('Assets/css/vendors.css') }}" />
+    <link rel="stylesheet" type="text/css" href={{asset('Assets/css/vendors.css')}} />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('Assets/asset/css/style.css') }}" />
-    {{-- <script src="{{ asset('app.js') }}"></script> --}}
-    <script src="{{ resource_path('js/app.js') }}"></script>
-    {{-- <script src="resources/js/app.js"></script> --}}
-
-
+    <link rel="stylesheet" type="text/css" href={{asset('Assets/css/styleD.css')}} />
 </head>
 
 <body>
@@ -1107,12 +1103,14 @@
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+
 
 
 
     @vite('resources/js/app.js')
-    <script src="{{ asset('Assets/asset/js/vendors.js') }}"></script>
-    <script src="{{ asset('Assets/asset/js/app.js') }}"></script>
+    <script src="{{ asset('Assets/js/vendors.js') }}"></script>
+    <script src="{{ asset('Assets/js/app.js') }}"></script>
     <!-- plugins -->
 
     <!-- custom app -->
@@ -1131,4 +1129,4 @@
           alert('test');
         });
     </script> --}}
-</script>
+{{-- </script> --}}

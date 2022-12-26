@@ -39,12 +39,12 @@ class ChatController extends Controller
             $request->nickname,
             $request->message
         ));
-        // return response()->json([
-        //     'success'=> 'chat message success'
-        // ]);
-        return [
+        return response()->json([
             'success'=> 'chat message success'
-        ];
+        ]);
+        // return [
+        //     'success'=> 'chat message success'
+        // ];
     }
 
     /**

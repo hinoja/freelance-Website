@@ -9,14 +9,44 @@ const submitButton = document.getElementById("submitButton");
 const chatDiv = document.getElementById('message');
 const options = {
     method: 'post',
-    url: '/chat',
+    url: '/chat/post',
     data: {
-        nickname: nickname.value,
-        message: message.value,
+        nickname: "nickname.value",
+        message: "message.value",
     }
 }
+// const options =axios
+// .post('/chat/post', {
+//     nickname: "nickname.value",
+//         message: "message.value",
+// })
+// .then(response => {
+//     console.log('from handle submit', response);
+// });
+// const options = axios
+//     .post(
+//         '/chat/post',
+//         {
+//             // "_token":"{{ csrf_token() }}",
+//             nickname: "nickname.value",
+//             message: "message.value",
+//         },
+//         {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 // 'X-CSRF-TOKEN':$('meta[namee="csrf-token"]').attr('content')
+//             },
+//         }
+//     )
+//     .then((response) => {
+//         console.log(response);
+//     })
+//     .catch((error) => {
+//         console.log(error.message);
+//     });
 
-submitButton.addEventListener('click', () => {
+
+submitButton.addEventListener('click', function () {
 
     axios(options);
     // axios.post('/chat', {
@@ -25,7 +55,8 @@ submitButton.addEventListener('click', () => {
     // });
     // console.log(nickname.value,message.value);
 });
-window.Echo.channel('chat').listen('.chatmessageevent', (e) => {
+// Echo.channel('chat').listen('.chatmessageevent', function() {
+Echo.channel('chat').listen('ChatMessageEvent', function (data) {
     // console.log('test');
     alert('passer');
     chatDiv.innerHTML += '<div class="chat-msg-content " ><p> Bonjour</p></div>';
