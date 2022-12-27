@@ -14,7 +14,7 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href={{asset('asset/css/vendors.css')}} />
+    <link rel="stylesheet" type="text/css" href={{asset('ven')}} />
     <!-- app style -->
     <link rel="stylesheet" type="text/css" href={{asset('asset/css/style.css')}} />
 </head>
