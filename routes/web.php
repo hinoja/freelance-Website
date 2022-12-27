@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\adminController;
 use App\Models\Job;
 use GuzzleHttp\Middleware;
 use Brian2694\Toastr\Facades\Toastr;
@@ -100,3 +101,7 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 //Chat
 Route::resource('/chat',ChatController::class);
 
+Route::get('/admin/index',[adminController::class,'index']);
+// Route::get('/route',function(){
+//   view('dashboard.welcome');
+// });
