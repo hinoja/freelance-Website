@@ -100,7 +100,3 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 //Chat
 Route::resource('/chat',ChatController::class);
 
-
-Route::get('/tres',function(){
-   view('dashboard.views.eCommerce');
-});
