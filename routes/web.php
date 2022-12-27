@@ -98,7 +98,8 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 
 
 //Chat
-// Route::view('/app-chat','app-chat');
-Route::get('/chat', [ChatController::class,'index']);
-Route::post('/chat/post', [ChatController::class,'post']);
+// // Route::view('/app-chat','app-chat');
+// Route::get('/chat', [ChatController::class,'index']);
+// Route::post('/chat/post', [ChatController::class,'post']);
+Route::resource('/chat',ChatController::class);
 

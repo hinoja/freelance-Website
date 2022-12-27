@@ -19,8 +19,13 @@ class ChatMessageEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(public string $nickname, public string $message)
+    public $nickname ;
+    public $message;
+    public function __construct(  string $nickname,   string $message)
     {
+        $this->nickname=$nickname;
+        $this->message=$message;
+
     }
 
     /**
@@ -30,10 +35,10 @@ class ChatMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat');
+        return new Channel('freelanceChat');
     }
     public function broadcastAs()
     {
-        return "chatmessageevent";
+        return 'chatAlias';
     }
 }

@@ -12,5 +12,9 @@
         "postcss": "^8.1.14",
         "pusher-js": "^8.0.0",
         "vite": "^3.0.0"
+    },
+    "dependencies": {
+        "laravel-mix": "^6.0.49",
+        "save": "^2.9.0"
     }
 }

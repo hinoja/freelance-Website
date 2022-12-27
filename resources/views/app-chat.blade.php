@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href={{asset('Assets/css/vendors.css')}} />
     <!-- app style -->
     <link rel="stylesheet" type="text/css" href={{asset('Assets/css/styleD.css')}} />
+    {{-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> --}}
+    @vite('resources/js/app.js')
 </head>
 
 <body>
@@ -139,7 +141,7 @@
                                             <div class="col-sm-4 p-20">
                                                 <h4>Contact Us</h4>
                                                 <div>
-                                                    <form>
+                                                    {{-- <form >
                                                         <div class="form-group">
                                                             <input type="text" class="form-control" id="Password1"
                                                                 placeholder="Enter Name">
@@ -153,7 +155,7 @@
                                                         </div>
                                                         <button type="submit"
                                                             class="btn btn-primary text-uppercase">Submit</button>
-                                                    </form>
+                                                    </form> --}}
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -860,6 +862,7 @@
                                                                             <img class="img-fluid"
                                                                                 src="{{ asset('Assets/asset/img/avtar/01.jpg') }}"
                                                                                 alt="user">
+
                                                                         </div>
                                                                     </div>
                                                                     <div>
@@ -1026,16 +1029,12 @@
                                                                 </a>
                                                             </div>
                                                             <div class="chat-msg" id="messageDisplay">
-                                                                {{-- <div class="chat-msg-content ">
+                                                                <div class="chat-msg-content ">
                                                                     <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div> --}}
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="chat-msg" id="messageDisplay">
-                                                                {{-- <div class="chat-msg-content ">
-                                                                    <p>It should be Bootstrap 4 compatible.</p>
-                                                                </div> --}}
-                                                            </div>
+
 
 
 
@@ -1055,6 +1054,7 @@
 
                                                     </div>
                                                 </div>
+                                                <form id="chatForm" >
                                                 <div class="app-chat-type">
                                                     <div class="input-group mb-0 pb-0 ">
                                                         <div class="input-group-prepend d-none d-sm-flex">
@@ -1063,17 +1063,18 @@
                                                                 </i>
                                                             </span>
                                                         </div>
-                                                        <input id="message-chat" class="form-control"
+                                                        <input id="messageInput" class="form-control"
                                                             placeholder="Type here..." type="text">
-                                                        <input id="nickname" class="form-control"
-                                                            placeholder="Votre pseudo..." type="text">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="submitButton">
+                                                        {{-- <input id="nickname" class="form-control"
+                                                            placeholder="Votre pseudo..." type="text"> --}}
+                                                        <div   class="input-group-prepend">
+                                                            <button type="submit" class="input-group-text" id="submitButton">
                                                                 <i class="fa fa-paper-plane"></i>
-                                                            </span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -1103,12 +1104,8 @@
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf_token" content="{{ csrf_token() }}"> --}}
 
-
-
-
-    @vite('resources/js/app.js')
     <script src="{{ asset('Assets/js/vendors.js') }}"></script>
     <script src="{{ asset('Assets/js/app.js') }}"></script>
     <!-- plugins -->
