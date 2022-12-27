@@ -93,8 +93,8 @@ sendMessageForm.addEventListener('submit', function (e) {
         alert('stape1');
         // if (!repeatCheck.includes(res.message)) {
         //     repeatCheck.push(res.message);
-        //     textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + res.message + '</p></div><hr>';
-        //     console.log(res.message);
+            textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + res.message + '</p></div><hr>';
+            console.log(res.message);
         // }
     });
 
