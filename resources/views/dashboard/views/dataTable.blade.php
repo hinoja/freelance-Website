@@ -12,7 +12,7 @@
                     <!-- begin page title -->
                     <div class="d-block d-sm-flex flex-nowrap align-items-center">
                         <div class="page-title mb-2 mb-sm-0">
-                            <h1>Data Table</h1>
+                            <h1>Users</h1>
                         </div>
                         <div class="ml-auto d-flex align-items-center">
                             <nav>
@@ -20,10 +20,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="index.html"><i class="ti ti-home"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item">
-                                        Tables
-                                    </li>
-                                    <li class="breadcrumb-item active text-primary" aria-current="page">Data Table</li>
+                                    <li class="breadcrumb-item">Users</li>
                                 </ol>
                             </nav>
                         </div>
@@ -36,15 +33,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-statistics">
-                        <div class="card-body">
+                        <div class="card-body">                           
                             <div class="datatable-wrapper table-responsive">
-                                <table id="datatable" class="display compact table table-striped table-bordered">
+                                <table id="datatable" class="display compact table table-striped table-bordered ">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
+                                            <th>email</th>
+                                            <th>role</th>
+                                            <th>Actve </th>
                                             <th>Start date</th>
                                             <th>Salary</th>
                                         </tr>
@@ -518,7 +515,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                            </div>
+                            </div>                             
                         </div>
                     </div>
                 </div>
