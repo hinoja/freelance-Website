@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Freelance;
 use App\Models\Job;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,17 +17,43 @@ class adminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
-         return view('dashboard.welcome',['totalUser'=>User::all(),'totalFreelance'=>Freelance::all(),'totalCustomer'=>Customer::all(),'totalJobs'=>Job::all()]);
+         return view('dashboard.welcome',['totalUser'=>User::all(),'totalFreelance'=>Freelance::all(),'totalCustomer'=>Customer::all(),'totalJobs'=>Job::all(),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
     }
-
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexJob()
+    {
+         return view('dashboard.views.jobs',['jobs'=>Job::OrderBy('created_at','DESC')->paginate(15),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
+    }
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexUser()
+    {
+         return view('dashboard.views.userTable',['users'=>User::OrderBy('created_at','DESC')->paginate(2),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
+    }
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTag()
+    {
+         return view('dashboard.partials.sidebar',['tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function StoreaJob()
     {
         //
     }

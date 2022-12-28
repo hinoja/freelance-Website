@@ -14,7 +14,7 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href={{asset('ven')}} />
+    <link rel="stylesheet" type="text/css" href={{asset('asset/css/vendors.css')}} />
     <!-- app style -->
     <link rel="stylesheet" type="text/css" href={{asset('asset/css/style.css')}} />
 </head>
@@ -28,7 +28,7 @@
             <div class="loader">
                 <div class="h-100 d-flex justify-content-center">
                     <div class="align-self-center">
-                        <img src="asset/img/loader/loader.svg" alt="loader">
+                        <img src="{{ asset('asset/img/loader/loader.svg') }}" alt="loader">
                     </div>
                 </div>
             </div>
@@ -60,13 +60,10 @@
     </div>
     <!-- end app -->
 
-
+     @include('dashboard.partials.adminModal')
     <!-- Scripts
     ================================================== -->
-    <script src="{{ asset('asset/js/vendors.js') }}"></script>
 
-    <!-- custom app -->
-    <script src="{{ asset('asset/js/app.js') }}"></script>
 
 </body>
 </html>

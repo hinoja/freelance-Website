@@ -68,7 +68,7 @@
                             <div class="col-xxl-3 col-lg-6">
                                 <div class="p-20 border-lg-right border-bottom border-xxl-bottom-0">
                                     <div class="d-flex m-b-10">
-                                        <p class="mb-0 font-regular text-muted font-weight-bold">User</p>
+                                        <p class="mb-0 font-regular text-muted font-weight-bold">Total User(s)</p>
                                         <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
                                     </div>
                                     <div class="d-block d-sm-flex h-100 align-items-center">
@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
                                             <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{count($totalUser) }}</h3>
-                                            <p>Monthly visitor</p>
+                                            {{-- <p>Monthly visitor</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="col-xxl-3 col-lg-6">
                                 <div class="p-20 border-xxl-right border-bottom border-xxl-bottom-0">
                                     <div class="d-flex m-b-10">
-                                        <p class="mb-0 font-regular text-muted font-weight-bold">Customer</p>
+                                        <p class="mb-0 font-regular text-muted font-weight-bold">Total Customer(s)</p>
                                         <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
                                     </div>
                                     <div class="d-block d-sm-flex h-100 align-items-center">
@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
                                             <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{ count($totalCustomer) }}</h3>
-                                            <p>This month</p>
+                                            {{-- <p>This month</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="col-xxl-3 col-lg-6">
                                 <div class="p-20 border-lg-right border-bottom border-lg-bottom-0">
                                     <div class="d-flex m-b-10">
-                                        <p class="mb-0 font-regular text-muted font-weight-bold">Total Freelances</p>
+                                        <p class="mb-0 font-regular text-muted font-weight-bold">Total Freelance(s)</p>
                                         <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
                                     </div>
                                     <div class="d-block d-sm-flex h-100 align-items-center">
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
                                             <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{ count($totalFreelance) }}</h3>
-                                            <p>Avg. Sales per day</p>
+                                            {{-- <p>Avg. Sales per day</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                     <div class="card card-statistics h-100 mb-0">
                         <div class="card-header d-flex justify-content-between">
                             <div class="card-heading">
-                                <h4 class="card-title">Total Jobs</h4>
+                                <h4 class="card-title">Total Job(s)</h4>
                             </div>
                             <div class="dropdown">
                                 <a class="p-2" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -227,10 +227,10 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <h2>{{ count($totalJobs) }}</h2>
-                                    <span class="d-block mb-2 font-16">AVG sessions</span>
+                                    {{-- <span class="d-block mb-2 font-16">AVG sessions</span>
                                     <span class="d-block mb-2 mb-sm-5"><b class="text-primary">-65.88%</b> vs last 1 months</span>
                                     <p class="mb-3">Sapiente corporis fugiat, doloremque eveniet nostrum id molestiae quaerat!</p>
-                                    <a class="btn btn-round btn-inverse-primary mb-3 mb-sm-0" href="#"><b>View details </b></a>
+                                    <a class="btn btn-round btn-inverse-primary mb-3 mb-sm-0" href="#"><b>View details </b></a> --}}
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="apexchart-wrapper">

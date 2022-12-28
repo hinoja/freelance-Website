@@ -101,7 +101,9 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 //Chat
 Route::resource('/chat',ChatController::class);
 
-Route::get('/admin/index',[adminController::class,'index']);
+Route::get('/admin/index',[adminController::class,'home'])->name('admin.home');
+Route::get('/admin/jobs',[adminController::class,'indexJob'])->name('admin.job');
+Route::get('/admin/users',[adminController::class,'indexUser'])->name('admin.user');
 // Route::get('/route',function(){
 //   view('dashboard.welcome');
 // });

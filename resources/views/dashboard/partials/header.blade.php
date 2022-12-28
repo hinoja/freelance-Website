@@ -8,7 +8,7 @@
             <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
             <a class="navbar-brand" href="index.html">
                 <img src="{{ asset('asset/img/logo.png') }}" class="img-fluid logo-desktop" alt="logo" />
-                <img src="{{ asset('asset/img/logo-icon.png') }} class="img-fluid logo-mobile" alt="logo" />
+                <img src="{{ asset('asset/img/logo-icon.png') }}" class="img-fluid logo-mobile" alt="logo" />
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,119 +24,8 @@
                             <i class="ti ti-align-right"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link  " href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <div class="dropdown-menu mega-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2 p-20">
-                                    <h4>UI Kit</h4>
-                                    <ul>
-                                        <li class="nav-link">
-                                            <a href="ui-alerts.html">Alerts</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-button.html">Buttons</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-cards.html">Cards</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-carousel.html">Carousel</a>
-                                        </li>
 
-                                        <li class="nav-link">
-                                            <a href="ui-dropdowns.html">Dropdowns</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-list-group.html">List Group</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-modals.html">Modals</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-progressbars.html">Progress Bars</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="ui-tabs.html">Tabs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-2 p-20">
-                                    <h4>Pages</h4>
-                                    <ul>
-                                        <li class="nav-link">
-                                            <a href="page-account-settings.html">Account Settings</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-clients.html">Clients</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-contacts.html">Contacts</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-gallery.html">Gallery</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-pricing.html">Pricing</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-task-list.html">Task List</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-404.html">404</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-500.html">500</a>
-                                        </li>
-                                        <li class="nav-link">
-                                            <a href="page-coming-soon.html">Coming Soon</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-4 p-20">
-                                    <h4>Contact Us</h4>
-                                    <div>
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="Password1" placeholder="Enter Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" id="Email1" placeholder="Enter Email">
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" placeholder="Message" id="Textarea1" rows="3"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="chart-wrap">
-                                        <div class="p-20">
-                                            <h4 class="mb-1">Page Views</h4>
-                                            <p>Daily page visitors</p>
-                                            <h2 class="text-primary font-xxl mt-2">80+</h2>
-                                        </div>
-                                        <div class="apexchart-wrapper">
-                                            <div id="pageview"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0)" class="nav-link " id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop Down
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item nav-link" href="javascript:void(0)">Action</a>
-                            <a class="dropdown-item nav-link" href="javascript:void(0)">Another action</a>
-                            <a class="dropdown-item nav-link" href="javascript:void(0)">Something else here</a>
-                        </div>
-                    </li>
+
                     <li class="nav-item full-screen d-none d-lg-block" id="btnFullscreen">
                         <a href="javascript:void(0)" class="nav-link expand">
                             <i class="icon-size-fullscreen"></i>
@@ -174,7 +63,7 @@
                                             <a href="javascript:void(0)">
                                                 <div class="notification d-flex flex-row align-items-center">
                                                     <div class="notify-icon bg-img align-self-center">
-                                                        <img class="img-fluid" src="assets/img/avtar/01.jpg" alt="user">
+                                                        <img class="img-fluid" src="{{ asset('asset/img/avtar/01.jpg') }}" alt="user">
                                                     </div>
                                                     <div class="notify-message">
                                                         <p class="font-weight-bold">Jimmyimg Leyon</p>
@@ -187,7 +76,7 @@
                                             <a href="javascript:void(0)">
                                                 <div class="notification d-flex flex-row align-items-center">
                                                     <div class="notify-icon bg-img align-self-center">
-                                                        <img class="img-fluid" src="assets/img/avtar/02.jpg" alt="user2">
+                                                        <img class="img-fluid" src="{{ asset('asset/img/avtar/02.jpg') }}" alt="user2">
                                                     </div>
                                                     <div class="notify-message">
                                                         <p class="font-weight-bold">Brainjon Leyon</p>
@@ -200,7 +89,7 @@
                                             <a href="javascript:void(0)">
                                                 <div class="notification d-flex flex-row align-items-center">
                                                     <div class="notify-icon bg-img align-self-center">
-                                                        <img class="img-fluid" src="assets/img/avtar/04.jpg" alt="user4">
+                                                        <img class="img-fluid" src="{{ asset('asset/img/avtar/04.jpg') }}" alt="user4">
                                                     </div>
                                                     <div class="notify-message">
                                                         <p class="font-weight-bold">Smithmin Leyon</p>
@@ -213,7 +102,7 @@
                                             <a href="javascript:void(0)">
                                                 <div class="notification d-flex flex-row align-items-center">
                                                     <div class="notify-icon bg-img align-self-center">
-                                                        <img class="img-fluid" src="assets/img/avtar/05.jpg" alt="user5">
+                                                        <img class="img-fluid" src="{{ asset('asset/img/avtar/05.jpg') }}" alt="user5">
                                                     </div>
                                                     <div class="notify-message">
                                                         <p class="font-weight-bold">Jennyns Leyon</p>
@@ -226,7 +115,7 @@
                                             <a href="javascript:void(0)">
                                                 <div class="notification d-flex flex-row align-items-center">
                                                     <div class="notify-icon bg-img align-self-center">
-                                                        <img class="img-fluid" src="assets/img/avtar/06.jpg" alt="user6">
+                                                        <img class="img-fluid" src="{{ asset('asset/img/avtar/06.jpg') }}" alt="user6">
                                                     </div>
                                                     <div class="notify-message">
                                                         <p class="font-weight-bold">Demian Leyon</p>
@@ -363,7 +252,7 @@
                     </li>
                     <li class="nav-item dropdown user-profile">
                         <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="assets/img/avtar/02.jpg" alt="avtar-img">
+                            <img src="{{ asset('asset/img/avtar/02.jpg') }}" alt="avtar-img">
                             <span class="bg-success user-status"></span>
                         </a>
                         <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
