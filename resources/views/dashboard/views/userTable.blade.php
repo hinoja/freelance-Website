@@ -29,82 +29,13 @@
             </div>
             <!-- end row -->
             <!-- begin row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card card-statistics">
-                        <div class="card-body">
-                            <div class="datatable-wrapper table-responsive">
-                                <table id="datatable" class="display compact table table-striped table-bordered ">
-                                    <thead>
-                                        <tr>
-                                            <th>N°</th>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>Type</th>
-                                            <th>Status </th>
-                                            <th>Start date</th>
-                                            <th>Created </th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($users as $user)
-                                            <tr>
-                                                <td>{{ $loop->index }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>
-                                                    @if ($user->userable_type === 'App\Models\Freelance')
-                                                        Freelance
-                                                    @else
-                                                        Customer
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($user->is_active === 1)
-                                                        <span>Active </span>
-                                                    @else
-                                                        <span style="color: red">disable</span>
-                                                    @endif
-                                                </td>
-                                                <td>27</td>
-                                                <td>{{ $user->created_at->diffForHumans() }} </td>
-                                                <td>
-                                                    {{-- <div class="btn btn-success">Show</div> --}}
-                                                    <div class="btn btn-outline-danger">disable</div>
-                                                    <div class="btn btn-outline-info">Show</div>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            Any User
-                                        @endforelse
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>N°</th>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>Type</th>
-                                            <th>Status </th>
-                                            <th>Start date</th>
-                                            <th>Created </th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                                {{ $users->links() }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              @livewire('admin.list-user')
             <!-- end row -->
         </div>
         <!-- end container-fluid -->
     </div>
     <!-- end app-main -->
-    
+
 
     <script src={{ asset('asset/js/vendors.js') }}></script>
 

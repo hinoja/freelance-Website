@@ -1,3 +1,8 @@
+@php
+    use Brian2694\Toastr\Facades\Toastr;
+@endphp
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +15,14 @@
     <meta name="author" content="Potenza Global Solutions" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- app favicon -->
-    <link rel="shortcut icon" href={{asset('asset/img/favicon.ico')}} >
+    <link rel="shortcut icon" href={{ asset('asset/img/favicon.ico') }}>
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href={{asset('asset/css/vendors.css')}} />
+    <link rel="stylesheet" type="text/css" href={{ asset('asset/css/vendors.css') }} />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href={{asset('asset/css/style.css')}} />
+    <link rel="stylesheet" type="text/css" href={{ asset('asset/css/style.css') }} />
+    @livewireStyles()
 </head>
 
 <body>
@@ -52,18 +58,28 @@
             <!-- end app-container -->
 
             <!-- begin footer -->
-            @include('dashboard.partials.footer')
             <!-- end footer -->
+            <!-- begin   things modal -->
+            @include('dashboard.partials.footer')
+            <!-- end   things modal -->
 
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
 
-     @include('dashboard.partials.adminModal')
+    @include('dashboard.partials.adminModal')
     <!-- Scripts
     ================================================== -->
-
+    @stack('scriptEventModal')
+    {{-- <script>
+        window.addEventListener('close-modal',event=>{
+             $('#addTagModal').modal('hide');
+         });
+     </script> --}}
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    @livewireScripts()
 
 </body>
+
 </html>

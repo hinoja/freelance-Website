@@ -19,7 +19,7 @@ class adminController extends Controller
      */
     public function home()
     {
-         return view('dashboard.welcome',['totalUser'=>User::all(),'totalFreelance'=>Freelance::all(),'totalCustomer'=>Customer::all(),'totalJobs'=>Job::all(),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
+         return view('dashboard.welcome',['totalUser'=>User::all(),'totalFreelance'=>Freelance::all(),'totalCustomer'=>Customer::all(),'totalJobs'=>Job::all()]);
     }
      /**
      * Display a listing of the resource.
@@ -28,26 +28,23 @@ class adminController extends Controller
      */
     public function indexJob()
     {
-         return view('dashboard.views.jobs',['jobs'=>Job::OrderBy('created_at','DESC')->paginate(15),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
+         return view('dashboard.views.jobs',['jobs'=>Job::OrderBy('created_at','DESC')->paginate(15)]);
     }
         /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexUser()
-    {
-         return view('dashboard.views.userTable',['users'=>User::OrderBy('created_at','DESC')->paginate(2),'tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
-    }
+    // public function indexUser()
+    // {
+        
+    // }
      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexTag()
-    {
-         return view('dashboard.partials.sidebar',['tags'=>Tag::OrderBy('created_at','DESC')->paginate(15)]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *

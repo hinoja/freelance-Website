@@ -1,67 +1,69 @@
-
 @php
-use Brian2694\Toastr\Facades\Toastr;
+    use Brian2694\Toastr\Facades\Toastr;
 @endphp
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
 <head>
 
-<!-- Basic Page Needs
+    <!-- Basic Page Needs
 ================================================== -->
-<meta charset="utf-8">
-<title>Work Scout</title>
+    <meta charset="utf-8">
+    <title>Work Scout</title>
 
-{{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <!-- Font awesome cdn CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> --}}
 
 
-<!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
 ================================================== -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<!-- CSS
+    <!-- CSS
 ================================================== -->
 
-@stack('css')
+    @stack('css')
 
-@stack('connexion')
+    @stack('connexion')
 
 
-<!-- CSS
+    <!-- CSS
 ================================================== -->
-<link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors"/>
+    <link href="{{ asset('Assets/css/style.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('Assets/css/colors/green.css') }}" id="colors" />
 
-<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-@livewireStyles()
+    @livewireStyles()
 
 </head>
 
 <body class="antialiased">
-<div id="wrapper">
+    <div id="wrapper">
 
 
-{{-- Header --}}
-{{-- ================================================== --> --}}
-<header>
-<div class="container">
-<div class="sixteen columns">
+        {{-- Header --}}
+        {{-- ================================================== --> --}}
+        <header>
+            <div class="container">
+                <div class="sixteen columns">
 
-     @include('partials.naviguation')
+                    @include('partials.naviguation')
 
-</div>
-</div>
-</header>
-<div class="container">
-<div class="row">
-    <div class="col-md-3"></div>
-        <div class="col-md-6">
-            @if (session('success'))
-                {{-- <div class="alert alert-success">
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    @if (session('success'))
+                        {{-- <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
                 @elseif (session('danger'))
@@ -73,40 +75,40 @@ use Brian2694\Toastr\Facades\Toastr;
                  <div class="alert alert-primary">
                     {{ session('primary') }}
                 </div> --}}
-            @endif
-            {{-- <ul>
-                @foreach ($errors->all() as $error )
+                    @endif
+                    {{-- <ul>
+                @foreach ($errors->all() as $error)
                     <div class="alert alert-danger"> <li> {{ $error }}</li> </div>
                 @endforeach
 
             </ul> --}}
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
         </div>
-    <div class="col-md-3"></div>
-
-</div>
-</div>
 
 
 
-       @yield('content')
+        @yield('content')
 
 
-<!-- Footer
+        <!-- Footer
 ================================================== -->
-<div class="margin-top-15"></div>
+        <div class="margin-top-15"></div>
 
-@include('partials.footer')
+        @include('partials.footer')
 
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-@yield('applyLogin')
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        @yield('applyLogin')
 
-<!-- Scripts
+        <!-- Scripts
 ================================================== -->
-@stack('script')
-@livewireScripts()
-{{--
+        @stack('script')
+        @livewireScripts()
+        {{--
 <script src="{{ asset('Assets/scripts/jquery-2.1.3.min.js') }}"></script>
 <script src="{{ asset('Assets/scripts/custom.js') }}"></script>
 <script src="{{ asset('Assets/scripts/jquery.superfish.js') }}"></script>
@@ -126,4 +128,5 @@ use Brian2694\Toastr\Facades\Toastr;
 <script type="text/javascript" src="{{ asset('Assets/scripts/jquery.sceditor.js') }}"></script> --}}
 
 </body>
+
 </html>

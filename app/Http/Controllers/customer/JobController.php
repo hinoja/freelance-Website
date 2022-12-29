@@ -182,7 +182,6 @@ class JobController extends Controller
         foreach ($job->freelances as $freelance) {
             Notification::send($freelance->user, new CancelFreelanceNotification($freelance->user, $customer, $job));
         }
-        // dd("passe");
         $requirements = Requirement::where('job_id', $job->id)->get();
         foreach ($requirements as $requirement) {
             $requirement->delete();

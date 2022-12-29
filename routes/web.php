@@ -17,6 +17,7 @@ use App\Http\Controllers\authentification\SocialController;
 use App\Http\Controllers\authentification\VerifyEmailController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\customer\ChoiceFreelanceController;
+use App\Http\Livewire\Admin\ListUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,8 +103,9 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 Route::resource('/chat',ChatController::class);
 
 Route::get('/admin/index',[adminController::class,'home'])->name('admin.home');
-Route::get('/admin/jobs',[adminController::class,'indexJob'])->name('admin.job');
-Route::get('/admin/users',[adminController::class,'indexUser'])->name('admin.user');
+Route::view('/admin/jobs','dashboard.views.jobs')->name('admin.job');
+Route::view('/admin/users','dashboard.views.userTable')->name('admin.user');
 // Route::get('/route',function(){
 //   view('dashboard.welcome');
 // });
+// Route::livewire('/admin/users',ListUser::class);
