@@ -1,4 +1,4 @@
-// alert('test');
+
 
 // require('./bootstrap');
 // alert('hello');
@@ -71,6 +71,7 @@ let name = "name";
 let repeatCheck = [];
 sendMessageForm.addEventListener('submit', function (e) {
     e.preventDefault();
+
     if (messageInput.value != '') {
         axios({
             method: 'post',
@@ -87,17 +88,24 @@ sendMessageForm.addEventListener('submit', function (e) {
         // axios(options);
         // textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + messageInput.value + '</p></div><hr>';
     }
+    // window.Echo.channel('freelanceChat').listen('.chatAlias', (res) => {
+    //     // window.Echo.channel('freelanceChat').listen('.chatMessageEvent', (res) => {
+    //     // sendMessageForm.style.display = 'none';
+    //     alert('stape1');
+    //     // if (!repeatCheck.includes(res.message)) {
+    //     //     repeatCheck.push(res.message);
+    //         textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + res.message + '</p></div><hr>';
+    //         console.log(res.message);
+    //     // }
+    // });
     window.Echo.channel('freelanceChat').listen('.chatAlias', (res) => {
-        // window.Echo.channel('freelanceChat').listen('.chatMessageEvent', (res) => {
-        // sendMessageForm.style.display = 'none';
-        alert('stape1');
-        // if (!repeatCheck.includes(res.message)) {
-        //     repeatCheck.push(res.message);
-            textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + res.message + '</p></div><hr>';
+        alert('passer');
+        if (!repeatCheck.includes(res.message)) {
+            repeatCheck.push(res.message);
             console.log(res.message);
-        // }
+            textMessage.innerHTML += '<div class="message"><strong class="userName pr-3">' + res.username + '</strong> <span class="singleMessage">' + res.message + '</span></div><hr>';
+        }
     });
-
     messageInput.value = '';
 });
 

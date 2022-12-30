@@ -18,7 +18,7 @@
     <!-- app style -->
     <link rel="stylesheet" type="text/css" href={{asset('Assets/css/styleD.css')}} />
     {{-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> --}}
-    @vite('resources/js/app.js')
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body>
