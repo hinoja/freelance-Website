@@ -18,7 +18,7 @@ class AddCategory extends Component
         $data=$this->validate(['name'=>['required','string','min:2','unique:categories,name']]);
         Category::create($data);
         $this->resetInput();
-        $this->dispatchBrowserEvent('close-modal');
+        $this->dispatchBrowserEvent('closemodalCategory');
         Toastr::success('<i class="fa fa-check"></i> Category added successfuly ', 'Success!!');
     }
 

@@ -1,7 +1,6 @@
 
 
 // require('./bootstrap');
-// alert('hello');
 const sendMessageForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("messageInput");
 const submitButton = document.getElementById("submitButton");
@@ -71,20 +70,22 @@ let name = "name";
 let repeatCheck = [];
 sendMessageForm.addEventListener('submit', function (e) {
     e.preventDefault();
-
     if (messageInput.value != '') {
         axios({
             method: 'post',
-            url: '/chat',
+            url: '/send',
             headers: { 'Content-Type': 'application/json' },
-            data: {
+            // data: {
+            //     nickname: 'name',
+            //     message: messageInput.value
+            // }
+            data: JSON.stringify({
                 nickname: 'name',
                 message: messageInput.value
-            }
+            }) ,
 
         });
         // }
-        // console.log(options);
         // axios(options);
         // textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + messageInput.value + '</p></div><hr>';
     }
@@ -107,6 +108,7 @@ sendMessageForm.addEventListener('submit', function (e) {
         }
     });
     messageInput.value = '';
+    
 });
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\authentification;
 
+use App\Events\RegisteredEvent;
 use Exception;
 use App\Models\Job;
 use App\Models\User;
@@ -55,7 +56,8 @@ class UserController extends Controller
         $user = $account->user()->create($request->only('name', 'email', 'password', 'role_id'));
         $user->slug = Str::slug($request->name) ;
         $user->save();
-        event(new Registered($user));
+        // event(new Registered($user));
+        event(new RegisteredEvent($user));
         Auth::login($user);
         Toastr::success('You Have Successfully created your account :)', 'Success!!');
         return redirect()->route($route);

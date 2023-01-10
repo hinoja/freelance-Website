@@ -22,10 +22,7 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,13 +37,12 @@ class ChatController extends Controller
             $request->message
         ));
         return response()->json([
-            'success'=> 'chat message success'
+            'success' => 'chat message success'
         ]);
         // return [
         //     'success'=> 'chat message success'
         // ];
     }
-
     /**
      * Display the specified resource.
      *

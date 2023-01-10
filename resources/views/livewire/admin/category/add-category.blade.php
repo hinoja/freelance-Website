@@ -36,7 +36,7 @@
 
 @push('scriptEventModal')
     <script>
-        window.addEventListener('close-modal', event => {
+        window.addEventListener('closemodalCategory', event => {
             $('#addCategoryModal').modal('hide');
         });
     </script>

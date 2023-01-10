@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar')->default('image');
             $table->boolean('is_active')->default('1');
+            $table->boolean('is_admin')->default('0');
             $table->foreignId('role_id')->constrained();
             $table->rememberToken();
             // $table->SoftDeletes();

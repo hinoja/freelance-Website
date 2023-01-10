@@ -31,6 +31,20 @@
                                                @endif
                                            </td>
                                            <td>
+                                               {{-- <div class="btn-group mb-2 mr-2 mb-xl-0 mr-xl-0">
+                                                <button type="button" class="btn btn-primary">Appliers</button>
+                                                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($job->freelances as $freelance)
+                                                        <a class="dropdown-item" href="javascript:void(0)">{{ $freelance->userable->name }}</a>
+                                                        <a class="dropdown-item" href="javascript:void(0)">{{ $freelance->user }}</a>
+                                                    @endforeach
+
+
+                                                </div>
+                                            </div> --}}
                                                @if ($user->is_active === 1)
                                                    <span>Active </span>
                                                @else
@@ -44,8 +58,8 @@
                                                    data-toggle="modal" data-target="#deleteUserModal"
                                                    class="btn btn-round  btn-sm btn-outline-danger"><i
                                                        class="fa fa-trash"></i> </a>{{-- //A REVOIR --}}
-                                               <a href="#" wire:click="editUserModal({{ $user->id }})"  data-toggle="modal"
-                                                   data-target="#EditUserModal"
+                                               <a href="#" wire:click="editUserModal({{ $user->id }})"
+                                                   data-toggle="modal" data-target="#EditUserModal"
                                                    class="btn btn-round  btn-sm btn-outline-primary"><i
                                                        class="fa fa-pencil"></i>
                                                </a>
@@ -116,12 +130,13 @@
                        </button>
                    </div>
                    <div class="modal-body">
-                       <form wire:submit.prevent="editUserModal" class="mt-1 mt-sm-2">
+                       <form wire:submit.prevent="updateUser" class="mt-1 mt-sm-2">
                            <div class="row">
                                <div class="col-12">
                                    <div class="form-group">
                                        <img src="{{ asset('asset/img/avtar/02.jpg') }}" alt="freelance">
                                    </div>
+
                                    <div class="form-group">
                                        <label class="control-label">User Name</label>
                                        <input type="text" wire:model="name" class="form-control"
@@ -151,7 +166,8 @@
                            <div class="modal-footer">
                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
                                        class="fa fa-times"></i></button>
-                               <button type="submit" wire:click="updateUser()" class="btn btn-success"> <i class="fa fa-save"></i></button>
+                               <button type="submit"  class="btn btn-success"> <i
+                                       class="fa fa-save"></i></button>
                            </div>
                        </form>
                    </div>
@@ -177,6 +193,5 @@
            window.addEventListener('showEditUsermodal', event => {
                $('#EditUserModal').modal('show');
            });
-
        </script>
    @endpush

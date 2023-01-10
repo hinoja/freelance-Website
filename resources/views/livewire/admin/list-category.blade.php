@@ -26,12 +26,12 @@
                                     <tr>
                                         <th scope="row">{{ $loop->index }}</th>
                                         <td>{{ $category->name }}</td>
-                                        <td>
-                                            {{-- <div class="icon-wrap  btn btn-outline-primary"><i class="fa fa-eye"></i></div> --}}
-                                            <div class="icon-wrap  btn btn-outline-primary"><i
-                                                    class="fa fa-pencil-square-o"></i></div>
-                                            {{-- <a   href="#"><i class="fa fa-pencil-square-o"></i></a> --}}
-                                        </td>
+                                        <td> <a href="#" wire:click="edit({{ $category->id }})"
+                                            data-toggle="modal" data-target="#editCategoryModal"
+                                            class="btn btn-round icon-wrap  btn-sm btn btn-outline-primary"><i
+                                                class="fa fa-pencil-square-o"></i>
+                                        </a>
+                                    </td>
                                     </tr>
                                 @endforeach
 
@@ -53,5 +53,77 @@
 
     </div>
     {{-- endlistCategoryModal --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- edit category modal --}}
+    <div wire:ignore.self class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTagModal">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form  class="mt-1 mt-sm-2" wire:submit.prevent="editCategory()">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="control-label">Category Name</label>
+                                    <input type="text" wire:model="nameEdit" class="form-control"
+                                        placeholder="Tag Name here" />
+                                    @error('nameEdit')
+                                        <span class="text-danger">{{ $message }} </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                                    class="fa fa-times"></i></button>
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-save"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- end edit tag modal --}}
+</div>
+@push('scriptEventModal')
+    <script>
+        window.addEventListener('closeCategoryModal', event => {
+            $('#listCategoryModal').modal('hide');
+            // $('#editCategoryModal').modal('hide');
+            // $('#deleteUserModal').modal('hide');closeTagEditModal
+        });
+        // window.addEventListener('confirmationDeleteUsermodal', event => {
+        //     $('#deleteUserModal').modal('hide');
+        // });
+        window.addEventListener('closeCategoryEditModal', event => {
+            $('#editCategoryModal').modal('hide');
+        });
+        // window.addEventListener('showEditCategorymodal', event => {
+        //     $('#editCategoryModal').modal('show');
+        // });
+    </script>
+@endpush
 
 </div>

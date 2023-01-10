@@ -2481,8 +2481,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// alert('stape1');
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -2498,6 +2496,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_3__);
 // import _ from 'lodash';
 // window._ = _;
 
@@ -2568,7 +2568,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+
+window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_3___default());
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
   broadcaster: 'pusher',
   key: "95b4e363c6cfc59283cb",
@@ -2585,7 +2586,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
 /***/ (() => {
 
 // require('./bootstrap');
-// alert('hello');
 var sendMessageForm = document.getElementById("chatForm");
 var messageInput = document.getElementById("messageInput");
 var submitButton = document.getElementById("submitButton");
@@ -2655,17 +2655,20 @@ sendMessageForm.addEventListener('submit', function (e) {
   if (messageInput.value != '') {
     axios({
       method: 'post',
-      url: '/chat',
+      url: '/send',
       headers: {
         'Content-Type': 'application/json'
       },
-      data: {
+      // data: {
+      //     nickname: 'name',
+      //     message: messageInput.value
+      // }
+      data: JSON.stringify({
         nickname: 'name',
         message: messageInput.value
-      }
+      })
     });
     // }
-    // console.log(options);
     // axios(options);
     // textMessage.innerHTML += '<div class="chat-msg-content "><strong  pr-3">' + name + '</strong> <p>' + messageInput.value + '</p></div><hr>';
   }

@@ -13,7 +13,7 @@
                                     {{-- <th>Description</th> --}}
                                     <th>Created By</th>
                                     <th>Salary</th>
-                                    <th>Freelance</th>
+                                    {{-- <th>Freelance</th> --}}
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Created</th>
@@ -21,51 +21,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             @forelse ($jobs as $job)
-                                <tr>
-                                    <td>{{ $loop->index }}</td>
-                                    <td>{{ $job->title }}</td>
-                                    <td>{{ $job->location }}</td>
-                                    {{-- <td>{{ $job->description }}</td> --}}
-                                    <td>{{ $job->customer->user->name }}</td>
-                                    <td>{{ $job->salary }}</td>
-                                    <td>
+                                @forelse ($jobs as $job)
+                                    <tr>
+                                        <td>{{ $loop->index }}</td>
+                                        <td>{{ $job->title }}</td>
+                                        <td>{{ $job->location }}</td>
+                                        <td>{{ $job->customer->user->name }}</td>
+                                        <td>{{ $job->salary }}</td>
+                                        <td>{{ $job->begin }}</td>
+                                        <td>{{ $job->deadline }}</td>
+                                        <td>{{ $job->created_at->diffForHumans() }}</td>
+                                        <td> <a href="#" wire:click="show({{ $job->id }})" data-toggle="modal"
+                                                data-target="#showJobModal"
+                                                class="btn btn-round  btn-sm btn-outline-info"><i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
 
-                                        <div class="btn-group mb-2 mr-2 mb-xl-0 mr-xl-0">
-                                            <button type="button" class="btn btn-primary">Appliers</button>
-                                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                @foreach ($job->freelances as $freelance)
-                                                    {{-- <a class="dropdown-item" href="javascript:void(0)">{{ $freelance->userable->name }}</a> --}}
-                                                    <a class="dropdown-item" href="javascript:void(0)">{{ $freelance->user }}</a>
-                                                @endforeach
-
-                                                {{-- <div class="dropdown-divider"></div> --}}
-                                                {{-- <a class="dropdown-item" href="javascript:void(0)">Separated link</a> --}}
-                                            </div>
-                                        </div>
-
-
-
-                                    </td>
-
-
-
-                                    <td>{{ $job->begin }}</td>
-                                    <td>{{ $job->deadline }}</td>
-                                    <td>{{ $job->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        {{-- <div class="btn btn-success">Show</div> --}}
-                                        <div class="btn btn-outline-danger">delete</div>
-                                        <div class="btn btn-outline-info">Show</div>
-                                    </td>
-
-                                </tr>
-                             @empty
+                                    </tr>
+                                @empty
                                     Any Job
-                             @endforelse
+                                @endforelse
 
 
 
@@ -91,5 +66,71 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+        <div wire:ignore.self class="modal fade" id="showJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="showJobModal">Show Job</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="mt-1 mt-sm-2" wire:submit.prevent="saveTag">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Title </label>
+                                        <input type="text" wire:model="title" class="form-control" readonly /> <br>
+                                        <label class="control-label"> Created By :Name </label>
+
+                                        <input type="text" wire:model="customer" class="form-control" readonly />
+                                        <br>
+
+                                        <label class="control-label">Created By :Email </label>
+
+                                        <input type="text" wire:model="email" class="form-control" readonly /> <br>
+                                        <label class="control-label" wire:loading> Loading Freelances Appliers ...</p>
+                                            </label>
+
+                                        <select class="form-control" rea>
+                                            <option selected>Appliers</option>
+                                            @foreach ($freelances as $freelance)
+                                                <option>{{ $freelance->user->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    @push('scriptEventModal')
+        <script>
+            window.addEventListener('close-modal', event => {
+                $('#showJobModal').modal('hide');
+            });
+        </script>
+    @endpush
+
 </div>

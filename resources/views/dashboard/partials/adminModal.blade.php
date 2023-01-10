@@ -8,6 +8,7 @@
 
 {{-- AddCategoryModal  --}}
 @livewire('admin.category.add-category')
+
 {{-- endAddCategoryModal  --}}
 
 

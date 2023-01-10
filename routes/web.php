@@ -30,15 +30,15 @@ use App\Http\Livewire\Admin\ListUser;
 |
 */
 
-Route::post('/email/verification-notification', [VerifyEmailController::class, 'resendEmail'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send'); //Resending The Verification Email
-Route::get('/email/verify', [VerifyEmailController::class, 'verify'])
-    ->middleware('auth')
-    ->name('verification.notice'); //The Email Verification Notice send
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify'); //The Email Verification link
+// Route::post('/email/verification-notification', [VerifyEmailController::class, 'resendEmail'])
+//     ->middleware(['auth', 'throttle:6,1'])
+//     ->name('verification.send'); //Resending The Verification Email
+// Route::get('/email/verify', [VerifyEmailController::class, 'verify'])
+//     ->middleware('auth')
+//     ->name('verification.notice'); //The Email Verification Notice send
+// Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'fullfill'])
+//     ->middleware(['auth', 'signed'])
+//     ->name('verification.verify'); //The Email Verification link
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnecte', [UserController::class, 'logout'])->name('logout');
 });
@@ -54,7 +54,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/loginpost', [UserController::class, 'authenticate'])->name('login');
     Route::post('/signup', [UserController::class, 'signup'])->name('signup');
     Route::view('/login', 'authentification.login')->name('login.view');
-    Route::get('/signup', [UserController::class,'indexRegister'])->name('signup.view');
+    Route::get('/signup', [UserController::class, 'indexRegister'])->name('signup.view');
 });
 
 //freelance
@@ -100,11 +100,14 @@ Route::get('/download/appliers{job:slug}', [PDFController::class, 'download'])->
 
 
 //Chat
-Route::resource('/chat',ChatController::class);
+Route::get('/chat', [chatController::class, 'index']);
+Route::post('/send', [chatController::class, 'store']);
 
-Route::get('/admin/index',[adminController::class,'home'])->name('admin.home');
-Route::view('/admin/jobs','dashboard.views.jobs')->name('admin.job');
-Route::view('/admin/users','dashboard.views.userTable')->name('admin.user');
+// Route::middleware(['is_admin'])->group(function () {
+    Route::get('/admin/index', [adminController::class, 'home'])->name('admin.home');
+    Route::view('/admin/jobs', 'dashboard.views.jobs')->name('admin.job');
+    Route::view('/admin/users', 'dashboard.views.userTable')->name('admin.user');
+// });
 // Route::get('/route',function(){
 //   view('dashboard.welcome');
 // });
