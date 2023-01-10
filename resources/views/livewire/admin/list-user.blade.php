@@ -153,21 +153,33 @@
                                            <span class="text-danger ">{{ $message }} </span>
                                        @enderror
                                    </div>
-                                   {{-- <div class="form-group">
-                                       <label class="control-label">Status</label>
-                                       <select name="" id="" class="form-control ">
-                                           <option value="" selected>disable</option>
-                                           <option value="" selected>active</option>
-                                       </select>
-                                   </div> --}}
+                                   <div class="form-group">
+                                       <label class="control-label">Change State Account</label>
+
+                                       @if ($user->is_active === 1)
+                                           <select wire:model.lazy="state" class="form--control">
+                                               <option value="0"> Disable</option>
+                                               <option value="1" selected> <span style="color: green">Active
+                                                   </span>
+                                               </option>
+                                           </select>
+                                       @else
+                                           <select wire:model.lazy="state" class="form-control">
+                                               <option value="1"> Activate</option>
+                                               <option value="0" selected><span style="color: red">Disable </span>
+                                               </option>
+                                           </select>
+                                       @endif
+
+                                   </div>
+
                                </div>
 
                            </div>
                            <div class="modal-footer">
                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
                                        class="fa fa-times"></i></button>
-                               <button type="submit"  class="btn btn-success"> <i
-                                       class="fa fa-save"></i></button>
+                               <button type="submit" class="btn btn-success"> <i class="fa fa-save"></i></button>
                            </div>
                        </form>
                    </div>

@@ -12,8 +12,15 @@ use Brian2694\Toastr\Facades\Toastr;
 class ListUser extends Component
 {
     use WithPagination;
-    public $delete_id, $editUserId, $name, $email;
+    public $delete_id, $editUserId, $name, $email, $state;
+    // public $roleUser;
     protected $paginationTheme = 'bootstrap';
+
+    // public function updated(){
+    //     dd($this->user);
+
+    // }
+
     public function deleteConfirmation($id)
     {
         //    $user= User::find($id);
@@ -38,6 +45,7 @@ class ListUser extends Component
     {
         $this->name = "";
         $this->email = "";
+        $this->state = "";
     }
     public function editUserModal($id)
     {
@@ -52,25 +60,22 @@ class ListUser extends Component
         $this->validate([
             'name' => ['required', 'string', 'min:2'],
             'email' => ['required', 'email', 'unique:users,email'],
-            // 'name'=>['required','string','min:2','unique:categories,name'],
         ]);
         $UpdateUser = User::findOrFail($this->editUserId);
-        //    dd($this->name,$this->email);
+        if ($UpdateUser->role_id === 1) {
+            // $role =  Freelance::where('userable_id', $this->editUserId)->first();
+            // $role->email = $this->email;
+            $UpdateUser->userable->email  ;
+            // $role->is_active = $this->state;
+            // $role->save();
+        }
         $UpdateUser->name = $this->name;
         $UpdateUser->email = $this->email;
+        $UpdateUser->is_active = $this->state;
         $UpdateUser->save();
-        // dd( $UpdateUser);
-        // dd($UpdateUser);
-        // $UpdateUser->save();
-        // if ( $user->role_id === 1) {
-        //     $role =  Freelance::where('userable_id',$this->editUser->id)->first();
-        //     $role->email = $this->email;
-        //     $role->save();
-        // }
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
         Toastr::success('<i class="fa fa-check"></i>User updated successfuly ', 'Success!!');
-        // dd($this->edit_id);
     }
     public function render()
     {

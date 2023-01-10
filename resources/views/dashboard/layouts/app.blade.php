@@ -68,7 +68,7 @@
     </div>
     <!-- end app -->
 
-    {{-- @include('dashboard.partials.adminModal') --}}
+    @include('dashboard.partials.adminModal')
     <!-- Scripts
     ================================================== -->
     @stack('scriptEventModal')
